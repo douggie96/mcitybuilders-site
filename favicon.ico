@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Maverick City Builders" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="p:domain_verify" content="5aedca04894be2b34a2e0fd90dda9adc"/>
+    
+    <link rel="preconnect" href="https://widgets.leadconnectorhq.com">
+    <link rel="preconnect" href="https://stcdn.leadconnectorhq.com">
+    <link rel="preconnect" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://widgets.leadconnectorhq.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://vibe.filesafe.space/1776285954741479289/attachments/a29d67e0-79fd-4dd7-9a00-dcea9dcb0432.png">
+    <link rel="preload" as="image" href="https://wsrv.nl/?url=https://vibe.filesafe.space/1776285954741479289/attachments/cff31d1d-6e8e-4c38-812b-b53a5ff6b705.jpg&w=800&q=60&output=webp" imagesrcset="https://wsrv.nl/?url=https://vibe.filesafe.space/1776285954741479289/attachments/cff31d1d-6e8e-4c38-812b-b53a5ff6b705.jpg&w=480&q=50&output=webp 480w, https://wsrv.nl/?url=https://vibe.filesafe.space/1776285954741479289/attachments/cff31d1d-6e8e-4c38-812b-b53a5ff6b705.jpg&w=800&q=60&output=webp 800w, https://wsrv.nl/?url=https://vibe.filesafe.space/1776285954741479289/attachments/cff31d1d-6e8e-4c38-812b-b53a5ff6b705.jpg&w=1920&q=70&output=webp 1920w" imagesizes="100vw" fetchpriority="high">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-NM846W2P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GT-NM846W2P');
+      gtag('config', 'G-7HXJQJL5Q2');
+    </script>
+
+    <meta name="facebook-domain-verification" content="fzdpmtqpkcn7i6zv21ardr69vmxazv" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1750236342810025');
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+
+
+    <!-- MCB Meta Pixel — Contact event on tel: click (delegation, sitewide) -->
+    <script>
+    (function() {
+      document.addEventListener('click', function(e) {
+        var target = e.target.closest('a[href^="tel:"]');
+        if (!target) return;
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Contact', {
+            content_category: 'phone',
+            content_name: target.getAttribute('href').replace('tel:', '').trim()
+          });
+        }
+      }, true);
+    })();
+    </script>
+
+    <!-- MCB Meta Pixel — ViewContent event on service pages (kitchen / bathroom hubs and area pages) -->
+    <script>
+    (function() {
+      if (typeof window.fbq !== 'function') return;
+      var path = window.location.pathname.toLowerCase();
+      if (path.indexOf('kitchen') !== -1) {
+        window.fbq('track', 'ViewContent', {
+          content_category: 'Kitchen Remodeling',
+          content_name: path
+        });
+      } else if (path.indexOf('bathroom') !== -1) {
+        window.fbq('track', 'ViewContent', {
+          content_category: 'Bathroom Remodeling',
+          content_name: path
+        });
+      }
+    })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CCPYgKZg.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CRHESzMY.css">
+  </head>
+  <body>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1750236342810025&ev=PageView&noscript=1"
+    /></noscript>
+    <div id="root"></div>
+    <!-- Delayed Third-Party Scripts to prioritize LCP and TBT -->
+    <script>
+      (function() {
+        var widgetLoaded = false;
+        function loadLeadConnectorWidget() {
+          if (widgetLoaded) return;
+          widgetLoaded = true;
+          var script = document.createElement("script");
+          script.src = "https://widgets.leadconnectorhq.com/loader.js";
+          script.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
+          script.setAttribute("data-widget-id", "69e0f4fcea97e06790641e5e");
+          script.defer = true;
+          document.body.appendChild(script);
+          
+          ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function(e) {
+            window.removeEventListener(e, loadLeadConnectorWidget);
+          });
+        }
+        
+        // Load on first user interaction
+        ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function(e) {
+          window.addEventListener(e, loadLeadConnectorWidget, { passive: true, once: true });
+        });
+        
+        // Fallback: load after 6 seconds if no interaction occurs
+        setTimeout(loadLeadConnectorWidget, 6000);
+      })();
+    </script>
+    <script>
+      (function() {
+        // MCB tap_to_call event tracking — fires gtag event on any tel: link click sitewide
+        document.addEventListener('click', function(e) {
+          var target = e.target.closest('a[href^="tel:"]');
+          if (!target) return;
+          var phone = target.getAttribute('href').replace('tel:', '').trim();
+          if (typeof gtag === 'function') {
+            gtag('event', 'tap_to_call', {
+              phone_number: phone,
+              location: window.location.pathname,
+              value: 75,
+              currency: 'USD'
+            });
+          }
+        }, true);
+      })();
+    </script>
+  </body>
+</html>
