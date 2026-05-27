@@ -364,6 +364,44 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Tier 2 Service+City Pages -->
+  <url>
+    <loc>https://mcitybuilders.com/kitchen-remodeling-leominster-ma</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/bathroom-remodeling-leominster-ma</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/kitchen-remodeling-fitchburg-ma</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/bathroom-remodeling-fitchburg-ma</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/deck-building-lancaster-ma</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/flooring-installation-lancaster-ma</loc>
+    <lastmod>2026-05-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- High-Value SEO Content Pages -->
   <url>
     <loc>https://mcitybuilders.com/general-contractor-worcester-ma</loc>
