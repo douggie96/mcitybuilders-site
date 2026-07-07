@@ -1,4 +1,56 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+      ]
+    },
+    {
+      "source": "/:path((?!assets/).*)",
+      "has": [{ "type": "header", "key": "accept", "value": "text/html" }],
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/portfolio/bathroom-remodeling-clinton-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/bathroom-remodeling-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/bathroom-remodeling-leominster-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/custom-composite-deck", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/deck-builder-clinton-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/deck-builder-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/home-remodeling-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/interior-painting-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/kitchen-remodeling-clinton-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/kitchen-remodeling-hudson-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/kitchen-remodeling-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/kitchen-remodeling-leominster-ma-project", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/luxury-shaker-kitchen", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/open-concept-living-area", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfolio/spa-like-master-bath", "destination": "/portfolio", "permanent": true }
+  ]
 }
