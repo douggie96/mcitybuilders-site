@@ -43,6 +43,7 @@
       "destination": "https://mcitybuilders.com/:path*",
       "permanent": true
     },
+    { "source": "/rot-repair-cost-massachusetts", "destination": "/structural-repair-worcester-county-ma", "permanent": true },
     { "source": "/services/kitchen-remodeling", "destination": "/kitchen-remodeling", "permanent": true },
     { "source": "/services/bathroom-remodeling", "destination": "/bathroom-remodeling", "permanent": true },
     { "source": "/services/deck-building", "destination": "/deck-building", "permanent": true },
