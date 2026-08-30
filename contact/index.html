@@ -36,6 +36,12 @@
       <p style="color:#C0C0C0;margin:0;">We will be in touch within 24 hours to schedule your consultation.</p>
     </div>
 
+    <div style="background:#111;border:1px solid #333;border-left:4px solid #E10600;padding:20px 24px;margin-bottom:28px;text-align:center;">
+      <p style="color:#C0C0C0;font-size:0.9rem;margin:0 0 8px;">Prefer to talk it through? Call us directly.</p>
+      <p style="margin:0;"><a href="tel:+15086567436" style="color:#E10600;font-size:1.35rem;font-weight:800;letter-spacing:1px;text-decoration:none;">(508) 656-7436</a></p>
+      <p style="color:#888;font-size:0.8rem;margin:8px 0 0;">Or email <a href="mailto:douglas@mcitybuilders.com" style="color:#C0C0C0;">douglas@mcitybuilders.com</a></p>
+    </div>
+
     <form id="contact-form" onsubmit="submitForm(event)">
       <div style="margin-bottom:24px;">
         <label style="display:block;color:#C0C0C0;font-size:0.85rem;letter-spacing:1px;margin-bottom:8px;font-weight:600;">NAME *</label>
@@ -136,6 +142,7 @@
     var errEl = document.getElementById("form-error");
     var form = document.getElementById("contact-form");
     var successEl = document.getElementById("form-success");
+    var origLabel = btn.textContent;
     btn.textContent = "SENDING...";
     btn.disabled = true;
     errEl.style.display = "none";
@@ -161,13 +168,43 @@
       sessionId: (typeof crypto !== "undefined" && crypto.randomUUID) ? crypto.randomUUID() : Math.random().toString(36).slice(2),
       properties: { deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "mobile" : "desktop" }
     };
+
+    var ok = false;
+    var diag = "";
     try {
-      await fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
+      var res = await fetch("https://backend.leadconnectorhq.com/external-tracking/events", {
         method: "POST",
         headers: { "Content-Type": "application/json", version: "2021-07-28" },
         body: JSON.stringify(payload)
       });
-    } catch(err) {}
+      ok = res.ok;
+      diag = "HTTP " + res.status + " " + res.statusText;
+      if (!ok) {
+        var body = "";
+        try { body = (await res.text()).slice(0, 300); } catch (readErr) {}
+        diag += body ? (" - " + body) : "";
+      }
+    } catch (err) {
+      ok = false;
+      diag = "network/CORS failure: " + (err && err.message ? err.message : String(err));
+    }
+
+    if (!ok) {
+      // Submission did NOT reach the CRM. Keep the form on screen so nothing is
+      // lost, show a real fallback, and do NOT report a conversion.
+      console.error("[MCB contact form] submission failed -", diag, payload);
+      btn.textContent = origLabel;
+      btn.disabled = false;
+      errEl.innerHTML = 'We could not send that from the website. Please call ' +
+        '<a href="tel:+15086567436" style="color:#E10600;font-weight:700;">(508) 656-7436</a> ' +
+        'or email <a href="mailto:douglas@mcitybuilders.com" style="color:#E10600;font-weight:700;">douglas@mcitybuilders.com</a> ' +
+        'and we will get straight back to you. Your details are still in the form above.';
+      errEl.style.display = "block";
+      errEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    // Confirmed success only past this point.
     if (typeof gtag === "function") { gtag("event", "generate_lead", { form_id: "mcb_contact_form", form_location: "/contact", lead_source: "website_contact_form", currency: "USD", value: 150 }); }
     if (typeof fbq === "function") { fbq("track", "Lead", { content_name: "mcb_contact_form", content_category: "website_contact_form", currency: "USD", value: 150 }); }
     form.style.display = "none";
