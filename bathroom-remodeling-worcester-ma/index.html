@@ -5,11 +5,11 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="p:domain_verify" content="5aedca04894be2b34a2e0fd90dda9adc">
     
-    <link rel="preconnect" href="https://widgets.leadconnectorhq.com">
-    <link rel="preconnect" href="https://stcdn.leadconnectorhq.com">
+    
+    
     <link rel="preconnect" href="https://www.google.com">
     <link rel="preconnect" href="https://www.gstatic.com">
-    <link rel="dns-prefetch" href="https://widgets.leadconnectorhq.com">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="preconnect" href="https://wsrv.nl"><link rel="preconnect" href="https://vibe.filesafe.space" crossorigin="">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript></noscript>
@@ -98,33 +98,7 @@
 </section>
 </footer></div></div>
     <!-- Delayed Third-Party Scripts to prioritize LCP and TBT -->
-    <script>
-      (function() {
-        var widgetLoaded = false;
-        function loadLeadConnectorWidget() {
-          if (widgetLoaded) return;
-          widgetLoaded = true;
-          var script = document.createElement("script");
-          script.src = "https://widgets.leadconnectorhq.com/loader.js";
-          script.setAttribute("data-resources-url", "https://widgets.leadconnectorhq.com/chat-widget/loader.js");
-          script.setAttribute("data-widget-id", "69e0f4fcea97e06790641e5e");
-          script.defer = true;
-          document.body.appendChild(script);
-          
-          ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function(e) {
-            window.removeEventListener(e, loadLeadConnectorWidget);
-          });
-        }
-        
-        // Load on first user interaction
-        ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(function(e) {
-          window.addEventListener(e, loadLeadConnectorWidget, { passive: true, once: true });
-        });
-        
-        // Fallback: load after 6 seconds if no interaction occurs
-        setTimeout(loadLeadConnectorWidget, 6000);
-      })();
-    </script>
+    
     <script>
       (function() {
         // MCB tap_to_call event tracking — fires gtag event on any tel: link click sitewide
