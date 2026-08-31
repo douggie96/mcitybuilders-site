@@ -152,13 +152,13 @@
       timestamp: Date.now(),
       formId: "Contact Form",
       formData: {
-        name: fd.get("name"),
+        full_name: fd.get("name"),
         phone: fd.get("phone"),
         email: fd.get("email") || "",
         "contact.project_details": fd.get("projectDetails"),
         Timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
       },
-      formLabels: { name: "Name", phone: "Phone", email: "Email", "contact.project_details": "Project Details" },
+      formLabels: { full_name: "Full Name", phone: "Phone", email: "Email", "contact.project_details": "Project Details" },
       url: window.location.href,
       title: document.title,
       path: window.location.pathname,
