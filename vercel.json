@@ -37,6 +37,12 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.mcitybuilders.com" }],
+      "destination": "https://mcitybuilders.com/:path*",
+      "permanent": true
+    },
     { "source": "/portfolio/bathroom-remodeling-clinton-ma-project", "destination": "/portfolio", "permanent": true },
     { "source": "/portfolio/bathroom-remodeling-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
     { "source": "/portfolio/bathroom-remodeling-leominster-ma-project", "destination": "/portfolio", "permanent": true },
