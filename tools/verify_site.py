@@ -113,6 +113,82 @@ check("widgets.leadconnectorhq.com refs sitewide",
 check("chat-widget refs sitewide",
       sum(read(f).count("chat-widget") for f in PAGES), 0)
 
+# ---- 9. claims compliance (added 2026-09-03, Day 72) ---------------------------
+# An image or a sentence may not present AI/stock imagery or an invented job as
+# Maverick City Builders' completed work. See
+# 09 - Daily Logs & Plans/audits/MCB_IMAGE_AND_CLAIMS_COMPLIANCE_AUDIT_2026-09-03.md
+# All expected values are 0 by construction, not by measurement -- any nonzero
+# result is a real regression. Do not raise these baselines.
+
+DISCLOSURE = ("Some images on this site are design illustrations, including AI-generated "
+              "concepts, and are not photographs of Maverick City Builders projects. "
+              "Photos of our own work are labelled as such.")
+
+SERVICE_TOWNS = ("Lancaster", "Sterling", "Clinton", "Bolton", "Hudson", "Berlin", "Harvard",
+                 "Worcester", "Leominster", "Fitchburg", "Marlborough", "Stow", "Boxborough",
+                 "Acton", "Concord", "Sudbury", "Littleton", "West Sterling")
+
+check("pages containing 'Project Examples'",
+      sum(1 for f in PAGES if "Project Examples" in read(f)), 0,
+      str([os.path.relpath(f, SITE) for f in PAGES if "Project Examples" in read(f)][:3]))
+
+TIME_CLAIM = re.compile(r"We (completed|built|finished|remodeled|renovated)"
+                        r"[^.]{0,60}(this spring|this summer|last year|this year)")
+tc = [os.path.relpath(f, SITE) for f in PAGES if TIME_CLAIM.search(read(f))]
+check("pages claiming a recent completed job", len(tc), 0, str(tc[:3]))
+
+check("pages containing 'Real homes, real transformations'",
+      sum(1 for f in PAGES if "Real homes, real transformations" in read(f)), 0)
+
+check("pages missing the image disclosure line",
+      sum(1 for f in PAGES if DISCLOSURE not in read(f)), 0,
+      str([os.path.relpath(f, SITE) for f in PAGES if DISCLOSURE not in read(f)][:3]))
+
+# provenance-driven image checks
+PROV = os.path.join(SITE, "tools", "image_provenance.json")
+prov = json.load(open(PROV, encoding="utf-8"))["assets"] if os.path.exists(PROV) else {}
+REAL = {k for k, v in prov.items() if v.get("bucket") == "real"}
+check("image_provenance.json present", os.path.exists(PROV), True)
+
+VARIANT = re.compile(r"-(480|800|1408|768|1200)\.(webp|jpg)$|\.(jpg|jpeg|webp|png)$")
+BANNED = tuple(t.lower() for t in SERVICE_TOWNS) + (
+    "worcester county", "central ma", "project", "remodel in", "renovation in",
+    "repaint in", "we built", "our work")
+
+bad_placements = []
+for f in PAGES:
+    for tag in re.findall(r"<img\b[^>]*>", read(f)):
+        m_src = re.search(r'src="([^"]*)"', tag)
+        if not m_src or "/assets/img/" not in m_src.group(1):
+            continue
+        base = VARIANT.sub("", os.path.basename(m_src.group(1)))
+        if base in REAL:
+            continue  # real MCB job photos may name a town
+        m_alt = re.search(r'alt="([^"]*)"', tag)
+        alt = (m_alt.group(1) if m_alt else "").lower()
+        # A blog header may use its article title as alt -- that describes the
+        # article, not a job -- so alt is exempt there. The filename rule is not.
+        if (os.sep + "blog" + os.sep) in f:
+            alt = ""
+        hay = base.replace("-", " ").lower()
+        for word in BANNED:
+            if word in hay or word in alt:
+                bad_placements.append((os.path.relpath(f, SITE), base, word))
+                break
+check("illustrative image placements claiming a town or project",
+      len(bad_placements), 0, str(bad_placements[:3]))
+
+IMGDIR = os.path.join(SITE, "assets", "img")
+bad_names = []
+if os.path.isdir(IMGDIR):
+    for p in sorted(os.listdir(IMGDIR)):
+        base = VARIANT.sub("", p)
+        if base in REAL:
+            continue
+        if "-project-in-" in base or re.search(r"-in-[a-z-]+-ma$", base):
+            bad_names.append(p)
+check("illustrative asset filenames claiming a town or project", len(bad_names), 0, str(bad_names[:3]))
+
 # ---- report --------------------------------------------------------------------
 print(f"{'':2} {'check':<48} {'actual':>10} {'expected':>10}")
 print("-" * 84)
