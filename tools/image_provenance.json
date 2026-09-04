@@ -1,0 +1,685 @@
+{
+  "_generated": "2026-09-03",
+  "_standard": "real = MCB photograph of an MCB job, homeowner-approved; only these may name a town, say \"project\"/\"we built\", or appear as our work. illustrative = AI or stock imagery and design scenarios; filename and alt must describe the subject only.",
+  "assets": {
+    "about-maverick-city-builders": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "AI/stock: timber-framed house shell at night. Not a portrait of the founder.",
+      "files": [
+        "about-maverick-city-builders-1408.webp",
+        "about-maverick-city-builders-480.webp",
+        "about-maverick-city-builders-800.webp",
+        "about-maverick-city-builders.jpg"
+      ],
+      "used_on": [
+        "about/index.html",
+        "accessibility/index.html",
+        "cookie-policy/index.html",
+        "privacy-policy/index.html",
+        "terms/index.html"
+      ]
+    },
+    "ai-luxury-shaker-kitchen": {
+      "bucket": "illustrative",
+      "ai_generated": true,
+      "reason": "AI-generated concept (ai- prefix).",
+      "files": [
+        "ai-luxury-shaker-kitchen-1408.webp",
+        "ai-luxury-shaker-kitchen-480.webp",
+        "ai-luxury-shaker-kitchen-800.webp",
+        "ai-luxury-shaker-kitchen.jpg"
+      ],
+      "used_on": []
+    },
+    "ai-open-concept-living-area": {
+      "bucket": "illustrative",
+      "ai_generated": true,
+      "reason": "AI-generated concept (ai- prefix).",
+      "files": [
+        "ai-open-concept-living-area-1408.webp",
+        "ai-open-concept-living-area-480.webp",
+        "ai-open-concept-living-area-800.webp",
+        "ai-open-concept-living-area.jpg"
+      ],
+      "used_on": []
+    },
+    "ai-pergola-deck-outdoor-seating": {
+      "bucket": "illustrative",
+      "ai_generated": true,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "ai-pergola-deck-outdoor-seating-1408.webp",
+        "ai-pergola-deck-outdoor-seating-480.webp",
+        "ai-pergola-deck-outdoor-seating-800.webp",
+        "ai-pergola-deck-outdoor-seating.jpg"
+      ],
+      "used_on": [
+        "deck-building/index.html"
+      ]
+    },
+    "ai-spa-like-master-bath": {
+      "bucket": "illustrative",
+      "ai_generated": true,
+      "reason": "AI-generated concept (ai- prefix).",
+      "files": [
+        "ai-spa-like-master-bath-1408.webp",
+        "ai-spa-like-master-bath-480.webp",
+        "ai-spa-like-master-bath-800.webp",
+        "ai-spa-like-master-bath.jpg"
+      ],
+      "used_on": []
+    },
+    "bathroom-double-vanity-subway-tile-shower": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "bathroom-double-vanity-subway-tile-shower-1408.webp",
+        "bathroom-double-vanity-subway-tile-shower-480.webp",
+        "bathroom-double-vanity-subway-tile-shower-800.webp",
+        "bathroom-double-vanity-subway-tile-shower.jpg"
+      ],
+      "used_on": []
+    },
+    "bathroom-freestanding-tub-glass-shower": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "bathroom-freestanding-tub-glass-shower-1408.webp",
+        "bathroom-freestanding-tub-glass-shower-480.webp",
+        "bathroom-freestanding-tub-glass-shower-800.webp",
+        "bathroom-freestanding-tub-glass-shower.jpg"
+      ],
+      "used_on": [
+        "bathroom-remodeling/index.html",
+        "services/index.html"
+      ]
+    },
+    "bathroom-remodeling": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "bathroom-remodeling.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "building-restoration": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "building-restoration-1408.webp",
+        "building-restoration-480.webp",
+        "building-restoration-800.webp",
+        "building-restoration.jpg",
+        "building-restoration.webp"
+      ],
+      "used_on": [
+        "index.html",
+        "services/index.html"
+      ]
+    },
+    "building-restoration-services": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "building-restoration-services-1408.webp",
+        "building-restoration-services-480.webp",
+        "building-restoration-services-800.webp",
+        "building-restoration-services.jpg"
+      ],
+      "used_on": [
+        "building-restoration/index.html",
+        "general-renovations/index.html",
+        "services/index.html"
+      ]
+    },
+    "composite-deck-cable-railing": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "composite-deck-cable-railing-1408.webp",
+        "composite-deck-cable-railing-480.webp",
+        "composite-deck-cable-railing-800.webp",
+        "composite-deck-cable-railing.jpg"
+      ],
+      "used_on": []
+    },
+    "composite-deck-riser-lighting": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "composite-deck-riser-lighting-1408.webp",
+        "composite-deck-riser-lighting-480.webp",
+        "composite-deck-riser-lighting-800.webp",
+        "composite-deck-riser-lighting.jpg"
+      ],
+      "used_on": [
+        "exterior-painting/index.html"
+      ]
+    },
+    "covered-deck-outdoor-kitchen": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "covered-deck-outdoor-kitchen-1408.webp",
+        "covered-deck-outdoor-kitchen-480.webp",
+        "covered-deck-outdoor-kitchen-800.webp",
+        "covered-deck-outdoor-kitchen.jpg"
+      ],
+      "used_on": [
+        "exterior-painting/index.html"
+      ]
+    },
+    "cream-kitchen-butcher-block-island": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "cream-kitchen-butcher-block-island-1408.webp",
+        "cream-kitchen-butcher-block-island-480.webp",
+        "cream-kitchen-butcher-block-island-800.webp",
+        "cream-kitchen-butcher-block-island.jpg"
+      ],
+      "used_on": []
+    },
+    "custom-cabinetry-finish-carpentry": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "custom-cabinetry-finish-carpentry-1408.webp",
+        "custom-cabinetry-finish-carpentry-480.webp",
+        "custom-cabinetry-finish-carpentry-800.webp",
+        "custom-cabinetry-finish-carpentry.jpg"
+      ],
+      "used_on": [
+        "services/index.html"
+      ]
+    },
+    "custom-cabinetry": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "custom-cabinetry.webp"
+      ],
+      "used_on": []
+    },
+    "custom-carpentry-built-ins": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "custom-carpentry-built-ins-1408.webp",
+        "custom-carpentry-built-ins-480.webp",
+        "custom-carpentry-built-ins-800.webp",
+        "custom-carpentry-built-ins.jpg"
+      ],
+      "used_on": [
+        "services/index.html"
+      ]
+    },
+    "custom-carpentry-services": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "custom-carpentry-services-1408.webp",
+        "custom-carpentry-services-480.webp",
+        "custom-carpentry-services-800.webp",
+        "custom-carpentry-services.jpg"
+      ],
+      "used_on": [
+        "carpentry/index.html",
+        "kitchen-remodeling/index.html"
+      ]
+    },
+    "custom-carpentry": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "custom-carpentry.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "deck-build": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "deck-build.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "deck-building": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "deck-building.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "exterior-painting-services-in-massachusetts": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "exterior-painting-services-in-massachusetts-1408.webp",
+        "exterior-painting-services-in-massachusetts-480.webp",
+        "exterior-painting-services-in-massachusetts-800.webp",
+        "exterior-painting-services-in-massachusetts.jpg"
+      ],
+      "used_on": [
+        "exterior-painting/index.html",
+        "services/index.html"
+      ]
+    },
+    "exterior-painting": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "exterior-painting.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "fall-prep-how-to-protect-your-home-before-winter-in-massac": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "fall-prep-how-to-protect-your-home-before-winter-in-massac-1408.webp",
+        "fall-prep-how-to-protect-your-home-before-winter-in-massac-480.webp",
+        "fall-prep-how-to-protect-your-home-before-winter-in-massac-800.webp",
+        "fall-prep-how-to-protect-your-home-before-winter-in-massac.jpg"
+      ],
+      "used_on": [
+        "blog/fall-prep-protect-home-before-winter-massachusetts/index.html",
+        "blog/properly-winterize-home-massachusetts/index.html",
+        "blog/winter-roof-protection-massachusetts-homeowner/index.html"
+      ]
+    },
+    "formal-living-room-painted-trim": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "formal-living-room-painted-trim-1408.webp",
+        "formal-living-room-painted-trim-480.webp",
+        "formal-living-room-painted-trim-800.webp",
+        "formal-living-room-painted-trim.jpg"
+      ],
+      "used_on": []
+    },
+    "general-renovations": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "general-renovations.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "great-room-coffered-ceiling-built-ins": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "great-room-coffered-ceiling-built-ins-1408.webp",
+        "great-room-coffered-ceiling-built-ins-480.webp",
+        "great-room-coffered-ceiling-built-ins-800.webp",
+        "great-room-coffered-ceiling-built-ins.jpg"
+      ],
+      "used_on": [
+        "interior-painting/index.html"
+      ]
+    },
+    "high-end-finishes": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "high-end-finishes.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "how-to-prevent-ice-dams-and-winter-exterior-damage-in-cent": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "how-to-prevent-ice-dams-and-winter-exterior-damage-in-cent-1408.webp",
+        "how-to-prevent-ice-dams-and-winter-exterior-damage-in-cent-480.webp",
+        "how-to-prevent-ice-dams-and-winter-exterior-damage-in-cent-800.webp",
+        "how-to-prevent-ice-dams-and-winter-exterior-damage-in-cent.jpg"
+      ],
+      "used_on": [
+        "blog/prevent-ice-dams-massachusetts/index.html"
+      ]
+    },
+    "img-9ee86c48": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "img-9ee86c48.jpg"
+      ],
+      "used_on": []
+    },
+    "img-cff31d1d": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "img-cff31d1d-1408.webp",
+        "img-cff31d1d-480.webp",
+        "img-cff31d1d-800.webp"
+      ],
+      "used_on": [
+        "blog/bathroom-addition-title-v-septic-central-ma/index.html",
+        "blog/bathroom-ventilation-moisture-older-homes-ma/index.html",
+        "blog/fall-prep-protect-home-before-winter-massachusetts/index.html",
+        "blog/is-it-too-cold-to-paint-house-exterior-massachusetts/index.html",
+        "blog/is-late-summer-good-time-paint-house/index.html",
+        "blog/kitchen-cabinets-1900s-farmhouse-central-ma/index.html",
+        "blog/kitchen-remodel-permits-timeline-central-ma/index.html",
+        "blog/kitchen-remodeling-cost-central-massachusetts/index.html",
+        "blog/last-chance-exterior-projects-before-winter/index.html",
+        "blog/mid-summer-home-improvements-add-value/index.html",
+        "blog/older-home-kitchen-remodel-surprises-central-ma/index.html",
+        "blog/opening-up-closed-kitchen-older-home-ma/index.html",
+        "blog/plan-spring-renovation-projects-early/index.html",
+        "blog/prepare-home-summer-construction-projects/index.html",
+        "blog/prevent-ice-dams-massachusetts/index.html",
+        "blog/properly-winterize-home-massachusetts/index.html",
+        "blog/right-temperature-exterior-painting-massachusetts/index.html",
+        "blog/signs-your-home-ready-exterior-painting/index.html",
+        "blog/small-galley-kitchen-remodel-older-homes-ma/index.html",
+        "blog/small-hall-bathroom-remodel-cost-central-ma/index.html",
+        "blog/spring-home-maintenance-checklist-massachusetts/index.html",
+        "blog/tile-vs-prefab-shower-surround-ma/index.html",
+        "blog/walk-in-shower-aging-in-place-bathroom-ma/index.html",
+        "blog/why-april-is-best-time-start-exterior-projects/index.html",
+        "blog/why-spring-is-best-time-exterior-painting-massachusetts/index.html",
+        "blog/winter-home-care-tips-avoid-expensive-repairs/index.html",
+        "blog/winter-roof-protection-massachusetts-homeowner/index.html"
+      ]
+    },
+    "interior-painting": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "interior-painting.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "interior-renovation": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "interior-renovation.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "is-it-too-cold-to-paint-your-house-exterior-in-massachuset": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "is-it-too-cold-to-paint-your-house-exterior-in-massachuset-1408.webp",
+        "is-it-too-cold-to-paint-your-house-exterior-in-massachuset-480.webp",
+        "is-it-too-cold-to-paint-your-house-exterior-in-massachuset-800.webp",
+        "is-it-too-cold-to-paint-your-house-exterior-in-massachuset.jpg"
+      ],
+      "used_on": [
+        "blog/is-it-too-cold-to-paint-house-exterior-massachusetts/index.html",
+        "blog/why-spring-is-best-time-exterior-painting-massachusetts/index.html"
+      ]
+    },
+    "is-late-summer-still-a-good-time-to-paint-your-house": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "is-late-summer-still-a-good-time-to-paint-your-house-1408.webp",
+        "is-late-summer-still-a-good-time-to-paint-your-house-480.webp",
+        "is-late-summer-still-a-good-time-to-paint-your-house-800.webp",
+        "is-late-summer-still-a-good-time-to-paint-your-house.jpg"
+      ],
+      "used_on": [
+        "blog/is-late-summer-good-time-paint-house/index.html",
+        "blog/right-temperature-exterior-painting-massachusetts/index.html",
+        "blog/signs-your-home-ready-exterior-painting/index.html",
+        "interior-painting/index.html",
+        "services/index.html"
+      ]
+    },
+    "kitchen-remodeling": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "kitchen-remodeling.webp"
+      ],
+      "used_on": [
+        "index.html"
+      ]
+    },
+    "living-room-stone-fireplace-built-ins": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "living-room-stone-fireplace-built-ins-1408.webp",
+        "living-room-stone-fireplace-built-ins-480.webp",
+        "living-room-stone-fireplace-built-ins-800.webp",
+        "living-room-stone-fireplace-built-ins.jpg"
+      ],
+      "used_on": [
+        "interior-painting/index.html"
+      ]
+    },
+    "maverick-city-builders-team": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "AI/stock: glass hillside mansion, tower crane, big-city skyline. Not MCB, not MA.",
+      "files": [
+        "maverick-city-builders-team-1408.webp",
+        "maverick-city-builders-team-480.webp",
+        "maverick-city-builders-team-800.webp",
+        "maverick-city-builders-team.jpg"
+      ],
+      "used_on": [
+        "about/index.html",
+        "areas-we-serve/index.html",
+        "blog/prepare-home-summer-construction-projects/index.html",
+        "services/index.html"
+      ]
+    },
+    "mid-summer-home-improvements-that-add-the-most-value": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "mid-summer-home-improvements-that-add-the-most-value-1408.webp",
+        "mid-summer-home-improvements-that-add-the-most-value-480.webp",
+        "mid-summer-home-improvements-that-add-the-most-value-800.webp",
+        "mid-summer-home-improvements-that-add-the-most-value.jpg"
+      ],
+      "used_on": [
+        "blog/mid-summer-home-improvements-add-value/index.html",
+        "blog/why-april-is-best-time-start-exterior-projects/index.html",
+        "deck-building/index.html",
+        "services/index.html"
+      ]
+    },
+    "modern-dark-kitchen-marble-backsplash": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "modern-dark-kitchen-marble-backsplash-1408.webp",
+        "modern-dark-kitchen-marble-backsplash-480.webp",
+        "modern-dark-kitchen-marble-backsplash-800.webp",
+        "modern-dark-kitchen-marble-backsplash.jpg"
+      ],
+      "used_on": [
+        "blog/plan-spring-renovation-projects-early/index.html",
+        "kitchen-remodeling/index.html",
+        "services/index.html"
+      ]
+    },
+    "open-plan-interior-glass-wall": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "open-plan-interior-glass-wall-1408.webp",
+        "open-plan-interior-glass-wall-480.webp",
+        "open-plan-interior-glass-wall-800.webp",
+        "open-plan-interior-glass-wall.jpg"
+      ],
+      "used_on": [
+        "blog/last-chance-exterior-projects-before-winter/index.html",
+        "blog/spring-home-maintenance-checklist-massachusetts/index.html",
+        "blog/winter-home-care-tips-avoid-expensive-repairs/index.html"
+      ]
+    },
+    "our-portfolio": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "our-portfolio-1408.webp",
+        "our-portfolio-480.webp",
+        "our-portfolio-800.webp",
+        "our-portfolio.jpg"
+      ],
+      "used_on": [
+        "building-restoration/index.html",
+        "carpentry/index.html",
+        "portfolio/index.html"
+      ]
+    },
+    "walk-in-tile-shower": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "walk-in-tile-shower-1408.webp",
+        "walk-in-tile-shower-480.webp",
+        "walk-in-tile-shower-800.webp",
+        "walk-in-tile-shower.jpg"
+      ],
+      "used_on": [
+        "bathroom-remodeling/index.html"
+      ]
+    },
+    "water-damage-restoration": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "water-damage-restoration-1408.webp",
+        "water-damage-restoration-480.webp",
+        "water-damage-restoration-800.webp",
+        "water-damage-restoration.jpg",
+        "water-damage-restoration.webp"
+      ],
+      "used_on": [
+        "index.html",
+        "services/index.html"
+      ]
+    },
+    "white-inset-kitchen-marble-brass": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "white-inset-kitchen-marble-brass-1408.webp",
+        "white-inset-kitchen-marble-brass-480.webp",
+        "white-inset-kitchen-marble-brass-800.webp",
+        "white-inset-kitchen-marble-brass.jpg"
+      ],
+      "used_on": []
+    },
+    "white-kitchen-island-pendant-lights": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "white-kitchen-island-pendant-lights-1408.webp",
+        "white-kitchen-island-pendant-lights-480.webp",
+        "white-kitchen-island-pendant-lights-800.webp",
+        "white-kitchen-island-pendant-lights.jpg"
+      ],
+      "used_on": [
+        "blog/bathroom-addition-title-v-septic-central-ma/index.html",
+        "blog/bathroom-ventilation-moisture-older-homes-ma/index.html",
+        "blog/kitchen-cabinets-1900s-farmhouse-central-ma/index.html",
+        "blog/kitchen-remodel-permits-timeline-central-ma/index.html",
+        "blog/kitchen-remodeling-cost-central-massachusetts/index.html",
+        "blog/older-home-kitchen-remodel-surprises-central-ma/index.html",
+        "blog/opening-up-closed-kitchen-older-home-ma/index.html",
+        "blog/small-galley-kitchen-remodel-older-homes-ma/index.html",
+        "blog/small-hall-bathroom-remodel-cost-central-ma/index.html",
+        "blog/tile-vs-prefab-shower-surround-ma/index.html",
+        "blog/walk-in-shower-aging-in-place-bathroom-ma/index.html"
+      ]
+    },
+    "white-shaker-kitchen-quartz": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "white-shaker-kitchen-quartz-1408.webp",
+        "white-shaker-kitchen-quartz-480.webp",
+        "white-shaker-kitchen-quartz-800.webp",
+        "white-shaker-kitchen-quartz.jpg"
+      ],
+      "used_on": []
+    },
+    "wrap-around-deck-white-railing": {
+      "bucket": "illustrative",
+      "ai_generated": false,
+      "reason": "Stock or AI imagery. No MCB job photography on disk matches it.",
+      "files": [
+        "wrap-around-deck-white-railing-1408.webp",
+        "wrap-around-deck-white-railing-480.webp",
+        "wrap-around-deck-white-railing-800.webp",
+        "wrap-around-deck-white-railing.jpg"
+      ],
+      "used_on": []
+    }
+  }
+}

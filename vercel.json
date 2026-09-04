@@ -5,68 +5,280 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)\\.html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
       ]
     },
     {
       "source": "/:path((?!assets/).*)",
-      "has": [{ "type": "header", "key": "accept", "value": "text/html" }],
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "text/html"
+        }
+      ],
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
       ]
     }
   ],
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.mcitybuilders.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.mcitybuilders.com"
+        }
+      ],
       "destination": "https://mcitybuilders.com/:path*",
       "permanent": true
     },
-    { "source": "/rot-repair-cost-massachusetts", "destination": "/structural-repair-worcester-county-ma", "permanent": true },
-    { "source": "/services/kitchen-remodeling", "destination": "/kitchen-remodeling", "permanent": true },
-    { "source": "/services/bathroom-remodeling", "destination": "/bathroom-remodeling", "permanent": true },
-    { "source": "/services/deck-building", "destination": "/deck-building", "permanent": true },
-    { "source": "/services/interior-painting", "destination": "/interior-painting", "permanent": true },
-    { "source": "/services/exterior-painting", "destination": "/exterior-painting", "permanent": true },
-    { "source": "/services/general-renovations", "destination": "/general-renovations", "permanent": true },
-    { "source": "/services/carpentry", "destination": "/carpentry", "permanent": true },
-    { "source": "/services/building-restoration", "destination": "/building-restoration", "permanent": true },
-    { "source": "/services/water-damage-restoration", "destination": "/water-damage-restoration", "permanent": true },
-    { "source": "/portfolio/bathroom-remodeling-clinton-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/bathroom-remodeling-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/bathroom-remodeling-leominster-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/custom-composite-deck", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/deck-builder-clinton-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/deck-builder-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/home-remodeling-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/interior-painting-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/kitchen-remodeling-clinton-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/kitchen-remodeling-hudson-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/kitchen-remodeling-lancaster-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/kitchen-remodeling-leominster-ma-project", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/luxury-shaker-kitchen", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/open-concept-living-area", "destination": "/portfolio", "permanent": true },
-    { "source": "/portfolio/spa-like-master-bath", "destination": "/portfolio", "permanent": true }
+    {
+      "source": "/rot-repair-cost-massachusetts",
+      "destination": "/structural-repair-worcester-county-ma",
+      "permanent": true
+    },
+    {
+      "source": "/services/kitchen-remodeling",
+      "destination": "/kitchen-remodeling",
+      "permanent": true
+    },
+    {
+      "source": "/services/bathroom-remodeling",
+      "destination": "/bathroom-remodeling",
+      "permanent": true
+    },
+    {
+      "source": "/services/deck-building",
+      "destination": "/deck-building",
+      "permanent": true
+    },
+    {
+      "source": "/services/interior-painting",
+      "destination": "/interior-painting",
+      "permanent": true
+    },
+    {
+      "source": "/services/exterior-painting",
+      "destination": "/exterior-painting",
+      "permanent": true
+    },
+    {
+      "source": "/services/general-renovations",
+      "destination": "/general-renovations",
+      "permanent": true
+    },
+    {
+      "source": "/services/carpentry",
+      "destination": "/carpentry",
+      "permanent": true
+    },
+    {
+      "source": "/services/building-restoration",
+      "destination": "/building-restoration",
+      "permanent": true
+    },
+    {
+      "source": "/services/water-damage-restoration",
+      "destination": "/water-damage-restoration",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/bathroom-remodeling-clinton-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/bathroom-remodeling-lancaster-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/bathroom-remodeling-leominster-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/custom-composite-deck",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/deck-builder-clinton-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/deck-builder-lancaster-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/home-remodeling-lancaster-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/interior-painting-lancaster-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/kitchen-remodeling-clinton-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/kitchen-remodeling-hudson-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/kitchen-remodeling-lancaster-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/kitchen-remodeling-leominster-ma-project",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/luxury-shaker-kitchen",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/open-concept-living-area",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/spa-like-master-bath",
+      "destination": "/portfolio",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/ai-outdoor-living-space-in-bolton-ma.jpg",
+      "destination": "/assets/img/ai-pergola-deck-outdoor-seating.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/bathroom-addition-and-title-v-septic-in-central-massachuse.jpg",
+      "destination": "/assets/img/white-kitchen-island-pendant-lights.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/bathroom-remodeling-in-worcester-county-ma.jpg",
+      "destination": "/assets/img/bathroom-freestanding-tub-glass-shower.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/bathroom-remodeling-project-in-lancaster-ma.jpg",
+      "destination": "/assets/img/bathroom-double-vanity-subway-tile-shower.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/custom-deck-building-project-in-clinton-ma.jpg",
+      "destination": "/assets/img/wrap-around-deck-white-railing.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/custom-deck-building-project-in-lancaster-ma.jpg",
+      "destination": "/assets/img/composite-deck-cable-railing.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/exterior-repaint-in-worcester-county-ma.jpg",
+      "destination": "/assets/img/composite-deck-riser-lighting.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/how-to-plan-your-spring-renovation-projects-early.jpg",
+      "destination": "/assets/img/modern-dark-kitchen-marble-backsplash.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/interior-painting-project-in-lancaster-ma.jpg",
+      "destination": "/assets/img/formal-living-room-painted-trim.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/kitchen-remodeling-project-in-clinton-ma.jpg",
+      "destination": "/assets/img/white-shaker-kitchen-quartz.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/kitchen-remodeling-project-in-lancaster-ma.jpg",
+      "destination": "/assets/img/white-inset-kitchen-marble-brass.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/kitchen-remodeling-project-in-leominster-ma.jpg",
+      "destination": "/assets/img/cream-kitchen-butcher-block-island.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/last-chance-for-exterior-projects-before-winter-hits.jpg",
+      "destination": "/assets/img/open-plan-interior-glass-wall.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/living-room-sterling-ma.jpg",
+      "destination": "/assets/img/great-room-coffered-ceiling-built-ins.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/master-suite-bolton-ma.jpg",
+      "destination": "/assets/img/living-room-stone-fireplace-built-ins.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/assets/img/trim-and-siding-repaint-in-central-ma.jpg",
+      "destination": "/assets/img/covered-deck-outdoor-kitchen.jpg",
+      "permanent": true
+    }
   ]
 }
