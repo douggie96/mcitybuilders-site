@@ -1,0 +1,54 @@
+/* ============================================================
+   MCB design system — derived from the building, not from a logo.
+   White board-and-batten · black windows · warm wood · site gravel
+   ============================================================ */
+:root{
+  /* ink */
+  --ink:        #14130F;
+  --ink-deep:   #0A0907;
+  --ink-soft:   #2A2823;
+
+  /* paper */
+  --paper:      #F5F2EC;
+  --paper-2:    #EBE6DC;
+  --paper-3:    #DED8CB;
+
+  /* accents */
+  --wood:       #B07C4A;   /* warm wood — porch posts, front door */
+  --wood-pale:  #E0C9AC;
+  --stone:      #6B665C;   /* muted supporting text */
+  --line:       rgba(20,19,15,.14);
+  --line-strong:rgba(20,19,15,.26);
+  --signal:     #E10600;   /* logo red. Logo only. Never a UI colour. */
+
+  /* type */
+  --display: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* scale */
+  --step--1: clamp(.80rem, .78rem + .10vw, .875rem);
+  --step-0:  clamp(1rem, .96rem + .20vw, 1.125rem);
+  --step-1:  clamp(1.20rem, 1.10rem + .50vw, 1.50rem);
+  --step-2:  clamp(1.55rem, 1.35rem + 1.0vw, 2.25rem);
+  --step-3:  clamp(2.10rem, 1.65rem + 2.2vw, 3.50rem);
+  --step-4:  clamp(2.80rem, 1.90rem + 4.4vw, 5.60rem);
+  --display-1: clamp(2.9rem, 1.4rem + 7.4vw, 9.2rem);
+
+  --gutter: clamp(20px, 5vw, 88px);
+  --measure: 68ch;
+  --radius: 2px;             /* nearly square. Construction, not consumer app. */
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#100F0C; --paper-2:#191713; --paper-3:#231F1A;
+    --ink:#F2EEE6; --ink-deep:#FFFDF8; --ink-soft:#CFC8BB;
+    --stone:#9A9285;
+    --line:rgba(242,238,230,.15); --line-strong:rgba(242,238,230,.28);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#100F0C; --paper-2:#191713; --paper-3:#231F1A;
+  --ink:#F2EEE6; --ink-deep:#FFFDF8; --ink-soft:#CFC8BB;
+  --stone:#9A9285;
+  --line:rgba(242,238,230,.15); --line-strong:rgba(242,238,230,.28);
+}

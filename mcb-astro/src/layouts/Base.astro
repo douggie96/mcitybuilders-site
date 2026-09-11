@@ -1,0 +1,119 @@
+---
+import '../styles/base.css';
+import { SITE } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  jsonLd?: object[];
+  breadcrumbs?: { name: string; url: string }[];
+  bodyClass?: string;
+}
+const { title, description, canonical, jsonLd = [], breadcrumbs, bodyClass = '' } = Astro.props;
+// SEO guards. These throw at build time, so an over-length title or
+// description can never reach production the way 12 of them did on the old site.
+if (title.length > 60) throw new Error(`SEO: title is ${title.length} chars (max 60): ${title}`);
+if (description.length < 70 || description.length > 160)
+  throw new Error(`SEO: description is ${description.length} chars (need 70-160): ${description}`);
+
+const href = canonical ?? (new URL(Astro.url.pathname, SITE.url).href.replace(/\/$/, '') || SITE.url);
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  '@id': SITE.url + '/#business',
+  name: SITE.name,
+  url: SITE.url,
+  telephone: SITE.phone,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.locality,
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postalCode,
+    addressCountry: SITE.address.country,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: SITE.geo.lat, longitude: SITE.geo.lng },
+  sameAs: [SITE.social.facebook, SITE.social.instagram],
+};
+
+const crumbs = breadcrumbs && {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((b, i) => ({
+    '@type': 'ListItem', position: i + 1, name: b.name, item: new URL(b.url, SITE.url).href,
+  })),
+};
+const blocks = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={href} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={href} />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+
+  {blocks.map(b => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
+
+  <!-- First-touch attribution. Runs before anything else so a click-id is never
+       lost to a same-session navigation before the form is reached. -->
+  <script is:inline>
+    (function(){try{var ss=sessionStorage;if(!ss)return;
+      var q=new URLSearchParams(location.search);
+      ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"]
+        .forEach(function(k){var v=q.get(k);if(v)ss.setItem("mcb_"+k,v);});
+      if(!ss.getItem("mcb_landing"))ss.setItem("mcb_landing",location.pathname+location.search);
+      if(!ss.getItem("mcb_referrer")&&document.referrer&&
+         document.referrer.indexOf(location.hostname)===-1)
+        ss.setItem("mcb_referrer",document.referrer);
+    }catch(e){}})();
+  </script>
+</head>
+<body class={bodyClass}>
+  <a class="skip" href="#main">Skip to content</a>
+  <slot name="header" />
+  <main id="main"><slot /></main>
+  <slot name="footer" />
+
+  <!-- Consent-gated analytics. Scripts stay inert until the visitor accepts:
+       the existing site's pattern, preserved deliberately. -->
+  <script is:inline define:vars={{ ga4: SITE.analytics.ga4 }}>
+    (function () {
+      var KEY = 'mcb_consent';
+      function boot() {
+        if (window.__mcbTagged) return; window.__mcbTagged = true;
+        var s = document.createElement('script'); s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+        gtag('js', new Date()); gtag('config', ga4);
+      }
+      try { if (localStorage.getItem(KEY) === 'granted') boot(); } catch (e) {}
+      window.__mcbConsentBoot = boot;
+      // lightweight, non-sensitive interaction events
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest && e.target.closest('[data-ev]');
+        if (a && typeof window.gtag === 'function') {
+          gtag('event', a.getAttribute('data-ev'), { link_url: a.getAttribute('href') || '' });
+        }
+      }, true);
+    })();
+  </script>
+</body>
+</html>

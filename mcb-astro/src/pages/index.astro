@@ -1,0 +1,284 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollHero from '../components/ScrollHero.astro';
+import EstimateForm from '../components/EstimateForm.astro';
+import { SITE, SERVICES, PROCESS, UNVERIFIED } from '../data/site';
+
+/* HERO STAGES — AI-generated visualisations, not photographs of MCB work.
+   The finished kitchen was generated first; the three earlier stages were then
+   generated FROM it as a reference, which is what keeps the room, the window
+   and the layout consistent across all four.
+   These are labelled as visualisations on the page and must never appear in the
+   portfolio or be presented as a completed MCB project. */
+const frames = [
+  { src: '/hero/K1_gutted.jpg',    label: 'Gutted' },
+  { src: '/hero/K2_drywall.jpg',   label: 'Board and prime' },
+  { src: '/hero/K3_cabinets.jpg',  label: 'Cabinets and counters' },
+  { src: '/hero/K4_finished.jpg',  label: 'Finished' },
+];
+
+const title = 'General Contractor in Lancaster, MA | Maverick City Builders';
+const description =
+  'Licensed general contractor in Lancaster, MA. Kitchen and bathroom remodeling, additions, decks, carpentry and structural repair across Massachusetts.';
+
+const faqs = [
+  { q: 'What areas do you work in?',
+    a: 'We are based in Lancaster and work across Worcester County and Central Massachusetts, and further for larger projects. If you are not sure whether we cover your town, call and ask.' },
+  { q: 'Do you charge for an estimate?',
+    a: 'No. We come and look at the project, take measurements and photographs, and send a written scope and price.' },
+  { q: 'Are you licensed and insured?',
+    a: 'Yes. Maverick City Builders is fully licensed in Massachusetts as a Home Improvement Contractor and Construction Supervisor, and carries insurance.' },
+  { q: 'Do you pull permits?',
+    a: 'Yes, on any work that requires them. Permitting is part of the scope we quote, not a surprise added later.' },
+  { q: 'How long does a kitchen or bathroom take?',
+    a: 'It depends on the scope and on what we find once the walls are open. We give you a schedule with the written scope, and we tell you as soon as anything changes it.' },
+];
+const jsonLd = [{
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question', name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}];
+---
+
+<Base {title} {description} {jsonLd} bodyClass="home">
+  <Header slot="header" />
+
+  <ScrollHero {frames} provenance="Visualisation — not a photo of our work" />
+
+  <!-- ================= THE MAVERICK STANDARD ================= -->
+  <section class="section std">
+    <div class="wrap">
+      <span class="eyebrow">The Maverick Standard</span>
+      <h2 class="std__h">
+        Most of what goes wrong on a job<br />goes wrong before anyone picks up a tool.
+      </h2>
+      <div class="grid grid-3 std__cols">
+        <div>
+          <h3>We look before we price</h3>
+          <p class="muted">A phone quote is a guess. We come out, measure, open up what needs
+          opening, and price the job we actually found — not the job we hoped for.</p>
+        </div>
+        <div>
+          <h3>The scope is written down</h3>
+          <p class="muted">Line by line: what's included, what isn't, and what we'd flag as a
+          risk. If we think your budget is wrong for the work, we say so before you sign.</p>
+        </div>
+        <div>
+          <h3>You hear it from us first</h3>
+          <p class="muted">Older houses hide things. When we find one, you hear about it the
+          same day, with what it changes and what it costs — before we carry on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ================= SERVICES / ROOM REVEALS ================= -->
+  <section class="section svc" id="services">
+    <div class="wrap">
+      <span class="eyebrow">What we build</span>
+      <h2>Room by room,<br />and the structure behind it.</h2>
+      <ul class="svc__list">
+        {SERVICES.map((s) => (
+          <li class="svc__item">
+            <a href={`/${s.slug}`} data-ev="service_click">
+              <span class="svc__img">
+                <img src={s.img} alt="" width="1400" height="792" loading="lazy" decoding="async" />
+                {!s.real && <em class="svc__prov">Visualisation</em>}
+              </span>
+              <span class="svc__n">{s.room}</span>
+              <span class="svc__body">
+                <span class="svc__t">{s.title}</span>
+                <span class="svc__b">{s.blurb}</span>
+              </span>
+              <span class="svc__go" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ================= PROCESS ================= -->
+  <section class="section proc">
+    <div class="wrap">
+      <span class="eyebrow">How a project runs</span>
+      <h2>Four steps. No surprises in the middle.</h2>
+      <ol class="proc__list">
+        {PROCESS.map(p => (
+          <li>
+            <span class="proc__n">{p.n}</span>
+            <h3>{p.title}</h3>
+            <p class="muted">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ================= PROOF =================
+       Only real, verifiable work appears here. The Worcester rot repair is the
+       one project with a complete photographic record, so it is the one shown.
+       No invented counts, ratings or testimonials. -->
+  <section class="section work">
+    <div class="wrap">
+      <span class="eyebrow">Recent work</span>
+      <h2>A Worcester cape,<br />opened up and put back right.</h2>
+      <p class="lede work__lede">
+        Water had been getting behind the trim for years. We opened the dormer, found the
+        rot, replaced the sheathing and flashing, and closed it back up. These are
+        photographs from that job.
+      </p>
+      <div class="work__grid">
+        <figure>
+          <img src="/work/worcester-ma-rot-repair-cape-before-800.webp" width="800" height="600"
+               loading="lazy" decoding="async"
+               alt="Cape-style home in Worcester, Massachusetts before rot repair, showing staining below the dormer" />
+          <figcaption>Before — staining below the dormer</figcaption>
+        </figure>
+        <figure>
+          <img src="/work/worcester-ma-rot-repair-dormer-opened-up-800.webp" width="800" height="600"
+               loading="lazy" decoding="async"
+               alt="Dormer opened up during repair, exposing rotted framing and sheathing" />
+          <figcaption>Opened up — the extent of the rot</figcaption>
+        </figure>
+        <figure>
+          <img src="/work/worcester-ma-rot-repair-new-sheathing-flashing-800.webp" width="800" height="600"
+               loading="lazy" decoding="async"
+               alt="New sheathing and flashing installed on the repaired dormer" />
+          <figcaption>New sheathing and flashing</figcaption>
+        </figure>
+      </div>
+      <a class="btn btn--ghost" href="/portfolio">See more of our work</a>
+      {UNVERIFIED.reviewCount && (
+        <p class="work__rating">{UNVERIFIED.rating} from {UNVERIFIED.reviewCount} Google reviews</p>
+      )}
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ================= FAQ ================= -->
+  <section class="section faq">
+    <div class="wrap">
+      <span class="eyebrow">Straight answers</span>
+      <h2>Questions we get asked</h2>
+      <div class="faq__list">
+        {faqs.map(f => (
+          <details class="faq__item">
+            <summary><h3>{f.q}</h3></summary>
+            <p class="muted">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ESTIMATE ================= -->
+  <section class="section est" id="estimate">
+    <div class="wrap est__in">
+      <div>
+        <span class="eyebrow">Free estimate</span>
+        <h2>Tell us what you're thinking about.</h2>
+        <p class="lede">
+          We'll come and look at it, and you'll get a written scope and price. No charge,
+          and no obligation to use us.
+        </p>
+        <address class="est__nap">
+          <a href={SITE.phoneHref} data-ev="phone_click">{SITE.phone}</a>
+          <span>{SITE.address.street}, {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</span>
+          <em>{SITE.addressNote}</em>
+        </address>
+      </div>
+      <div><EstimateForm /></div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Base>
+
+<style>
+  .std__h{max-width:22ch;margin:0 0 clamp(38px,5vw,68px)}
+  .std__cols h3{margin:0 0 .7rem}
+  .std__cols p{margin:0}
+
+  .svc h2{margin:0 0 clamp(34px,4vw,60px)}
+  .svc__list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .svc__item{border-bottom:1px solid var(--line)}
+  .svc__item a{
+    display:grid;grid-template-columns:auto auto 1fr auto;gap:clamp(14px,2.4vw,34px);
+    align-items:center;padding:clamp(16px,2.2vw,26px) 0;
+    transition:padding-inline-start .22s ease,background .22s ease;
+  }
+  .svc__item a:hover{padding-inline-start:16px;background:var(--paper-2)}
+  .svc__n{font-family:var(--mono);font-size:.68rem;color:var(--stone);
+    letter-spacing:.14em;text-transform:uppercase;min-width:7.5ch;align-self:center}
+  .svc__img{position:relative;display:block;width:clamp(96px,13vw,168px);flex:0 0 auto}
+  .svc__img img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--paper-3);
+    border-radius:1px;filter:saturate(.94)}
+  .svc__item a:hover .svc__img img{filter:saturate(1.04)}
+  .svc__prov{position:absolute;left:5px;bottom:5px;font-family:var(--mono);font-style:normal;
+    font-size:.50rem;letter-spacing:.10em;text-transform:uppercase;
+    background:rgba(10,9,7,.72);color:#F5F2EC;padding:2px 5px;border-radius:1px}
+  @media (max-width:640px){
+    .svc__item a{grid-template-columns:auto 1fr;row-gap:10px}
+    .svc__img{grid-column:1/-1;width:100%}
+    .svc__go{display:none}
+  }
+  .svc__body{display:grid;gap:.45rem}
+  .svc__t{font-size:var(--step-2);font-weight:250;letter-spacing:-.038em;line-height:1.05}
+  .svc__b{color:var(--stone);font-size:.96rem;max-width:56ch;line-height:1.55}
+  .svc__go{font-size:1.3rem;color:var(--stone);transition:transform .22s ease}
+  .svc__item a:hover .svc__go{transform:translateX(6px);color:var(--wood)}
+
+  .proc h2{margin:0 0 clamp(34px,4vw,60px)}
+  .proc__list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(26px,3vw,44px)}
+  @media (min-width:900px){.proc__list{grid-template-columns:repeat(4,1fr)}}
+  .proc__list li{border-top:2px solid var(--ink);padding-top:1.1rem}
+  .proc__n{font-family:var(--mono);font-size:.72rem;color:var(--wood);letter-spacing:.14em}
+  .proc__list h3{margin:.5rem 0 .6rem}
+  .proc__list p{margin:0;font-size:.94rem}
+
+  .work__lede{margin:0 0 clamp(30px,4vw,52px);max-width:52ch}
+  .work__grid{display:grid;gap:clamp(12px,2vw,24px);margin:0 0 clamp(28px,3vw,44px)}
+  @media (min-width:760px){.work__grid{grid-template-columns:repeat(3,1fr)}}
+  .work__grid figure{margin:0}
+  .work__grid img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--paper-3)}
+  .work__grid figcaption{
+    font-family:var(--mono);font-size:.70rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--stone);padding-top:.7rem;
+  }
+
+  .faq h2{margin:0 0 clamp(28px,3vw,44px)}
+  .faq__list{border-top:1px solid var(--line);max-width:80ch}
+  .faq__item{border-bottom:1px solid var(--line)}
+  .faq__item summary{
+    cursor:pointer;list-style:none;padding:clamp(16px,2vw,24px) 2.4rem
+    clamp(16px,2vw,24px) 0;position:relative;
+  }
+  .faq__item summary::-webkit-details-marker{display:none}
+  .faq__item summary::after{
+    content:'+';position:absolute;right:.4rem;top:50%;translate:0 -50%;
+    font-size:1.4rem;font-weight:200;color:var(--stone);
+  }
+  .faq__item[open] summary::after{content:'−'}
+  .faq__item summary h3{display:inline;font-size:var(--step-1);font-weight:400}
+  .faq__item p{margin:0 0 clamp(18px,2vw,26px);max-width:72ch}
+
+  .est{background:var(--paper-2)}
+  .est__in{display:grid;gap:clamp(34px,5vw,72px)}
+  @media (min-width:960px){.est__in{grid-template-columns:.85fr 1.15fr}}
+  .est h2{margin:0 0 1rem}
+  .est__nap{font-style:normal;display:grid;gap:.5rem;margin-top:2rem;font-size:.95rem}
+  .est__nap a{font-family:var(--mono);font-size:1.06rem}
+  .est__nap em{font-style:normal;color:var(--stone);font-size:.85rem}
+</style>

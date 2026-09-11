@@ -1,0 +1,297 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EstimateForm from '../components/EstimateForm.astro';
+import { SITE } from '../data/site';
+import { RING1, type TownProfile } from '../data/town-profiles';
+import { TOWN_SVC, SVC_KEYS, type Svc } from '../data/town-services';
+import { EXTRA } from '../data/town-extra';
+
+/**
+ * Ring 1 service-area pages. Three services x fifteen towns.
+ *
+ * Every page is built from that town's OWN profile — setting, housing stock,
+ * the specific renovation problem that stock presents, and the room-level
+ * detail. Two pages for the same service in different towns share their
+ * structure and almost none of their prose.
+ *
+ * No invented projects, counts, reviews, prices or permit specifics.
+ */
+const SERVICES: Record<Svc, { label: string; h1: (t: string) => string; img: string }> = {
+  'general-contractor':  { ...TOWN_SVC['general-contractor'],  h1: (t: string) => `General contractor in ${t}, MA` },
+  'kitchen-remodeling':  { ...TOWN_SVC['kitchen-remodeling'],  h1: (t: string) => `Kitchen remodeling in ${t}, MA` },
+  'bathroom-remodeling': { ...TOWN_SVC['bathroom-remodeling'], h1: (t: string) => `Bathroom remodeling in ${t}, MA` },
+};
+
+export function getStaticPaths() {
+  const out: any[] = [];
+  for (const town of RING1) {
+    for (const svc of SVC_KEYS) {
+      out.push({ params: { slug: `${svc}-${town.slug}` }, props: { town, svc } });
+    }
+  }
+  return out;
+}
+
+interface Props { town: TownProfile; svc: Svc }
+const { town, svc } = Astro.props;
+const S = SERVICES[svc];
+const T = town.name;
+const X = EXTRA[town.slug];
+
+const titleLong = `${S.label} in ${T}, MA | Maverick City Builders`;
+const title = titleLong.length <= 60 ? titleLong : `${S.label} in ${T}, MA | MCB`;
+// Descriptions have to satisfy the 70-160 guard for EVERY town name length,
+// so each service offers a long form and a short fallback and we take the
+// longest one that fits rather than hoping "West Boylston" is short enough.
+const descOptions: Record<Svc, string[]> = {
+  'general-contractor': [
+    `Licensed general contractor in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair on ${T}'s older and mid-century homes.`,
+    `Licensed general contractor in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free written estimates.`,
+  ],
+  'kitchen-remodeling': [
+    `Kitchen remodeling in ${T}, MA. What ${T} kitchens are actually like, what opening one up involves, and how we scope and price it first.`,
+    `Kitchen remodeling in ${T}, MA. What the kitchens here are like, what opening one up involves, and how we price it. Free written estimates.`,
+  ],
+  'bathroom-remodeling': [
+    `Bathroom remodeling in ${T}, MA. Working with ${T}'s housing stock, a realistic scope, and the plumbing behind any layout change.`,
+    `Bathroom remodeling in ${T}, MA. A realistic scope, and the plumbing realities behind a layout change. Free written estimates.`,
+  ],
+};
+const description = descOptions[svc].find(d => d.length >= 70 && d.length <= 160)
+  ?? descOptions[svc][descOptions[svc].length - 1].slice(0, 157).replace(/[ ,.]+$/, '') + '.';
+
+const faqs = [
+  { q: `Do you work in ${T}?`,
+    a: `Yes. ${T} is ${town.mi.toFixed(0)} miles from our base in Lancaster, well inside the area we cover day to day.` },
+  { q: `What does a ${S.label.toLowerCase()} project in ${T} usually involve?`,
+    a: svc === 'general-contractor'
+       ? `It depends entirely on the house. ${T} is ${town.setting}, and the housing is ${town.stock}. We come and look before we price anything.`
+       : svc === 'kitchen-remodeling' ? town.kitchen : town.bath },
+  { q: `What do you look at first on a house in ${T}?`,
+    a: `We check ${X.firstCheck}. It is the thing most likely to change the scope, and it is much cheaper for you to know before the work is priced than after it has started.` },
+  { q: `Is the house on town water and sewer, or well and septic?`,
+    a: X.systems },
+  { q: 'Are you licensed and insured?',
+    a: 'Maverick City Builders is fully licensed in Massachusetts as a Home Improvement Contractor and Construction Supervisor, and carries insurance.' },
+  { q: `What moves the price on a ${T} project?`,
+    a: X.priceContext },
+  { q: 'Do you pull permits?',
+    a: `Yes, on any work that requires them. Permitting in ${T} goes through the town's building department and it is written into the scope we quote rather than added later.` },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service',
+    serviceType: S.label,
+    provider: { '@id': SITE.url + '/#business' },
+    areaServed: { '@type': 'City', name: T, containedInPlace: { '@type': 'AdministrativeArea', name: `${town.county} County, Massachusetts` } },
+    description,
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Areas we serve', url: '/areas-we-serve' },
+  { name: `${S.label} in ${T}`, url: `/${svc}-${town.slug}` },
+];
+
+const siblings = SVC_KEYS.filter(s => s !== svc);
+---
+
+<Base {title} {description} {jsonLd} {breadcrumbs}>
+  <Header slot="header" />
+
+  <article class="tp">
+    <header class="tp__hero">
+      <div class="wrap">
+        <nav class="tp__crumb" aria-label="Breadcrumb">
+          <a href="/">Home</a> <span aria-hidden="true">/</span>
+          <a href="/areas-we-serve">Areas we serve</a> <span aria-hidden="true">/</span>
+          <span>{T}</span>
+        </nav>
+        <span class="eyebrow">{town.county} County &middot; {town.mi.toFixed(0)} miles from Lancaster</span>
+        <h1>{S.h1(T)}</h1>
+        <p class="lede">
+          {T} is {town.setting}. We work here regularly out of Lancaster, and the
+          houses have a character worth understanding before anyone quotes a price.
+        </p>
+        <div class="tp__cta">
+          <a class="btn" href="#estimate" data-ev="estimate_cta">Request an estimate</a>
+          <a class="btn btn--ghost" href={SITE.phoneHref} data-ev="phone_click">{SITE.phone}</a>
+        </div>
+      </div>
+    </header>
+
+    <figure class="tp__img">
+      <img src={S.img} alt="" width="1400" height="792" loading="lazy" decoding="async" />
+      <figcaption>Visualisation &mdash; not a photograph of our work</figcaption>
+    </figure>
+
+    <div class="wrap tp__body">
+      <section>
+        <h2>What the housing in {T} is actually like</h2>
+        <p>The stock here is {town.stock}.</p>
+        <p>{town.challenge}.</p>
+      </section>
+
+      {svc === 'kitchen-remodeling' && (
+        <section>
+          <h2>Kitchens in {T}</h2>
+          <p>{town.kitchen}.</p>
+          <p>
+            That is the part worth settling before cabinetry is chosen. Whether a wall carries
+            load, where the waste stack runs, and what the floor structure will take are the
+            questions that decide what the kitchen can become — and they are answerable in an
+            afternoon on site rather than guessed at from a photograph.
+          </p>
+        </section>
+      )}
+
+      {svc === 'bathroom-remodeling' && (
+        <section>
+          <h2>Bathrooms in {T}</h2>
+          <p>{town.bath}.</p>
+          <p>
+            Bathrooms are mostly an invisible job. The waterproofing behind the tile, the fall on
+            the waste line and the ventilation are what determine whether the room is still sound
+            in fifteen years. The fixtures are the part you choose; the rest is the part you pay us
+            for.
+          </p>
+        </section>
+      )}
+
+      {svc === 'general-contractor' && (
+        <section>
+          <h2>What we do in {T}</h2>
+          <ul class="tp__list">
+            <li><strong>Kitchens.</strong> {town.kitchen}.</li>
+            <li><strong>Bathrooms.</strong> {town.bath}.</li>
+            <li><strong>Structural and envelope repair.</strong> Rot, sills, sheathing and the water
+              problems behind them — the work that has to happen before finishes are worth paying for.</li>
+            <li><strong>Decks, carpentry and painting.</strong> Including the finish carpentry that
+              makes a renovated room look finished rather than merely new.</li>
+          </ul>
+        </section>
+      )}
+
+      <section>
+        <h2>Water, waste and what that means for scope</h2>
+        <p>{X.systems}</p>
+      </section>
+
+      <section>
+        <h2>Working on site in {T}</h2>
+        <p>{X.access}</p>
+      </section>
+
+      <section>
+        <h2>What moves the price on a {T} project</h2>
+        <p>{X.priceContext}</p>
+        <p>
+          A phone quote is a guess. We come out, measure, look behind the surfaces where we can, and
+          send a written scope with a line-by-line price, a schedule, and a clear statement of what
+          is <em>not</em> included. The first thing we check on a house here is {X.firstCheck}.
+        </p>
+        <p>
+          If we think the budget is wrong for the work, we say so before anything is signed. And when
+          an older house hides something — which in {T} it often does — you hear about it the same
+          day, with what it changes and what it costs, before we carry on.
+        </p>
+      </section>
+
+      <section>
+        <h2>Questions we get asked about {T}</h2>
+        <div class="tp__faq">
+          {faqs.map(f => (
+            <details>
+              <summary><h3>{f.q}</h3></summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="tp__also">
+        <h2>Also in {T}</h2>
+        <ul>
+          {siblings.map(s => (
+            <li><a href={`/${s}-${town.slug}`}>{SERVICES[s].label} in {T}</a></li>
+          ))}
+        </ul>
+        <h2>Nearby towns</h2>
+        <ul class="tp__near">
+          {town.neighbours.map(n => {
+            const m = RING1.find(x => x.name === n);
+            return m
+              ? <li><a href={`/${svc}-${m.slug}`}>{S.label} in {n}</a></li>
+              : <li><span class="muted">{n}</span></li>;
+          })}
+        </ul>
+      </section>
+    </div>
+
+    <section class="section est" id="estimate">
+      <div class="wrap est__in">
+        <div>
+          <span class="eyebrow">Free estimate</span>
+          <h2>Tell us about your {T} project.</h2>
+          <p class="lede">We will come and look at it, and you will get a written scope and price.</p>
+          <address class="est__nap">
+            <a href={SITE.phoneHref} data-ev="phone_click">{SITE.phone}</a>
+            <span>{SITE.address.street}, {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</span>
+            <em>{SITE.addressNote}</em>
+          </address>
+        </div>
+        <div><EstimateForm /></div>
+      </div>
+    </section>
+  </article>
+
+  <Footer slot="footer" />
+</Base>
+
+<style>
+  .tp__hero{padding-block:clamp(28px,4vw,56px) clamp(30px,4vw,48px)}
+  .tp__crumb{font-family:var(--mono);font-size:.70rem;letter-spacing:.08em;color:var(--stone);
+    margin:0 0 1.4rem;display:flex;gap:.55rem;flex-wrap:wrap}
+  .tp__crumb a:hover{text-decoration:underline}
+  .tp h1{max-width:18ch;margin:0 0 1.1rem}
+  .tp__hero .lede{max-width:56ch;margin:0 0 2rem}
+  .tp__cta{display:flex;flex-wrap:wrap;gap:14px}
+  .tp__img{margin:0;position:relative}
+  .tp__img img{width:100%;max-height:52vh;object-fit:cover;display:block}
+  .tp__img figcaption{
+    position:absolute;right:10px;bottom:10px;font-family:var(--mono);font-size:.62rem;
+    letter-spacing:.10em;text-transform:uppercase;background:rgba(10,9,7,.74);color:#F5F2EC;
+    padding:5px 9px;border-radius:2px;
+  }
+  .tp__body{padding-block:clamp(40px,6vw,84px)}
+  .tp__body section{margin:0 0 clamp(34px,4vw,58px);max-width:74ch}
+  .tp__body h2{font-size:var(--step-2);margin:0 0 1rem}
+  .tp__list{list-style:none;padding:0;margin:0;display:grid;gap:1rem}
+  .tp__list li{padding-left:1.1rem;border-left:2px solid var(--line-strong)}
+  .tp__faq details{border-bottom:1px solid var(--line)}
+  .tp__faq summary{cursor:pointer;list-style:none;padding:1rem 2rem 1rem 0;position:relative}
+  .tp__faq summary::-webkit-details-marker{display:none}
+  .tp__faq summary::after{content:'+';position:absolute;right:.3rem;top:50%;translate:0 -50%;
+    font-size:1.3rem;font-weight:200;color:var(--stone)}
+  .tp__faq details[open] summary::after{content:'\2212'}
+  .tp__faq summary h3{display:inline;font-size:var(--step-0);font-weight:500}
+  .tp__faq p{margin:0 0 1.2rem}
+  .tp__also ul{list-style:none;padding:0;margin:0 0 2rem;display:grid;gap:.6rem}
+  .tp__also a{text-decoration:underline;text-underline-offset:3px}
+  .tp__near{columns:2;column-gap:2rem}
+  @media (max-width:600px){.tp__near{columns:1}}
+  .est{background:var(--paper-2)}
+  .est__in{display:grid;gap:clamp(34px,5vw,72px)}
+  @media (min-width:960px){.est__in{grid-template-columns:.85fr 1.15fr}}
+  .est__nap{font-style:normal;display:grid;gap:.5rem;margin-top:2rem;font-size:.95rem}
+  .est__nap a{font-family:var(--mono);font-size:1.06rem}
+  .est__nap em{font-style:normal;color:var(--stone);font-size:.85rem}
+</style>

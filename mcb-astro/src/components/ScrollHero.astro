@@ -1,0 +1,174 @@
+---
+/**
+ * ScrollHero — scroll-driven crossfade through the build stages.
+ *
+ * Four photoreal stages, not a frame sequence, so the mechanism is a
+ * cross-dissolve rather than a frame scrub: each stage is a stacked <img>
+ * whose opacity is driven by scroll progress. GPU-composited, no canvas,
+ * no decode stalls, and it degrades to a plain image if JS never runs.
+ *
+ * Contract:
+ *  - Images are decorative (alt=""); every word is real DOM over them.
+ *  - prefers-reduced-motion: no pin, no fade — an honest labelled storyboard.
+ *  - Scroll is NEVER locked.
+ */
+interface Props {
+  frames: { src: string; label: string; note?: string }[];
+  provenance?: string;
+}
+const { frames, provenance = 'Visualisation' } = Astro.props;
+---
+
+<section class="hero" id="hero">
+  <div class="hero__sticky">
+    <div class="hero__stack">
+      {frames.map((f, i) => (
+        <img class="hero__f" data-i={i} src={f.src} alt="" width="1600" height="905"
+             fetchpriority={i === 0 ? 'high' : undefined}
+             loading={i === 0 ? 'eager' : 'lazy'} decoding="async"
+             style={`opacity:${i === 0 ? 1 : 0}`} />
+      ))}
+    </div>
+
+    <!-- Reduced-motion / no-JS: the same four stages, labelled, scrolled normally. -->
+    <ol class="hero__stills">
+      {frames.map(f => (
+        <li>
+          <img src={f.src} alt={f.label} width="1600" height="905" loading="lazy" decoding="async" />
+          <span class="hero__stillCap">{f.label}</span>
+        </li>
+      ))}
+    </ol>
+
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="hero__copy">
+      <div class="wrap">
+        <span class="eyebrow">Lancaster, Massachusetts</span>
+        <h1 class="display">Studs to<br />finished room.</h1>
+        <p class="hero__lede">
+          Maverick City Builders is a general contractor in Lancaster, working across
+          Massachusetts. Kitchens, bathrooms, additions, decks, and the structural work
+          underneath them.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--onDark" href="/contact" data-ev="estimate_cta">Request an estimate</a>
+          <a class="btn btn--ghost hero__call" href="tel:+15086567436" data-ev="phone_click">
+            (508)&nbsp;656-7436
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage readout doubles as the chapter marker. -->
+    <ol class="hero__ticks" aria-hidden="true">
+      {frames.map((f, i) => (
+        <li data-t={i}><span></span>{f.label}</li>
+      ))}
+    </ol>
+
+    <div class="hero__bar" aria-hidden="true"><i data-bar></i></div>
+    <span class="prov">{provenance}</span>
+  </div>
+</section>
+
+<style>
+  .hero{position:relative;height:460vh}
+  @media (max-width:760px){.hero{height:360vh}}
+  .hero__sticky{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--ink-deep)}
+  .hero__stack{position:absolute;inset:0}
+  .hero__f{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    will-change:opacity;
+  }
+  .hero__stills{display:none;margin:0;padding:0;list-style:none}
+  .hero__scrim{
+    position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,rgba(10,9,7,.55) 0%,rgba(10,9,7,.12) 30%,
+               rgba(10,9,7,.22) 55%,rgba(10,9,7,.86) 100%);
+  }
+  .hero__copy{position:absolute;inset:auto 0 0 0;padding-block:0 clamp(74px,11vh,142px);color:#F5F2EC}
+  .hero__copy .display{color:#FFFDF8;margin:0 0 1.1rem}
+  .hero__copy .eyebrow{color:rgba(245,242,236,.68)}
+  .hero__lede{
+    font-size:var(--step-1);font-weight:300;line-height:1.45;
+    color:rgba(245,242,236,.86);max-width:46ch;margin:0 0 2rem;
+  }
+  .hero__cta{display:flex;flex-wrap:wrap;gap:14px}
+  .hero__call{color:#F5F2EC;border-color:rgba(245,242,236,.44);font-family:var(--mono)}
+  .hero__call:hover{background:#F5F2EC;color:var(--ink)}
+
+  .hero__ticks{
+    position:absolute;top:calc(72px + 2rem);right:var(--gutter);
+    margin:0;padding:0;list-style:none;display:grid;gap:.85rem;text-align:right;
+  }
+  .hero__ticks li{
+    display:flex;align-items:center;justify-content:flex-end;gap:.7rem;
+    font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(245,242,236,.42);transition:color .3s ease;
+  }
+  .hero__ticks li span{
+    width:22px;height:1px;background:rgba(245,242,236,.32);transition:all .3s ease;
+  }
+  .hero__ticks li.on{color:#FFFDF8}
+  .hero__ticks li.on span{width:40px;background:var(--wood)}
+
+  .hero__bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(245,242,236,.16)}
+  .hero__bar i{display:block;height:100%;width:0;background:var(--wood)}
+  @media (max-width:760px){
+    .hero__ticks{display:none}
+    .hero__lede{font-size:var(--step-0)}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .hero{height:auto}
+    .hero__sticky{position:static;height:auto}
+    .hero__stack,.hero__scrim,.hero__bar,.hero__ticks{display:none}
+    .hero__stills{display:block}
+    .hero__stills li{position:relative;margin:0 0 2px}
+    .hero__stillCap{
+      position:absolute;left:16px;bottom:14px;font-family:var(--mono);
+      font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#F5F2EC;
+      background:rgba(10,9,7,.7);padding:6px 10px;
+    }
+    .hero__copy{position:static;background:var(--ink-deep);padding:clamp(40px,7vw,88px) 0}
+  }
+</style>
+
+<script>
+  const hero = document.getElementById('hero') as HTMLElement | null;
+  if (hero && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const imgs = [...hero.querySelectorAll<HTMLImageElement>('.hero__f')];
+    const ticks = [...hero.querySelectorAll<HTMLElement>('.hero__ticks li')];
+    const bar = hero.querySelector<HTMLElement>('[data-bar]');
+    const n = imgs.length;
+    let raf = 0, p = 0;
+
+    const paint = () => {
+      raf = 0;
+      // Map progress onto n-1 dissolves. Hold each stage briefly at full
+      // opacity so the viewer reads it before it starts turning into the next.
+      const t = p * (n - 1);
+      const i = Math.min(n - 2, Math.floor(t));
+      let f = t - i;
+      f = f < 0.18 ? 0 : f > 0.82 ? 1 : (f - 0.18) / 0.64;   // ease the hold
+      imgs.forEach((el, k) => {
+        const o = k < i ? 0 : k === i ? 1 - f : k === i + 1 ? f : 0;
+        el.style.opacity = String(o);
+      });
+      const active = f > 0.5 ? i + 1 : i;
+      ticks.forEach((el, k) => el.classList.toggle('on', k === active));
+      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+    };
+
+    const onScroll = () => {
+      const span = hero.offsetHeight - window.innerHeight;
+      p = span > 0 ? Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / span)) : 0;
+      if (!raf) raf = requestAnimationFrame(paint);
+    };
+
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll, { passive: true });
+    onScroll();
+  }
+</script>
