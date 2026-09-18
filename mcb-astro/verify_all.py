@@ -13,7 +13,7 @@ def text_of(h):
     return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', t)).strip()
 
 for f in files:
-    url = '/' + os.path.relpath(os.path.dirname(f), os.path.join(ROOT,'dist'))
+    url = '/' + os.path.relpath(os.path.dirname(f), os.path.join(ROOT,'dist')).replace('\\','/')
     url = '/' if url == '/.' else url
     h = open(f, encoding='utf-8').read()
 
@@ -82,7 +82,7 @@ for f in files:
 linkmap, inbound = {}, collections.Counter()
 pageset = set(bodies)
 for f in files:
-    url = '/' + os.path.relpath(os.path.dirname(f), os.path.join(ROOT, 'dist'))
+    url = '/' + os.path.relpath(os.path.dirname(f), os.path.join(ROOT, 'dist')).replace('\\','/')
     url = '/' if url == '/.' else url
     h = open(f, encoding='utf-8').read()
     outs = {(x.rstrip('/') or '/') for x in re.findall(r'<a[^>]+href="(/[^"#?]*)"', h)}
