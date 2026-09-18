@@ -18,7 +18,9 @@ for dp, dns, fns in os.walk(ROOT):
         h = open(p, encoding='utf8', errors='replace').read()
         hits = [h[max(0, m.start()-40):m.end()+40].replace('\n', ' ') for m in CLAIM.finditer(h)]
         if hits: (warns if url in ADVISORY else fails).append((url, len(hits), hits[0]))
-        if 'GTM-NM846W2P' in h: fails.append((url, 1, 'dead GTM container GTM-NM846W2P still present'))
+        if 'NM846W2P' in h: fails.append((url, 1, 'tag id NM846W2P still present (GA4 must be G-7HXJQJL5Q2 only)'))
+        if 'insertBefore(t,s)}(window' in h.replace(' ', ''): fails.append((url, 1, 'Meta pixel loads itself before consent'))
+        if "'mcb_consent'" in h: fails.append((url, 1, 'wrong consent key mcb_consent (static site uses mcb-consent)'))
         for b in re.findall(r'<script[^>]*ld\+json[^>]*>(.*?)</script>', h, re.S):
             try: json.loads(b)
             except Exception as e: fails.append((url, 1, 'JSON-LD does not parse: ' + str(e)[:60]))

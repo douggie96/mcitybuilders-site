@@ -90,11 +90,19 @@ const blocks = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
   <main id="main"><slot /></main>
   <slot name="footer" />
 
+  <div id="mcb-cookie-banner" hidden role="dialog" aria-live="polite" aria-label="Cookie choices" style="position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#0b0b0b;border-top:2px solid #E10600;color:#e6e6e6;padding:18px 20px;font-size:14px;line-height:1.55;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center">
+    <span style="max-width:640px">We use analytics cookies to understand how the site is used. They load only if you accept. Read our <a href="/cookie-policy" style="color:#ff6b6b;text-decoration:underline">Cookie Policy</a>.</span>
+    <span style="display:flex;gap:10px">
+      <button type="button" id="mcb-cookie-decline" style="background:transparent;color:#e6e6e6;border:1px solid #777;padding:12px 20px;min-height:44px;border-radius:4px;font-weight:600;cursor:pointer;font-size:13px">Decline</button>
+      <button type="button" id="mcb-cookie-accept" style="background:#E10600;color:#fff;border:0;padding:12px 22px;min-height:44px;border-radius:4px;font-weight:700;cursor:pointer;font-size:13px">Accept</button>
+    </span>
+  </div>
+
   <!-- Consent-gated analytics. Scripts stay inert until the visitor accepts:
        the existing site's pattern, preserved deliberately. -->
   <script is:inline define:vars={{ ga4: SITE.analytics.ga4 }}>
     (function () {
-      var KEY = 'mcb_consent';
+      var KEY = 'mcb-consent'; // MUST match the static site's key (hyphen). An underscore here meant GA4 never loaded on any Astro page.
       function boot() {
         if (window.__mcbTagged) return; window.__mcbTagged = true;
         var s = document.createElement('script'); s.async = true;
@@ -106,6 +114,16 @@ const blocks = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
       }
       try { if (localStorage.getItem(KEY) === 'granted') boot(); } catch (e) {}
       window.__mcbConsentBoot = boot;
+      // Same banner as the static site. Without it a visitor who LANDS on a town page
+      // is never asked, so is never measured.
+      try {
+        var v = localStorage.getItem(KEY), b = document.getElementById('mcb-cookie-banner');
+        if (b && v !== 'granted' && v !== 'denied') {
+          b.hidden = false;
+          document.getElementById('mcb-cookie-accept').addEventListener('click', function () { try { localStorage.setItem(KEY, 'granted'); } catch (e) {} b.hidden = true; boot(); });
+          document.getElementById('mcb-cookie-decline').addEventListener('click', function () { try { localStorage.setItem(KEY, 'denied'); } catch (e) {} b.hidden = true; });
+        }
+      } catch (e) {}
       // lightweight, non-sensitive interaction events
       document.addEventListener('click', function (e) {
         var a = e.target && e.target.closest && e.target.closest('[data-ev]');

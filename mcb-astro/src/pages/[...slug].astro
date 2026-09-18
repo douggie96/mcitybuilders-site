@@ -134,7 +134,7 @@ const siblings = SVC_KEYS.filter(s => s !== svc);
     </header>
 
     <figure class="tp__img">
-      <img src={S.img} alt="" width="1400" height="792" loading="lazy" decoding="async" />
+      <img src={S.img} alt={`Design visualisation for ${S.label.toLowerCase()} in ${T}, MA. Not a photograph of our work.`} width="1400" height="792" loading="eager" fetchpriority="high" decoding="async" />
       <figcaption>Visualisation &mdash; not a photograph of our work</figcaption>
     </figure>
 
