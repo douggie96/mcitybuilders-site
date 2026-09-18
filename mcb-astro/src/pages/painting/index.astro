@@ -1,0 +1,73 @@
+---
+/** Painting hub. Exists so the three painting guides are not orphans, and
+ *  because Douglas wants painting treated as a growth line rather than a
+ *  service bullet. No licensing or insurance claims anywhere on this page. */
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+
+const docs = (await getCollection('services')).sort(
+  (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
+);
+
+const title = 'House Painting in Central Massachusetts | MCB';
+const description =
+  'Interior and exterior painting across Central Massachusetts: cabinet painting, older-home paint work, and when in the year exterior paint will actually cure.';
+---
+<Base
+  title={title}
+  description={description}
+  breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Painting', url: '/painting' }]}
+>
+  <Header />
+  <main id="main">
+    <section class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">/</span> Painting</nav>
+      <h1>House painting in Central Massachusetts</h1>
+      <p class="lede">
+        Most painting problems are not paint problems. They are moisture, preparation
+        or timing problems that paint was asked to cover up. These guides say plainly
+        what we check before quoting, and when we will tell you not to paint at all.
+      </p>
+
+      <ul class="cards">
+        {docs.map((d) => (
+          <li class="card">
+            <h2><a href={`/painting/${d.id}`}>{d.data.h1}</a></h2>
+            <p>{d.data.description}</p>
+            <a class="more" href={`/painting/${d.id}`}>Read the guide</a>
+          </li>
+        ))}
+      </ul>
+
+      <h2 class="sec">What we paint</h2>
+      <p>
+        Interiors, exteriors, kitchen cabinets, and the repair work that has to happen
+        first — rot, failed caulk, bare or chalking substrate. Painting runs alongside
+        our remodeling work and as a standalone job across Lancaster, Clinton, Sterling,
+        Worcester and the surrounding towns.
+      </p>
+      <p>
+        For work that disturbs paint in housing built before 1978, federal rules require
+        specific certification and lead-safe practices. Ask any contractor, including us,
+        for that certification in writing before that work starts.
+      </p>
+    </section>
+    <EstimateForm />
+  </main>
+  <Footer />
+</Base>
+<style>
+  .wrap { max-width: 74ch; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
+  .crumb { font-size: .85rem; opacity: .75; margin-bottom: 1.25rem; }
+  .crumb a { color: inherit; }
+  .lede { font-size: 1.1rem; line-height: 1.6; }
+  .cards { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1.25rem; }
+  .card { border: 1px solid rgba(128,128,128,.28); border-radius: 10px; padding: 1.25rem 1.35rem; }
+  .card h2 { margin: 0 0 .5rem; font-size: 1.15rem; }
+  .card p { margin: 0 0 .75rem; opacity: .85; }
+  .more { font-weight: 600; }
+  .sec { margin-top: 2.5rem; }
+</style>

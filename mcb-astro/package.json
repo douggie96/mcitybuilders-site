@@ -7,7 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "verify": "python verify_all.py"
+    "verify": "astro build && python3 verify_all.py && python3 seo_verify.py"
   },
   "keywords": [],
   "author": "",

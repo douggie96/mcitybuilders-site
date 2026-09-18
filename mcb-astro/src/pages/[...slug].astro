@@ -5,8 +5,13 @@ import Footer from '../components/Footer.astro';
 import EstimateForm from '../components/EstimateForm.astro';
 import { SITE } from '../data/site';
 import { RING1, type TownProfile } from '../data/town-profiles';
+import { RING2 } from '../data/town-profiles-r2';
 import { TOWN_SVC, SVC_KEYS, type Svc } from '../data/town-services';
 import { EXTRA } from '../data/town-extra';
+import { EXTRA2 } from '../data/town-extra-r2';
+
+const ALL_TOWNS = [...RING1, ...RING2];
+const ALL_EXTRA = { ...EXTRA, ...EXTRA2 };
 
 /**
  * Ring 1 service-area pages. Three services x fifteen towns.
@@ -26,7 +31,7 @@ const SERVICES: Record<Svc, { label: string; h1: (t: string) => string; img: str
 
 export function getStaticPaths() {
   const out: any[] = [];
-  for (const town of RING1) {
+  for (const town of [...RING1, ...RING2]) {
     for (const svc of SVC_KEYS) {
       out.push({ params: { slug: `${svc}-${town.slug}` }, props: { town, svc } });
     }
@@ -38,7 +43,7 @@ interface Props { town: TownProfile; svc: Svc }
 const { town, svc } = Astro.props;
 const S = SERVICES[svc];
 const T = town.name;
-const X = EXTRA[town.slug];
+const X = ALL_EXTRA[town.slug];
 
 const titleLong = `${S.label} in ${T}, MA | Maverick City Builders`;
 const title = titleLong.length <= 60 ? titleLong : `${S.label} in ${T}, MA | MCB`;
@@ -47,8 +52,8 @@ const title = titleLong.length <= 60 ? titleLong : `${S.label} in ${T}, MA | MCB
 // longest one that fits rather than hoping "West Boylston" is short enough.
 const descOptions: Record<Svc, string[]> = {
   'general-contractor': [
-    `Licensed general contractor in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair on ${T}'s older and mid-century homes.`,
-    `Licensed general contractor in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free written estimates.`,
+    `General contractor serving ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair on ${T}'s older and mid-century homes.`,
+    `General contractor serving ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free written estimates.`,
   ],
   'kitchen-remodeling': [
     `Kitchen remodeling in ${T}, MA. What ${T} kitchens are actually like, what opening one up involves, and how we scope and price it first.`,
@@ -73,8 +78,8 @@ const faqs = [
     a: `We check ${X.firstCheck}. It is the thing most likely to change the scope, and it is much cheaper for you to know before the work is priced than after it has started.` },
   { q: `Is the house on town water and sewer, or well and septic?`,
     a: X.systems },
-  { q: 'Are you licensed and insured?',
-    a: 'Maverick City Builders is fully licensed in Massachusetts as a Home Improvement Contractor and Construction Supervisor, and carries insurance.' },
+  { q: 'What paperwork do we get before work starts?',
+    a: 'A written estimate that itemises scope, materials and exclusions, then a written contract before any work begins. Ask us for our registration and insurance details in writing and we will provide them directly — we do not publish those numbers online.' },
   { q: `What moves the price on a ${T} project?`,
     a: X.priceContext },
   { q: 'Do you pull permits?',
@@ -227,7 +232,7 @@ const siblings = SVC_KEYS.filter(s => s !== svc);
         <h2>Nearby towns</h2>
         <ul class="tp__near">
           {town.neighbours.map(n => {
-            const m = RING1.find(x => x.name === n);
+            const m = ALL_TOWNS.find(x => x.name === n);
             return m
               ? <li><a href={`/${svc}-${m.slug}`}>{S.label} in {n}</a></li>
               : <li><span class="muted">{n}</span></li>;

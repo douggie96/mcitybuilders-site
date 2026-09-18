@@ -22,7 +22,7 @@ Homes built before 1978 may contain lead-based paint. In Massachusetts this is n
 
 > **Before you hire anyone for a pre-1978 home**, ask to see their lead certification, and ask them to describe their containment. If the answer is vague, keep looking. This applies to us as much as to anyone else — ask us the same question.
 
-If a full deleading is what you actually need, that is a specialised licensed trade and a different scope from painting. We will tell you when that is the conversation you are having rather than quoting around it.
+If a full deleading is what you actually need, that is a separate regulated trade with its own certification, and a different scope from painting. We will tell you when that is the conversation you are having rather than quoting around it.
 
 ## Plaster, not drywall
 
@@ -52,7 +52,7 @@ We will tell you which of those the trim in front of us actually justifies.
 Exterior coatings on older homes usually fail for a reason that is not the paint.
 
 - **Peeling in sheets down to bare wood** is often moisture pushing from inside — a bathroom without working ventilation, or a wall cavity without a vapour barrier.
-- **Peeling concentrated under a window or below a roof line** is usually water getting in at flashing or trim.
+- **Peeling concentrated under a window or below the eaves** is usually water getting in at the flashing or the trim.
 - **Alligatoring** is a coating that has become too thick and too brittle over decades.
 - **Chalking** is a coating at the end of its life; it powders off on your hand.
 

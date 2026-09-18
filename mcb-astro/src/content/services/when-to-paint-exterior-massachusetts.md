@@ -58,7 +58,7 @@ Time since the last paint job is a poor guide. What the surface is doing is the 
 **Stop and investigate first:**
 
 - **Paint peeling in large sheets down to bare wood**, especially on one area rather than generally. That is usually moisture escaping from inside, not a paint failure.
-- **Peeling concentrated below a window, a roof line or a gutter.** That is water getting in somewhere. Find the leak first.
+- **Peeling concentrated below a window, the eaves or a gutter.** That is water getting in somewhere. Find the leak first.
 - **Soft or spongy wood** anywhere you press on it. That is rot, and paint over rot is money set on fire.
 
 On that last group, painting first just resets the clock on a problem that is still running.

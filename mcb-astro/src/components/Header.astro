@@ -12,6 +12,7 @@ import { SITE, SERVICES } from '../data/site';
         <summary>Services</summary>
         <ul>{SERVICES.map(s => <li><a href={`/${s.slug}`}>{s.title}</a></li>)}</ul>
       </details>
+      <a href="/painting">Painting</a>
       <a href="/portfolio">Our work</a>
       <a href="/areas-we-serve">Areas we serve</a>
       <a href="/about">About</a>
@@ -28,7 +29,7 @@ import { SITE, SERVICES } from '../data/site';
     <div class="wrap">
       {SERVICES.map(s => <a href={`/${s.slug}`}>{s.title}</a>)}
       <hr class="rule" />
-      <a href="/portfolio">Our work</a><a href="/areas-we-serve">Areas we serve</a>
+      <a href="/painting">Painting</a><a href="/portfolio">Our work</a><a href="/areas-we-serve">Areas we serve</a>
       <a href="/about">About</a><a href="/contact">Free estimate</a>
       <a class="mnav__tel" href={SITE.phoneHref} data-ev="phone_click">{SITE.phone}</a>
     </div>

@@ -1,174 +1,240 @@
 ---
 /**
- * ScrollHero — scroll-driven crossfade through the build stages.
+ * ScrollHero — logo opener, then a scroll-scrubbed frame sequence on canvas.
  *
- * Four photoreal stages, not a frame sequence, so the mechanism is a
- * cross-dissolve rather than a frame scrub: each stage is a stacked <img>
- * whose opacity is driven by scroll progress. GPU-composited, no canvas,
- * no decode stalls, and it degrades to a plain image if JS never runs.
+ * This is the Apple product-page technique, not a <video> element. Browsers
+ * cannot seek arbitrary frames in compressed video smoothly — setting
+ * video.currentTime from scroll stutters badly and is unreliable on iOS. An
+ * image sequence drawn to canvas is what actually reads as "a movie the mouse
+ * is driving", and it is frame-accurate at any scroll speed.
+ *
+ * Frame-count agnostic by design. With a handful of frames it cross-dissolves
+ * between neighbours; with 100+ it plays as continuous motion. The SAME code
+ * runs either way, so replacing today's stages with a real locked-off
+ * time-lapse is a data change, not a rewrite.
  *
  * Contract:
- *  - Images are decorative (alt=""); every word is real DOM over them.
- *  - prefers-reduced-motion: no pin, no fade — an honest labelled storyboard.
- *  - Scroll is NEVER locked.
+ *  - Scroll is NEVER locked or hijacked. The page scrolls normally throughout.
+ *  - Every word is real DOM over the canvas, never painted into it.
+ *  - prefers-reduced-motion: no pin, no scrub — a plain labelled storyboard.
+ *  - No JS, or decode failure: the first frame stands as a static hero.
  */
 interface Props {
   frames: { src: string; label: string; note?: string }[];
+  logo?: string;
+  wordmark?: string;
   provenance?: string;
+  heading?: string;
+  sub?: string;
 }
-const { frames, provenance = 'Visualisation' } = Astro.props;
+const {
+  frames,
+  logo = '/brand/mcb-logo-white.png',
+  wordmark = 'Maverick City Builders',
+  provenance = 'Visualisation',
+  heading = 'Studs to finished, on one camera',
+  sub = 'Kitchens, bathrooms, decks and full renovations across Central Massachusetts.',
+} = Astro.props;
+
+const W = 1600, H = 905;
 ---
 
-<section class="hero" id="hero">
-  <div class="hero__sticky">
-    <div class="hero__stack">
-      {frames.map((f, i) => (
-        <img class="hero__f" data-i={i} src={f.src} alt="" width="1600" height="905"
-             fetchpriority={i === 0 ? 'high' : undefined}
-             loading={i === 0 ? 'eager' : 'lazy'} decoding="async"
-             style={`opacity:${i === 0 ? 1 : 0}`} />
-      ))}
-    </div>
+<section class="hero" id="hero" data-frames={frames.length}>
+  <div class="hero__rail" style={`--rail:${Math.max(300, 110 + frames.length * 24)}vh`}>
+    <div class="hero__sticky">
 
-    <!-- Reduced-motion / no-JS: the same four stages, labelled, scrolled normally. -->
-    <ol class="hero__stills">
-      {frames.map(f => (
-        <li>
-          <img src={f.src} alt={f.label} width="1600" height="905" loading="lazy" decoding="async" />
-          <span class="hero__stillCap">{f.label}</span>
-        </li>
-      ))}
-    </ol>
+      <!-- Phase 1: the opener. Black ground, wordmark, then it lifts. -->
+      <div class="hero__open" data-open>
+        <img class="hero__logo" src={logo} alt={wordmark} width="768" height="267" fetchpriority="high" />
+        <h1 class="hero__h1">{heading}</h1>
+        <p class="hero__openSub">{sub}</p>
+      </div>
 
-    <div class="hero__scrim" aria-hidden="true"></div>
+      <!-- Phase 2: the sequence. Canvas is decorative; the copy below is DOM. -->
+      <canvas class="hero__canvas" data-canvas width={W} height={H} aria-hidden="true"></canvas>
+      <img class="hero__poster" data-poster src={frames[0].src} alt="" width={W} height={H}
+           fetchpriority="high" decoding="async" />
 
-    <div class="hero__copy">
-      <div class="wrap">
-        <span class="eyebrow">Lancaster, Massachusetts</span>
-        <h1 class="display">Studs to<br />finished room.</h1>
-        <p class="hero__lede">
-          Maverick City Builders is a general contractor in Lancaster, working across
-          Massachusetts. Kitchens, bathrooms, additions, decks, and the structural work
-          underneath them.
-        </p>
-        <div class="hero__cta">
-          <a class="btn btn--onDark" href="/contact" data-ev="estimate_cta">Request an estimate</a>
-          <a class="btn btn--ghost hero__call" href="tel:+15086567436" data-ev="phone_click">
-            (508)&nbsp;656-7436
-          </a>
-        </div>
+      <div class="hero__ui" data-ui hidden>
+        <p class="hero__stage" data-stage>{frames[0].label}</p>
+        <div class="hero__track" aria-hidden="true"><span class="hero__bar" data-bar></span></div>
+        <p class="hero__prov">{provenance}</p>
       </div>
     </div>
-
-    <!-- Stage readout doubles as the chapter marker. -->
-    <ol class="hero__ticks" aria-hidden="true">
-      {frames.map((f, i) => (
-        <li data-t={i}><span></span>{f.label}</li>
-      ))}
-    </ol>
-
-    <div class="hero__bar" aria-hidden="true"><i data-bar></i></div>
-    <span class="prov">{provenance}</span>
   </div>
+
+  <!-- Reduced-motion and no-JS: the same stages, labelled, scrolled normally. -->
+  <ol class="hero__stills">
+    {frames.map(f => (
+      <li>
+        <img src={f.src} alt={f.label} width={W} height={H} loading="lazy" decoding="async" />
+        <span class="hero__stillCap">{f.label}</span>
+      </li>
+    ))}
+  </ol>
 </section>
 
 <style>
-  .hero{position:relative;height:460vh}
-  @media (max-width:760px){.hero{height:360vh}}
-  .hero__sticky{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--ink-deep)}
-  .hero__stack{position:absolute;inset:0}
-  .hero__f{
-    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    will-change:opacity;
+  .hero { position: relative; background: #0b0b0c; }
+  .hero__rail { height: var(--rail); }
+  .hero__sticky {
+    position: sticky; top: 0; height: 100svh;
+    display: grid; place-items: center; overflow: hidden; background: #0b0b0c;
   }
-  .hero__stills{display:none;margin:0;padding:0;list-style:none}
-  .hero__scrim{
-    position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(180deg,rgba(10,9,7,.55) 0%,rgba(10,9,7,.12) 30%,
-               rgba(10,9,7,.22) 55%,rgba(10,9,7,.86) 100%);
+  .hero__canvas, .hero__poster {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
   }
-  .hero__copy{position:absolute;inset:auto 0 0 0;padding-block:0 clamp(74px,11vh,142px);color:#F5F2EC}
-  .hero__copy .display{color:#FFFDF8;margin:0 0 1.1rem}
-  .hero__copy .eyebrow{color:rgba(245,242,236,.68)}
-  .hero__lede{
-    font-size:var(--step-1);font-weight:300;line-height:1.45;
-    color:rgba(245,242,236,.86);max-width:46ch;margin:0 0 2rem;
-  }
-  .hero__cta{display:flex;flex-wrap:wrap;gap:14px}
-  .hero__call{color:#F5F2EC;border-color:rgba(245,242,236,.44);font-family:var(--mono)}
-  .hero__call:hover{background:#F5F2EC;color:var(--ink)}
+  .hero__canvas { opacity: 0; transition: opacity .25s linear; }
+  .hero__canvas[data-live] { opacity: 1; }
+  .hero__canvas[data-live] + .hero__poster { opacity: 0; }
 
-  .hero__ticks{
-    position:absolute;top:calc(72px + 2rem);right:var(--gutter);
-    margin:0;padding:0;list-style:none;display:grid;gap:.85rem;text-align:right;
+  .hero__open {
+    position: absolute; inset: 0; z-index: 3; background: #0b0b0c;
+    display: grid; place-content: center; justify-items: center; gap: 1.25rem;
+    padding-inline: 1.25rem; text-align: center;
+    will-change: opacity, transform;
   }
-  .hero__ticks li{
-    display:flex;align-items:center;justify-content:flex-end;gap:.7rem;
-    font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
-    color:rgba(245,242,236,.42);transition:color .3s ease;
+  .hero__logo { width: min(62vw, 420px); height: auto; }
+  .hero__h1 {
+    margin: 0; color: #fff; font-weight: 600; text-wrap: balance;
+    font-size: clamp(1.5rem, 5vw, 2.6rem); max-width: 18ch;
   }
-  .hero__ticks li span{
-    width:22px;height:1px;background:rgba(245,242,236,.32);transition:all .3s ease;
-  }
-  .hero__ticks li.on{color:#FFFDF8}
-  .hero__ticks li.on span{width:40px;background:var(--wood)}
-
-  .hero__bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(245,242,236,.16)}
-  .hero__bar i{display:block;height:100%;width:0;background:var(--wood)}
-  @media (max-width:760px){
-    .hero__ticks{display:none}
-    .hero__lede{font-size:var(--step-0)}
+  .hero__openSub {
+    margin: 0; color: #b9b5ad; font-size: clamp(.85rem, 2.4vw, 1rem);
+    max-width: 46ch; line-height: 1.5;
   }
 
-  @media (prefers-reduced-motion:reduce){
-    .hero{height:auto}
-    .hero__sticky{position:static;height:auto}
-    .hero__stack,.hero__scrim,.hero__bar,.hero__ticks{display:none}
-    .hero__stills{display:block}
-    .hero__stills li{position:relative;margin:0 0 2px}
-    .hero__stillCap{
-      position:absolute;left:16px;bottom:14px;font-family:var(--mono);
-      font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:#F5F2EC;
-      background:rgba(10,9,7,.7);padding:6px 10px;
+  .hero__ui {
+    position: absolute; z-index: 2; left: 0; right: 0; bottom: 0;
+    display: grid; gap: .6rem; padding: 1.25rem;
+    padding-block-end: max(1.25rem, env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(11,11,12,.82), rgba(11,11,12,0));
+  }
+  .hero__stage {
+    margin: 0; color: #fff; font-size: clamp(1.1rem, 3.4vw, 1.6rem);
+    font-weight: 600; text-wrap: balance;
+  }
+  .hero__track { height: 2px; background: rgba(255,255,255,.22); border-radius: 2px; }
+  .hero__bar { display: block; height: 100%; width: 0%; background: #fff; border-radius: 2px; }
+  .hero__prov {
+    margin: 0; color: #9a968f; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+  }
+
+  .hero__stills { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__rail { height: auto; }
+    .hero__sticky { display: none; }
+    .hero__stills {
+      display: grid; gap: 1rem; list-style: none; margin: 0; padding: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
-    .hero__copy{position:static;background:var(--ink-deep);padding:clamp(40px,7vw,88px) 0}
+    .hero__stills img { width: 100%; height: auto; border-radius: 8px; }
+    .hero__stillCap { display: block; margin-top: .4rem; color: #d9d5cd; font-size: .85rem; }
   }
 </style>
 
 <script>
-  const hero = document.getElementById('hero') as HTMLElement | null;
-  if (hero && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const imgs = [...hero.querySelectorAll<HTMLImageElement>('.hero__f')];
-    const ticks = [...hero.querySelectorAll<HTMLElement>('.hero__ticks li')];
-    const bar = hero.querySelector<HTMLElement>('[data-bar]');
-    const n = imgs.length;
-    let raf = 0, p = 0;
+  (() => {
+    const section = document.querySelector<HTMLElement>('.hero');
+    if (!section) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const paint = () => {
+    const rail = section.querySelector<HTMLElement>('.hero__rail')!;
+    const canvas = section.querySelector<HTMLCanvasElement>('[data-canvas]')!;
+    const opener = section.querySelector<HTMLElement>('[data-open]')!;
+    const ui = section.querySelector<HTMLElement>('[data-ui]')!;
+    const stageEl = section.querySelector<HTMLElement>('[data-stage]')!;
+    const barEl = section.querySelector<HTMLElement>('[data-bar]')!;
+    const stills = Array.from(section.querySelectorAll<HTMLImageElement>('.hero__stills img'));
+    const srcs = stills.map(i => i.getAttribute('src')!);
+    const labels = stills.map(i => i.getAttribute('alt') || '');
+    if (srcs.length === 0) return;
+
+    const ctx = canvas.getContext('2d', { alpha: false });
+    if (!ctx) return;
+
+    const imgs: (HTMLImageElement | null)[] = new Array(srcs.length).fill(null);
+    let ready = 0;
+
+    const load = (i: number) => new Promise<void>(res => {
+      const im = new Image();
+      im.decoding = 'async';
+      im.onload = () => { imgs[i] = im; ready++; res(); };
+      im.onerror = () => res();          // a missing frame is skipped, never fatal
+      im.src = srcs[i];
+    });
+
+    // Cover-fit one frame into the canvas box, matching CSS object-fit: cover.
+    const draw = (im: HTMLImageElement, alpha: number) => {
+      const cw = canvas.width, ch = canvas.height;
+      const s = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
+      const w = im.naturalWidth * s, h = im.naturalHeight * s;
+      ctx.globalAlpha = alpha;
+      ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+      ctx.globalAlpha = 1;
+    };
+
+    const nearest = (i: number) => {
+      for (let d = 0; d < imgs.length; d++) {
+        if (imgs[i - d]) return imgs[i - d]!;
+        if (imgs[i + d]) return imgs[i + d]!;
+      }
+      return null;
+    };
+
+    // OPEN_END: the fraction of the rail the logo card owns before the
+    // sequence takes over. Short enough that the build starts almost at once.
+    const OPEN_END = 0.14;
+    let raf = 0;
+
+    const render = () => {
       raf = 0;
-      // Map progress onto n-1 dissolves. Hold each stage briefly at full
-      // opacity so the viewer reads it before it starts turning into the next.
-      const t = p * (n - 1);
-      const i = Math.min(n - 2, Math.floor(t));
-      let f = t - i;
-      f = f < 0.18 ? 0 : f > 0.82 ? 1 : (f - 0.18) / 0.64;   // ease the hold
-      imgs.forEach((el, k) => {
-        const o = k < i ? 0 : k === i ? 1 - f : k === i + 1 ? f : 0;
-        el.style.opacity = String(o);
-      });
-      const active = f > 0.5 ? i + 1 : i;
-      ticks.forEach((el, k) => el.classList.toggle('on', k === active));
-      if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+      const r = rail.getBoundingClientRect();
+      const span = r.height - window.innerHeight;
+      const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
+
+      // Opener lifts away over the first slice, then stays gone.
+      const o = Math.min(1, p / OPEN_END);
+      opener.style.opacity = String(1 - o);
+      opener.style.transform = `scale(${1 - o * 0.04})`;
+      opener.style.pointerEvents = o >= 1 ? 'none' : '';
+
+      const t = Math.min(1, Math.max(0, (p - OPEN_END) / (1 - OPEN_END)));
+      ui.hidden = t <= 0;
+
+      const exact = t * (srcs.length - 1);
+      const i = Math.floor(exact);
+      const f = exact - i;
+
+      const a = imgs[i] ?? nearest(i);
+      if (a) {
+        draw(a, 1);
+        // Cross-dissolve into the neighbour. With many frames f is tiny and this
+        // reads as continuous motion; with few frames it is a real dissolve.
+        const b = imgs[i + 1];
+        if (b && f > 0) draw(b, f);
+      }
+
+      barEl.style.width = (t * 100).toFixed(2) + '%';
+      const li = Math.round(exact);
+      if (labels[li] && stageEl.textContent !== labels[li]) stageEl.textContent = labels[li];
     };
 
-    const onScroll = () => {
-      const span = hero.offsetHeight - window.innerHeight;
-      p = span > 0 ? Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / span)) : 0;
-      if (!raf) raf = requestAnimationFrame(paint);
-    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(render); };
+
+    // First frame first so the hero is painted immediately, then the rest.
+    load(0).then(() => {
+      canvas.setAttribute('data-live', '');
+      render();
+      const rest = srcs.map((_, i) => i).filter(i => i !== 0);
+      // Sequential rather than parallel: 150 simultaneous decodes stalls the
+      // main thread and wrecks INP on exactly the devices that can least afford it.
+      rest.reduce((chain, i) => chain.then(() => load(i).then(() => { if (!raf) onScroll(); })), Promise.resolve());
+    });
 
     addEventListener('scroll', onScroll, { passive: true });
     addEventListener('resize', onScroll, { passive: true });
-    onScroll();
-  }
+  })();
 </script>

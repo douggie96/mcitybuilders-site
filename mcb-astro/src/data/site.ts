@@ -21,8 +21,12 @@ export const SITE = {
   addressNote: 'Office visits by appointment',
   geo: { lat: 42.4556, lng: -71.6731 },
   owner: 'Douglas Mourao',
-  // Licensing is stated generically. Registration numbers are never published.
-  licensing: 'Fully licensed Massachusetts HIC and CSL',
+  // Douglas's standing rule: the HIC/CSL registration number is never published.
+  // Massachusetts HIC advertising rules require the registration number to appear
+  // wherever registration is claimed, so with the number withheld NO licensing or
+  // insurance claim may appear anywhere on the site. This string is the footer
+  // line and must stay free of any such claim.
+  licensing: 'Lancaster, Massachusetts',
   social: {
     facebook: 'https://www.facebook.com/mcitybuilders',
     instagram: 'https://www.instagram.com/mcitybuilders',

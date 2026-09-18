@@ -1,7 +1,7 @@
-import re, json, glob, os, sys, collections, difflib
-DIST = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dist")
+import re, json, glob, os, sys, collections
+ROOT = os.path.dirname(os.path.abspath(__file__))
 
-files = sorted(glob.glob(os.path.join(DIST,'**','index.html'), recursive=True))
+files = sorted(glob.glob(os.path.join(ROOT,'dist','**','index.html'), recursive=True))
 fails, warns = [], []
 titles, descs, h1s, bodies = {}, {}, {}, {}
 
@@ -13,7 +13,7 @@ def text_of(h):
     return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', t)).strip()
 
 for f in files:
-    url = '/' + os.path.relpath(os.path.dirname(f), DIST)
+    url = '/' + os.path.relpath(os.path.dirname(f), os.path.join(ROOT,'dist'))
     url = '/' if url == '/.' else url
     h = open(f, encoding='utf-8').read()
 
@@ -34,12 +34,36 @@ for f in files:
     if len(hh) != 1: fails.append(f'{url}: {len(hh)} H1s')
     else: h1s[url] = re.sub(r'<[^>]+>', ' ', hh[0]).strip()
 
+    # JSON-LD must parse AND its FAQ content must exist in visible text.
+    # Schema that describes content the page does not actually show is a
+    # structured-data violation, and the homepage verifier caught this class of
+    # problem while this one did not. Closing that gap.
+    vis = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ',
+          re.sub(r'<script.*?</script>', ' ', h, flags=re.S)))
     for b in re.findall(r'<script type="application/ld\+json">(.*?)</script>', h, re.S):
-        try: json.loads(b)
-        except Exception as e: fails.append(f'{url}: JSON-LD parse {e}')
+        try:
+            o = json.loads(b)
+        except Exception as e:
+            fails.append(f'{url}: JSON-LD parse {e}')
+            continue
+        if o.get('@type') == 'FAQPage':
+            for q in o.get('mainEntity', []):
+                qn = re.sub(r'\s+', ' ', q['name']).strip()
+                an = re.sub(r'\s+', ' ', q['acceptedAnswer']['text']).strip()
+                if qn not in vis:
+                    fails.append(f'{url}: FAQ question in schema but not visible: {qn[:60]}')
+                elif an[:60] not in vis:
+                    fails.append(f'{url}: FAQ answer in schema but not visible: {qn[:60]}')
 
-    if re.search(r'\broof(?:ing|er|ers)?\b', h, re.I): fails.append(f'{url}: ROOFING language present')
+    if re.search(r'\broof\w*\b', h, re.I): fails.append(f'{url}: ROOFING language present')
     if re.search(r'\b(HIC|CSL)\s*#?\s*\d', h, re.I): fails.append(f'{url}: license number leaked')
+    # Douglas withholds the HIC/CSL registration number. Massachusetts HIC
+    # advertising rules require that number wherever registration is claimed,
+    # so with it withheld NO licensing or insurance claim may appear at all.
+    # Checking only for a leaked NUMBER missed 145 pages asserting "Licensed
+    # general contractor" and "fully licensed ... and carries insurance".
+    claim = re.search(r'\b(licen[cs]ed|fully licen[cs]ed|bonded|carries insurance|insured)\b', h, re.I)
+    if claim: fails.append(f'{url}: licensing/insurance CLAIM present ("{claim.group(0)}")')
     if '1171 Main St' not in h: fails.append(f'{url}: street address missing')
     if 'tel:+15086567436' not in h: fails.append(f'{url}: phone link missing')
     if 'name="twitter:card"' not in h: fails.append(f'{url}: twitter:card missing')
@@ -52,6 +76,26 @@ for f in files:
     bodies[url] = body
     wc = len(body.split())
     if wc < 450: warns.append(f'{url}: only {wc} words')
+
+# ---- internal link graph. Programmatic pages that nothing links to do not get
+# crawled, which is the most likely way 144 town pages quietly fail.
+linkmap, inbound = {}, collections.Counter()
+pageset = set(bodies)
+for f in files:
+    url = '/' + os.path.relpath(os.path.dirname(f), os.path.join(ROOT, 'dist'))
+    url = '/' if url == '/.' else url
+    h = open(f, encoding='utf-8').read()
+    outs = {(x.rstrip('/') or '/') for x in re.findall(r'<a[^>]+href="(/[^"#?]*)"', h)}
+    linkmap[url] = outs
+    for o in outs:
+        if o in pageset and o != url:
+            inbound[o] += 1
+orphans = sorted(p for p in pageset if inbound[p] == 0)
+if orphans:
+    fails.append(f'{len(orphans)} orphan page(s) with no internal inbound links: {orphans[:5]}')
+thin_in = sorted(p for p in pageset if 0 < inbound[p] < 2)
+for p in thin_in:
+    warns.append(f'{p}: only {inbound[p]} internal inbound link')
 
 # ---- uniqueness: the real risk with templated pages
 def dupes(d):

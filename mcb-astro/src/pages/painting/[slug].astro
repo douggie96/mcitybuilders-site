@@ -1,0 +1,79 @@
+---
+/**
+ * Painting detail pages.
+ *
+ * The three painting documents were written into src/content/services but no
+ * route ever rendered them, so ~3,100 words sat in the repo producing zero
+ * pages. This route renders them under /painting/ rather than at the top level,
+ * because /[...slug] already owns the root namespace for town pages and a
+ * grouped section is better architecture for painting as a growth line anyway.
+ */
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('services');
+  return docs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc, siblings: docs.filter((d) => d.id !== doc.id) },
+  }));
+}
+
+const { doc, siblings } = Astro.props;
+const { Content } = await render(doc);
+const { title, description, h1, updated } = doc.data;
+const pageTitle = title.length <= 60 ? title : title.slice(0, 57).trimEnd();
+---
+<Base
+  title={pageTitle}
+  description={description}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Painting', url: '/painting' },
+    { name: h1, url: `/painting/${doc.id}` },
+  ]}
+>
+  <Header />
+  <main id="main">
+    <article class="wrap prose">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/painting">Painting</a>
+      </nav>
+      <h1>{h1}</h1>
+      {updated && <p class="meta">Last reviewed {updated.toISOString().slice(0, 10)}</p>}
+      <Content />
+
+      {siblings.length > 0 && (
+        <aside class="related">
+          <h2>Related painting guides</h2>
+          <ul>
+            {siblings.map((d) => (
+              <li>
+                <a href={`/painting/${d.id}`}>{d.data.h1}</a>
+              </li>
+            ))}
+            <li><a href="/painting">All painting guides</a></li>
+          </ul>
+        </aside>
+      )}
+    </article>
+    <EstimateForm />
+  </main>
+  <Footer />
+</Base>
+<style>
+  .wrap { max-width: 74ch; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
+  .crumb { font-size: .85rem; opacity: .75; margin-bottom: 1.25rem; }
+  .crumb a { color: inherit; }
+  .meta { font-size: .85rem; opacity: .7; margin-top: -.5rem; }
+  .prose :global(h2) { margin-top: 2.25rem; }
+  .prose :global(h3) { margin-top: 1.5rem; }
+  .prose :global(li) { margin: .4rem 0; }
+  .related { margin-top: 3rem; border-top: 1px solid rgba(128,128,128,.28); padding-top: 1.25rem; }
+  .related h2 { font-size: 1.05rem; margin: 0 0 .6rem; }
+  .related ul { margin: 0; padding-left: 1.1rem; }
+</style>

@@ -2,7 +2,8 @@
 the thing Vercel would actually serve."""
 import re, json, sys, os
 
-P = '/home/claude/mcb-astro/dist/index.html'
+ROOT = os.path.dirname(os.path.abspath(__file__))
+P = os.path.join(ROOT, 'dist', 'index.html')
 h = open(P, encoding='utf-8').read()
 fails, warns, oks = [], [], []
 
@@ -82,13 +83,15 @@ chk('phone link present', 'tel:+15086567436' in h)
 chk('street address in visible copy', '1171 Main St' in h)
 chk('no HIC/CSL numbers leaked', not re.search(r'\b(HIC|CSL)\s*#?\s*\d', h, re.I))
 
-# ---- Phase-3 towns must not appear (Rule 3)
-banned = ['Wellesley', 'Dover', 'Wayland', 'Natick', 'Sherborn', 'Weston']
-present = [b for b in banned if re.search(r'\b' + b + r'\b', h)]
-chk('no Phase-3 towns', not present, str(present))
+# ---- Rule 3 phasing: lifted by Douglas on 2026-09-11 ("yes lets build all the
+# way there"). The six MetroWest towns below are now live in Ring 2, so their
+# presence is no longer a failure. Kept as an informational line only.
+ring2_metrowest = ['Wellesley', 'Dover', 'Wayland', 'Natick', 'Sherborn', 'Weston']
+present = [b for b in ring2_metrowest if re.search(r'\b' + b + r'\b', h)]
+oks.append(f'Ring 2 MetroWest towns on homepage: {present or "none yet"}')
 
 # ---- roofing must never appear
-roof = re.findall(r'\broof(?:ing|er|ers)?\b', h, re.I)
+roof = re.findall(r'\broof\w*\b', h, re.I)
 chk('no roofing service language', not roof, str(set(roof)))
 
 # ---- images
