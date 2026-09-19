@@ -4,6 +4,8 @@
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',
 analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted'});
+/* mcb-consent-v2 */(function(){try{if(navigator.doNotTrack=='1'||window.doNotTrack=='1'||navigator.globalPrivacyControl)return;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-7HXJQJL5Q2';document.head.appendChild(s);}catch(e){}})();
+
 window.__mcbConsent={
  get:function(){try{return localStorage.getItem('mcb-consent');}catch(e){return null;}},
  set:function(v){try{localStorage.setItem('mcb-consent',v);}catch(e){}},
@@ -12,7 +14,7 @@ window.__mcbConsent={
    gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',
    ad_personalization:'granted',analytics_storage:'granted'});
    document.querySelectorAll('script[data-mcb-src]').forEach(function(s){
-     var n=document.createElement('script'); n.async=true; n.src=s.getAttribute('data-mcb-src');
+     var u=s.getAttribute('data-mcb-src'); if(document.querySelector('script[src="'+u+'"]'))return; var n=document.createElement('script'); n.async=true; n.src=u;
      document.head.appendChild(n);
    });
  }
@@ -129,7 +131,7 @@ window.__mcbConsent={
  style="position:fixed;left:0;right:0;bottom:0;z-index:99999;background:#0b0b0b;border-top:2px solid #E10600;
  color:#e6e6e6;padding:18px 20px;font-family:Inter,system-ui,sans-serif;font-size:14px;line-height:1.55;
  display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center;box-shadow:0 -8px 30px rgba(0,0,0,.5)">
- <span style="max-width:640px">We use analytics cookies to understand how the site is used. They load only if you accept.
+ <span style="max-width:640px">We measure page views with Google Analytics in cookieless mode. Accept to allow analytics cookies and ad measurement; Decline to stay cookieless.
  Read our <a href="/cookie-policy" style="color:#ff6b6b;text-decoration:underline">Cookie Policy</a>.</span>
  <span style="display:flex;gap:10px">
   <button type="button" id="mcb-cookie-decline" style="background:transparent;color:#e6e6e6;border:1px solid #555;
