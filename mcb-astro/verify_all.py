@@ -1,9 +1,9 @@
-import re, json, glob, os, sys, collections
+import re, json, glob, os, sys, collections, html
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 files = sorted(glob.glob(os.path.join(ROOT,'dist','**','index.html'), recursive=True))
 fails, warns = [], []
-titles, descs, h1s, bodies = {}, {}, {}, {}
+titles, descs, h1s, bodies, canon_to, raws = {}, {}, {}, {}, {}, {}
 
 def text_of(h):
     b = re.search(r'<body[^>]*>(.*?)</body>', h, re.S)
@@ -29,6 +29,17 @@ for f in files:
     c = re.findall(r'<link rel="canonical" href="([^"]+)"', h)
     if len(c) != 1: fails.append(f'{url}: {len(c)} canonicals')
     elif not c[0].startswith('https://mcitybuilders.com'): fails.append(f'{url}: bad canonical {c[0]}')
+    else:
+        # A canonical may point at itself, or — for a kitchen/bathroom town page only —
+        # at the same town's general-contractor page. Anything else is a mistake.
+        target = c[0].replace('https://mcitybuilders.com', '').rstrip('/') or '/'
+        self_url = url.rstrip('/') or '/'
+        m_kb = re.match(r'^/(kitchen-remodeling|bathroom-remodeling)-(.+-ma)$', url)
+        if target != self_url:
+            if m_kb and target == f'/general-contractor-{m_kb.group(2)}':
+                canon_to[url] = target
+            else:
+                fails.append(f'{url}: canonical points at {target}, which is neither itself nor its town GC page')
 
     hh = re.findall(r'<h1[^>]*>(.*?)</h1>', h, re.S)
     if len(hh) != 1: fails.append(f'{url}: {len(hh)} H1s')
@@ -38,8 +49,11 @@ for f in files:
     # Schema that describes content the page does not actually show is a
     # structured-data violation, and the homepage verifier caught this class of
     # problem while this one did not. Closing that gap.
-    vis = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ',
-          re.sub(r'<script.*?</script>', ' ', h, flags=re.S)))
+    # html.unescape: Astro writes &#39; / &quot; in visible text while JSON.stringify
+    # keeps the raw character in the JSON-LD. Without unescaping, any FAQ answer with
+    # an apostrophe in its first 60 characters was a false FAIL (found 2026-09-18).
+    vis = html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ',
+          re.sub(r'<script.*?</script>', ' ', h, flags=re.S))))
     for b in re.findall(r'<script type="application/ld\+json">(.*?)</script>', h, re.S):
         try:
             o = json.loads(b)
@@ -74,6 +88,7 @@ for f in files:
 
     body = text_of(h)
     bodies[url] = body
+    raws[url] = h
     wc = len(body.split())
     if wc < 450: warns.append(f'{url}: only {wc} words')
 
@@ -139,6 +154,50 @@ if uniq_report:
     thin = [r for r in uniq_report if r[0] < 0.40]
     if thin:
         fails.append(f'{len(thin)} pages have under 40% unique sentences vs their same-service siblings')
+
+# ---- SAME-TOWN overlap: kitchen/bathroom page vs that town's general-contractor page.
+# The check above compares a page against the SAME SERVICE in OTHER towns and was green
+# while the three pages inside one town shared 85-88% of their sentences (09-17 audit).
+# It was looking at the wrong pair. This one looks at the right pair.
+# Measured the way the audit measured it: header/footer/nav stripped, exact sentence
+# match, sentences of 8+ words. A self-canonical K/B page over 40% shared FAILS the
+# build. A K/B page that canonicalises to its GC page is allowed over the bar (that
+# is the whole point of the canonical) and is reported so the number is visible.
+SAME_TOWN_MAX = 0.40
+def article_sents(h):
+    b = re.search(r'<body[^>]*>(.*?)</body>', h, re.S)
+    t = b.group(1) if b else h
+    for tag in ('script', 'style', 'header', 'footer', 'nav'):
+        t = re.sub(r'<%s\b.*?</%s>' % (tag, tag), ' ', t, flags=re.S | re.I)
+    t = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', t)).strip()
+    return {s.strip() for s in re.split(r'(?<=[.!?]) +', t) if len(s.split()) >= 8}
+
+same_town = []
+for url in bodies:
+    m = re.match(r'^/(kitchen-remodeling|bathroom-remodeling)-(.+-ma)$', url)
+    if not m: continue
+    gc = f'/general-contractor-{m.group(2)}'
+    if gc not in bodies:
+        fails.append(f'{url}: no general-contractor page for this town ({gc})'); continue
+    mine, theirs = article_sents(raws[url]), article_sents(raws[gc])
+    shared = len(mine & theirs) / max(1, len(mine))
+    same_town.append((shared, url, len(mine & theirs), len(mine), url in canon_to))
+same_town.sort(reverse=True)
+if same_town:
+    over_self = [r for r in same_town if r[0] > SAME_TOWN_MAX and not r[4]]
+    over_canon = [r for r in same_town if r[0] > SAME_TOWN_MAX and r[4]]
+    under = [r for r in same_town if r[0] <= SAME_TOWN_MAX]
+    med = same_town[len(same_town) // 2]
+    print('Same-town overlap (kitchen/bathroom page vs its town GC page, 8+ word sentences):')
+    print('   highest: %5.1f%%  (%d of %d sentences shared)  %s' % (same_town[0][0] * 100, same_town[0][2], same_town[0][3], same_town[0][1]))
+    print('   median:  %5.1f%%   lowest: %5.1f%%  %s' % (med[0] * 100, same_town[-1][0] * 100, same_town[-1][1]))
+    print('   %d pages canonicalise to their GC page (%d of them over %d%% shared)' % (len(canon_to), len(over_canon), SAME_TOWN_MAX * 100))
+    print('   %d pages are under %d%% shared and could stand on their own' % (len(under), SAME_TOWN_MAX * 100))
+    ready = [r for r in under if r[4]]
+    for r in ready[:10]:
+        print('     READY to self-canonical (%4.1f%%): %s' % (r[0] * 100, r[1]))
+    if over_self:
+        fails.append(f'{len(over_self)} self-canonical kitchen/bathroom pages share over {int(SAME_TOWN_MAX*100)}% of sentences with their town GC page: {[r[1] for r in over_self[:5]]}')
 
 print('=' * 64)
 print('BUILT-SITE VERIFICATION —', len(files), 'pages')

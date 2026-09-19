@@ -31,7 +31,7 @@ if not os.path.isdir(DIST):
     sys.exit('FAIL: mcb-astro/dist does not exist. Run "npm run build" first.')
 
 prev = set(json.load(open(MANIFEST))['files']) if os.path.exists(MANIFEST) else set()
-plan, fails, pages = [], [], []
+plan, fails, pages, canonicalised = [], [], [], {}
 for dp, _, fns in os.walk(DIST):
     for fn in fns:
         src = os.path.join(dp, fn)
@@ -45,7 +45,15 @@ for dp, _, fns in os.walk(DIST):
             h = open(src, encoding='utf8').read()
             m = BANNED.search(h)
             if m: fails.append(f'BANNED WORD "{m.group(0)}" in {rel}')
-            if rel.endswith('/index.html'): pages.append('/' + rel[:-len('/index.html')])
+            if rel.endswith('/index.html'):
+                page = '/' + rel[:-len('/index.html')]
+                pages.append(page)
+                # A page whose canonical points somewhere else must not be in the
+                # sitemap (2026-09-18: the 96 kitchen/bathroom town pages canonicalise
+                # to their town's general-contractor page).
+                c = re.search(r'<link rel="canonical" href="([^"]+)"', h)
+                if c and c.group(1).rstrip('/') != ('https://mcitybuilders.com' + page).rstrip('/'):
+                    canonicalised[page] = c.group(1)
         plan.append((src, dst, rel))
 
 if fails:
@@ -62,7 +70,20 @@ sm_path = os.path.join(ROOT, 'sitemap.xml')
 sm = open(sm_path, encoding='utf8').read()
 have = set(re.findall(r'<loc>https://mcitybuilders\.com([^<]*)</loc>', sm))
 today = datetime.date.today().isoformat()
-new = [p for p in sorted(pages) if p not in have]
+
+# ---- remove canonicalised pages from the sitemap (idempotent) ----
+removed = 0
+for p in sorted(canonicalised):
+    if p not in have: continue
+    sm, n = re.subn(r'\n[ \t]*<url>\s*<loc>https://mcitybuilders\.com' + re.escape(p) + r'</loc>.*?</url>', '', sm, flags=re.S)
+    if n != 1: sys.exit(f'FAIL: expected exactly one sitemap entry for {p}, matched {n}. Sitemap not written.')
+    removed += n
+    have.discard(p)
+if removed:
+    open(sm_path, 'w', encoding='utf8', newline='\n').write(sm)
+print(f'sitemap: -{removed} canonicalised pages ({len(canonicalised)} pages carry a canonical to another URL)')
+
+new = [p for p in sorted(pages) if p not in have and p not in canonicalised]
 if new:
     block = '  <!-- Astro town + painting pages (publish_astro.py) -->\n' + ''.join(
         f'  <url>\n    <loc>https://mcitybuilders.com{p}</loc>\n    <lastmod>{today}</lastmod>\n'

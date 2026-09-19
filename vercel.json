@@ -29,6 +29,51 @@
       ]
     },
     {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/hero/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/rooms/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/brand/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/work/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
       "source": "/(.*)\\.html",
       "headers": [
         {
@@ -273,6 +318,11 @@
     {
       "source": "/assets/img/trim-and-siding-repaint-in-central-ma.jpg",
       "destination": "/assets/img/covered-deck-outdoor-kitchen.jpg",
+      "permanent": true
+    },
+    {
+      "source": "/blog/winter-roof-protection-massachusetts-homeowner",
+      "destination": "/blog/prevent-ice-dams-massachusetts",
       "permanent": true
     }
   ]

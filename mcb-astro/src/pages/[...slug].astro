@@ -9,6 +9,7 @@ import { RING2 } from '../data/town-profiles-r2';
 import { TOWN_SVC, SVC_KEYS, type Svc } from '../data/town-services';
 import { EXTRA } from '../data/town-extra';
 import { EXTRA2 } from '../data/town-extra-r2';
+import { BODIES } from '../data/town-service-bodies';
 
 const ALL_TOWNS = [...RING1, ...RING2];
 const ALL_EXTRA = { ...EXTRA, ...EXTRA2 };
@@ -67,9 +68,20 @@ const descOptions: Record<Svc, string[]> = {
 const description = descOptions[svc].find(d => d.length >= 70 && d.length <= 160)
   ?? descOptions[svc][descOptions[svc].length - 1].slice(0, 157).replace(/[ ,.]+$/, '') + '.';
 
-const faqs = [
-  { q: `Do you work in ${T}?`,
-    a: `Yes. ${T} is ${town.mi.toFixed(0)} miles from our base in Lancaster, well inside the area we cover day to day.` },
+// Service-led body (kitchen/bathroom pages only, where one has been written).
+// See town-service-bodies.ts. A page with a body stands on its own; without one
+// it is the town profile again and must canonicalise to the GC page.
+const body = svc !== 'general-contractor' ? BODIES[town.slug]?.[svc] : undefined;
+
+const PAPERWORK = { q: 'What paperwork do we get before work starts?',
+  a: 'A written estimate that itemises scope, materials and exclusions, then a written contract before any work begins. Ask us for our registration and insurance details in writing and we will provide them directly — we do not publish those numbers online.' };
+const PERMITS = { q: 'Do you pull permits?',
+  a: `Yes, on any work that requires them. Permitting in ${T} goes through the town's building department and it is written into the scope we quote rather than added later.` };
+const WORK_HERE = { q: `Do you work in ${T}?`,
+  a: `Yes. ${T} is ${town.mi.toFixed(0)} miles from our base in Lancaster, well inside the area we cover day to day.` };
+
+const faqs = body ? [WORK_HERE, ...body.faqs, PAPERWORK, PERMITS] : [
+  WORK_HERE,
   { q: `What does a ${S.label.toLowerCase()} project in ${T} usually involve?`,
     a: svc === 'general-contractor'
        ? `It depends entirely on the house. ${T} is ${town.setting}, and the housing is ${town.stock}. We come and look before we price anything.`
@@ -78,12 +90,10 @@ const faqs = [
     a: `We check ${X.firstCheck}. It is the thing most likely to change the scope, and it is much cheaper for you to know before the work is priced than after it has started.` },
   { q: `Is the house on town water and sewer, or well and septic?`,
     a: X.systems },
-  { q: 'What paperwork do we get before work starts?',
-    a: 'A written estimate that itemises scope, materials and exclusions, then a written contract before any work begins. Ask us for our registration and insurance details in writing and we will provide them directly — we do not publish those numbers online.' },
+  PAPERWORK,
   { q: `What moves the price on a ${T} project?`,
     a: X.priceContext },
-  { q: 'Do you pull permits?',
-    a: `Yes, on any work that requires them. Permitting in ${T} goes through the town's building department and it is written into the scope we quote rather than added later.` },
+  PERMITS,
 ];
 
 const jsonLd = [
@@ -107,9 +117,29 @@ const breadcrumbs = [
 ];
 
 const siblings = SVC_KEYS.filter(s => s !== svc);
+
+// Decision 2026-09-18 (Doug): the kitchen and bathroom town pages share 85-88% of
+// their sentences with their town's general-contractor page (measured live on the
+// 09-17 audit, header/footer/nav stripped). Until a K/B page carries a service-led
+// body of its own, it canonicalises to the GC page so Google consolidates the three
+// deliberately instead of picking one at random, and publish_astro.py keeps it out
+// of the sitemap. The page stays live for visitors and internal links.
+//
+// A K/B page flips back to self-canonical the moment it has a service-led body in
+// town-service-bodies.ts. verify_all.py FAILS the build if a self-canonical K/B
+// page is over 40% shared with its GC page, so a weak body cannot regress this.
+const canonical = (svc !== 'general-contractor' && !body)
+  ? `${SITE.url}/general-contractor-${town.slug}`
+  : undefined;
+
+// Hero image: WebP variants live next to each JPEG in public/ (generated once,
+// e.g. /rooms/exterior.jpg -> /rooms/exterior-800.webp + /rooms/exterior-1400.webp).
+// The JPEG stays as the <img> fallback and for og/other references.
+const webp = (p: string, w: number) => p.replace(/\.jpg$/, `-${w}.webp`);
+const heroSrcset = `${webp(S.img, 800)} 800w, ${webp(S.img, 1400)} 1400w`;
 ---
 
-<Base {title} {description} {jsonLd} {breadcrumbs}>
+<Base {title} {description} {canonical} {jsonLd} {breadcrumbs}>
   <Header slot="header" />
 
   <article class="tp">
@@ -122,10 +152,14 @@ const siblings = SVC_KEYS.filter(s => s !== svc);
         </nav>
         <span class="eyebrow">{town.county} County &middot; {town.mi.toFixed(0)} miles from Lancaster</span>
         <h1>{S.h1(T)}</h1>
-        <p class="lede">
-          {T} is {town.setting}. We work here regularly out of Lancaster, and the
-          houses have a character worth understanding before anyone quotes a price.
-        </p>
+        {body ? (
+          <p class="lede">{body.intro}</p>
+        ) : (
+          <p class="lede">
+            {T} is {town.setting}. We work here regularly out of Lancaster, and the
+            houses have a character worth understanding before anyone quotes a price.
+          </p>
+        )}
         <div class="tp__cta">
           <a class="btn" href="#estimate" data-ev="estimate_cta">Request an estimate</a>
           <a class="btn btn--ghost" href={SITE.phoneHref} data-ev="phone_click">{SITE.phone}</a>
@@ -134,18 +168,35 @@ const siblings = SVC_KEYS.filter(s => s !== svc);
     </header>
 
     <figure class="tp__img">
-      <img src={S.img} alt={`Design visualisation for ${S.label.toLowerCase()} in ${T}, MA. Not a photograph of our work.`} width="1400" height="792" loading="eager" fetchpriority="high" decoding="async" />
+      <picture>
+        <source type="image/webp" srcset={heroSrcset} sizes="100vw" />
+        <img src={S.img} alt={`Design visualisation for ${S.label.toLowerCase()} in ${T}, MA. Not a photograph of our work.`} width="1400" height="792" loading="eager" fetchpriority="high" decoding="async" />
+      </picture>
       <figcaption>Visualisation &mdash; not a photograph of our work</figcaption>
     </figure>
 
     <div class="wrap tp__body">
-      <section>
-        <h2>What the housing in {T} is actually like</h2>
-        <p>The stock here is {town.stock}.</p>
-        <p>{town.challenge}.</p>
-      </section>
+      {body ? (
+        <section>
+          <h2>The houses this is written for</h2>
+          <p>The stock here is {town.stock}.</p>
+        </section>
+      ) : (
+        <section>
+          <h2>What the housing in {T} is actually like</h2>
+          <p>The stock here is {town.stock}.</p>
+          <p>{town.challenge}.</p>
+        </section>
+      )}
 
-      {svc === 'kitchen-remodeling' && (
+      {body && body.sections.map(s => (
+        <section>
+          <h2>{s.h2}</h2>
+          {s.paras.map(p => <p>{p}</p>)}
+        </section>
+      ))}
+
+      {!body && svc === 'kitchen-remodeling' && (
         <section>
           <h2>Kitchens in {T}</h2>
           <p>{town.kitchen}.</p>
@@ -158,7 +209,7 @@ const siblings = SVC_KEYS.filter(s => s !== svc);
         </section>
       )}
 
-      {svc === 'bathroom-remodeling' && (
+      {!body && svc === 'bathroom-remodeling' && (
         <section>
           <h2>Bathrooms in {T}</h2>
           <p>{town.bath}.</p>
@@ -185,30 +236,36 @@ const siblings = SVC_KEYS.filter(s => s !== svc);
         </section>
       )}
 
-      <section>
-        <h2>Water, waste and what that means for scope</h2>
-        <p>{X.systems}</p>
-      </section>
+      {!body && (
+        <section>
+          <h2>Water, waste and what that means for scope</h2>
+          <p>{X.systems}</p>
+        </section>
+      )}
 
-      <section>
-        <h2>Working on site in {T}</h2>
-        <p>{X.access}</p>
-      </section>
+      {!body && (
+        <section>
+          <h2>Working on site in {T}</h2>
+          <p>{X.access}</p>
+        </section>
+      )}
 
-      <section>
-        <h2>What moves the price on a {T} project</h2>
-        <p>{X.priceContext}</p>
-        <p>
-          A phone quote is a guess. We come out, measure, look behind the surfaces where we can, and
-          send a written scope with a line-by-line price, a schedule, and a clear statement of what
-          is <em>not</em> included. The first thing we check on a house here is {X.firstCheck}.
-        </p>
-        <p>
-          If we think the budget is wrong for the work, we say so before anything is signed. And when
-          an older house hides something — which in {T} it often does — you hear about it the same
-          day, with what it changes and what it costs, before we carry on.
-        </p>
-      </section>
+      {!body && (
+        <section>
+          <h2>What moves the price on a {T} project</h2>
+          <p>{X.priceContext}</p>
+          <p>
+            A phone quote is a guess. We come out, measure, look behind the surfaces where we can, and
+            send a written scope with a line-by-line price, a schedule, and a clear statement of what
+            is <em>not</em> included. The first thing we check on a house here is {X.firstCheck}.
+          </p>
+          <p>
+            If we think the budget is wrong for the work, we say so before anything is signed. And when
+            an older house hides something — which in {T} it often does — you hear about it the same
+            day, with what it changes and what it costs, before we carry on.
+          </p>
+        </section>
+      )}
 
       <section>
         <h2>Questions we get asked about {T}</h2>
