@@ -39,11 +39,12 @@ WHY EACH ONE IS HERE
    because the one homeowner who checks finds the contradiction.
    Now states compliance with the Massachusetts rules plus the approved
    "Certificate on request" formula. No registration number, per Rule 6.
-   >>> OPEN: whether to name the credential outright — "Lead-Safe Renovation
-   >>> Contractor licence, Massachusetts Department of Labor Standards, 454 CMR
-   >>> 22.00". That is materially more persuasive on pre-1978 housing, which is
-   >>> most of Worcester County. It is also a licence claim, which Rule 4.2
-   >>> otherwise bans outright, so it needs Doug's explicit word before it ships.
+   DOUG APPROVED 2026-09-19 ("yes lead certificate"): the credential is now named
+   outright — "Lead-Safe Renovation Contractor license from the Massachusetts
+   Department of Labor Standards under 454 CMR 22.00". No registration number,
+   per Rule 6. site_gate.py carries this as an explicit approved exception, and
+   its CLAIM regex was tightened at the same time so that nothing ELSE can make
+   a license claim without failing the deploy.
 
 4. "&amp;#x27;" (/general-contractor-sterling-ma, /general-contractor-clinton-ma)
    Double-escaped apostrophe: readers see a literal &#x27; in the FAQ answer.
@@ -89,18 +90,9 @@ FIXES = [
      'Certified Waterproofing Experts',
      'Waterproofing Detailed to Spec', 1),
 
-    ('interior-painting/index.html',
-     'MCB is a certified RRP firm, and we run those steps',
-     'We work to the Massachusetts lead-safe renovation rules, and we run those steps', 1),
-    ('interior-painting/index.html',
-     'MCB is a certified RRP firm and follows proper containment, HEPA vacuuming, and disposal.',
-     'We work to the Massachusetts lead-safe renovation rules on pre-1978 homes: containment, '
-     'HEPA vacuuming, and proper disposal. Certificate on request.', 2),
-
     ('bathroom-remodeling-fitchburg-ma/index.html',
-     'Yes. Maverick City Builders is EPA RRP-certified for work in pre-1978 homes.',
-     'Yes. We work to the Massachusetts lead-safe renovation rules on pre-1978 homes, which is the '
-     'programme that applies here rather than the federal one.', 2),
+     'we follow RRP containment and disposal protocols',
+     'we follow the required containment and disposal protocols', 2),
 
     # Doug confirmed 2026-09-19 that MCB carries a one-year warranty. "one written
     # warranty" was vague enough to read as an open-ended promise; this states the term.
@@ -114,6 +106,36 @@ FIXES = [
     ('carpentry/index.html', 'Are you ?', 'Do you work to a written contract?', 2),
 ]
 
+# Each entry is (rel, [any of these old strings], the one new string, occurrences).
+# A CHAIN entry exists because this copy has been edited more than once: a pristine
+# checkout still carries the original wording, while the live file carries the
+# intermediate wording from the 09-19 14:00 deploy. Both must converge on the same
+# final text, or a fresh clone and Doug's machine drift apart.
+LEAD_SAFE_LONG = (
+    'We hold a Lead-Safe Renovation Contractor license from the Massachusetts Department of '
+    'Labor Standards under 454 CMR 22.00 \u2014 the program that applies here, not the federal '
+    'one. On pre-1978 homes that means containment, HEPA vacuuming, and proper disposal. '
+    'Certificate on request.'
+)
+CHAIN = [
+    ('interior-painting/index.html',
+     ['MCB is a certified RRP firm, and we run those steps',
+      'We work to the Massachusetts lead-safe renovation rules, and we run those steps'],
+     'We hold a Lead-Safe Renovation Contractor license from the Massachusetts Department of '
+     'Labor Standards, and we run those steps', 1),
+    ('interior-painting/index.html',
+     ['MCB is a certified RRP firm and follows proper containment, HEPA vacuuming, and disposal.',
+      'We work to the Massachusetts lead-safe renovation rules on pre-1978 homes: containment, '
+      'HEPA vacuuming, and proper disposal. Certificate on request.'],
+     LEAD_SAFE_LONG, 2),
+    ('bathroom-remodeling-fitchburg-ma/index.html',
+     ['Yes. Maverick City Builders is EPA RRP-certified for work in pre-1978 homes.',
+      'Yes. We work to the Massachusetts lead-safe renovation rules on pre-1978 homes, which is '
+      'the programme that applies here rather than the federal one.'],
+     'Yes. We hold a Lead-Safe Renovation Contractor license from the Massachusetts Department '
+     'of Labor Standards, which is the program that applies here rather than the federal one.', 2),
+]
+
 manifest = set()
 try:
     manifest = set(json.load(open(os.path.join(ROOT, 'mcb-astro', 'published-manifest.json')))['files'])
@@ -121,7 +143,7 @@ except Exception:
     pass
 
 # every page a fix names, so we can tell "already patched" from "never matched"
-TARGETS = GUARANTEED_PAGES | {f[0] for f in FIXES}
+TARGETS = GUARANTEED_PAGES | {f[0] for f in FIXES} | {c[0] for c in CHAIN}
 
 scanned = patched = already = skipped = 0
 fails, notes = [], []
@@ -168,6 +190,18 @@ for dp, dns, fns in os.walk(ROOT):
         else:
             skipped += 1
             notes.append(f'SKIP {rel}: expected {want} of "{old[:40]}", found {n} — not touching it')
+
+    # ---- 6. lead-safe credential, whichever wording this file currently carries ----
+    for frag, olds, new, want in CHAIN:
+        if rel != frag:
+            continue
+        hit = [o for o in olds if h.count(o) == want]
+        if hit:
+            h = h.replace(hit[0], new)
+        elif new not in h:
+            skipped += 1
+            found = {o[:34]: h.count(o) for o in olds}
+            notes.append(f'SKIP {rel}: no known lead-safe wording at the expected count {want} - {found}')
 
     if h == orig:
         already += 1

@@ -25,7 +25,7 @@ const ALL_EXTRA = { ...EXTRA, ...EXTRA2 };
  * No invented projects, counts, reviews, prices or permit specifics.
  */
 const SERVICES: Record<Svc, { label: string; h1: (t: string) => string; img: string }> = {
-  'general-contractor':  { ...TOWN_SVC['general-contractor'],  h1: (t: string) => `General contractor in ${t}, MA` },
+  'general-contractor':  { ...TOWN_SVC['general-contractor'],  h1: (t: string) => `General Contractor & Home Remodeling in ${t}, MA` },
   'kitchen-remodeling':  { ...TOWN_SVC['kitchen-remodeling'],  h1: (t: string) => `Kitchen remodeling in ${t}, MA` },
   'bathroom-remodeling': { ...TOWN_SVC['bathroom-remodeling'], h1: (t: string) => `Bathroom remodeling in ${t}, MA` },
 };
@@ -46,14 +46,47 @@ const S = SERVICES[svc];
 const T = town.name;
 const X = ALL_EXTRA[town.slug];
 
-const titleLong = `${S.label} in ${T}, MA | Maverick City Builders`;
-const title = titleLong.length <= 60 ? titleLong : `${S.label} in ${T}, MA | MCB`;
+// Title ladder: longest option that fits 60 characters.
+// NEVER use "&" in a title here. Astro renders it as "&amp;", which is four
+// characters longer than the source string this ladder measures. That gap put
+// 32 titles over the guard on the first build of this change (caught 2026-09-19
+// by running the build rather than reasoning about it).
+//
+// The general-contractor pages carry "Home Remodeling" as well as "General
+// Contractor" because Search Console (2026-09-19) showed the HOMEPAGE ranking
+// 2.3 for "wellesley home remodeling" with 206 impressions and zero clicks,
+// while /general-contractor-wellesley-ma — indexed, crawled, and about exactly
+// that town — did not surface. The homepage is the only page on the site that
+// carries the phrase "home remodeling"; the town pages carried "general
+// contractor" alone. The homepage already ranks #1 for "general contractor
+// lancaster ma" using this same dual phrasing, so the pattern is proven on this
+// domain. It is a hypothesis, not a certainty: a weak domain defaulting to its
+// strongest page explains part of this too, and that part is fixed by links and
+// reviews, not by a title.
+const titleOptions: Record<Svc, string[]> = {
+  'general-contractor': [
+    `General Contractor and Home Remodeling in ${T}, MA | MCB`,
+    `General Contractor and Home Remodeling in ${T}, MA`,
+    `Home Remodeling in ${T}, MA | General Contractor`,
+    `Home Remodeling in ${T}, MA | MCB`,
+  ],
+  'kitchen-remodeling': [
+    `${S.label} in ${T}, MA | Maverick City Builders`,
+    `${S.label} in ${T}, MA | MCB`,
+  ],
+  'bathroom-remodeling': [
+    `${S.label} in ${T}, MA | Maverick City Builders`,
+    `${S.label} in ${T}, MA | MCB`,
+  ],
+};
+const title = titleOptions[svc].find((t) => t.length <= 60) ?? `${S.label} in ${T}, MA | MCB`;
 // Descriptions have to satisfy the 70-160 guard for EVERY town name length,
 // so each service offers a long form and a short fallback and we take the
 // longest one that fits rather than hoping "West Boylston" is short enough.
 const descOptions: Record<Svc, string[]> = {
   'general-contractor': [
-    `General contractor serving ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair on ${T}'s older and mid-century homes.`,
+    `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair on older and mid-century homes.`,
+    `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair.`,
     `General contractor serving ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free written estimates.`,
   ],
   'kitchen-remodeling': [

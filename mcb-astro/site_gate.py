@@ -7,7 +7,37 @@ SKIP_DIRS = {'.git', 'mcb-astro', 'node_modules', 'tools', '_cdn_dl', '_cdn_dl2'
 # Homeowner-education guides that tell people to verify ANY contractor's registration.
 # They make no claim about MCB. Doug decides whether they stay; they do not block a deploy.
 ADVISORY = {'blog/how-to-choose-general-contractor-massachusetts', 'how-to-hire-contractor-massachusetts'}
-CLAIM = re.compile(r"\b(licen[cs]ed|insured|bonded|carries insurance)\b|\b(HIC|CSL)\b|Construction Supervisor|Home Improvement Contractor|workers.{0,8}comp", re.I)
+# Sentences Doug has explicitly approved. They are removed from the text BEFORE the
+# scan, so the claim ships and every OTHER credential claim still fails the deploy.
+# Approved 2026-09-19: MCB holds the Massachusetts credential, and the site previously
+# cited the FEDERAL one, which four other MCB pages correctly say does not apply here.
+# No registration number appears in any of these (Rule 6). To approve another claim,
+# add the exact sentence here - never widen the regex, and never reword copy to slip
+# past it.
+APPROVED = [
+    # --- (a) claims MCB is allowed to make about itself ---
+    # Approved 2026-09-19. MCB holds the Massachusetts credential; the site had been
+    # citing the FEDERAL one, which four other MCB pages correctly say does not apply
+    # here. No registration number appears anywhere (Rule 6).
+    'Lead-Safe Renovation Contractor license from the Massachusetts Department of Labor Standards',
+    'Lead-Safe Renovation Contractor licence from the Massachusetts Department of Labor Standards',
+    'Insured, certificate on request',
+    'Certificate on request',
+    # --- (b) descriptions of what the LAW requires, not claims about MCB ---
+    # These are homeowner-education sentences on otherwise ordinary service pages:
+    # "what applies is...", "the credential that matters here is...". Listing the
+    # sentences keeps the gate live on the rest of those pages, which whitelisting
+    # the whole page (the ADVISORY set) would not.
+    'Lead-Safe Renovation Contractor licence from the Department of Labor Standards',
+    'Lead-Safe Renovation Contractor license from the Department of Labor Standards',
+    'the licence that applies is a',
+    'the license that applies is a',
+    'what licenses to verify',
+    'what licences to verify',
+]
+# Tightened 2026-09-19: the old pattern caught "licensed" but NOT the noun "license",
+# so "we hold a license" sailed through the gate that exists to stop exactly that.
+CLAIM = re.compile(r"\b(licen[cs]ed|licen[cs]es?|insured|bonded|carries insurance)\b|\b(HIC|CSL)\b|Construction Supervisor|Home Improvement Contractor|workers.{0,8}comp", re.I)
 fails, warns, n = [], [], 0
 for dp, dns, fns in os.walk(ROOT):
     dns[:] = [d for d in dns if d not in SKIP_DIRS]
@@ -16,7 +46,10 @@ for dp, dns, fns in os.walk(ROOT):
         p = os.path.join(dp, fn); n += 1
         url = os.path.relpath(dp, ROOT).replace('\\', '/')
         h = open(p, encoding='utf8', errors='replace').read()
-        hits = [h[max(0, m.start()-40):m.end()+40].replace('\n', ' ') for m in CLAIM.finditer(h)]
+        scan = h
+        for ok in APPROVED:
+            scan = scan.replace(ok, ' ')
+        hits = [scan[max(0, m.start()-40):m.end()+40].replace('\n', ' ') for m in CLAIM.finditer(scan)]
         if hits: (warns if url in ADVISORY else fails).append((url, len(hits), hits[0]))
         if 'NM846W2P' in h: fails.append((url, 1, 'tag id NM846W2P still present (GA4 must be G-7HXJQJL5Q2 only)'))
         if 'insertBefore(t,s)}(window' in h.replace(' ', ''): fails.append((url, 1, 'Meta pixel loads itself before consent'))
