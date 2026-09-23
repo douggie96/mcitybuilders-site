@@ -126,6 +126,11 @@
       "permanent": true
     },
     {
+      "source": "/maps/embed/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/services/kitchen-remodeling",
       "destination": "/kitchen-remodeling",
       "permanent": true
