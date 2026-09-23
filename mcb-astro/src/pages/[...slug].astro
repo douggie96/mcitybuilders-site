@@ -83,19 +83,27 @@ const title = titleOptions[svc].find((t) => t.length <= 60) ?? `${S.label} in ${
 // Descriptions have to satisfy the 70-160 guard for EVERY town name length,
 // so each service offers a long form and a short fallback and we take the
 // longest one that fits rather than hoping "West Boylston" is short enough.
+// 2026-09-23: every description now ends with a concrete next step. GSC showed
+// 10.3K impressions for 80 clicks (0.8% CTR) at average position 20.3 — the
+// pages are being SHOWN and not clicked. The CTA option is listed FIRST so the
+// "first that fits" ladder actually selects it; putting it later made it dead
+// code (caught by simulating the ladder rather than reasoning about it).
+// "Free estimate in 48 hours" is existing site copy, not a new claim. The
+// Google rating is deliberately NOT templated here: one 4-star review would
+// make ~147 pages false at once.
 const descOptions: Record<Svc, string[]> = {
   'general-contractor': [
+    `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free estimate in 48 hours.`,
     `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair on older and mid-century homes.`,
-    `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair.`,
     `General contractor serving ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free written estimates.`,
   ],
   'kitchen-remodeling': [
+    `Kitchen remodeling in ${T}, MA. What opening one up involves, and how we scope and price it before any demo. Free estimate in 48 hours.`,
     `Kitchen remodeling in ${T}, MA. What ${T} kitchens are actually like, what opening one up involves, and how we scope and price it first.`,
-    `Kitchen remodeling in ${T}, MA. What the kitchens here are like, what opening one up involves, and how we price it. Free written estimates.`,
   ],
   'bathroom-remodeling': [
+    `Bathroom remodeling in ${T}, MA. A realistic scope, and the plumbing realities behind any layout change. Free estimate in 48 hours.`,
     `Bathroom remodeling in ${T}, MA. Working with ${T}'s housing stock, a realistic scope, and the plumbing behind any layout change.`,
-    `Bathroom remodeling in ${T}, MA. A realistic scope, and the plumbing realities behind a layout change. Free written estimates.`,
   ],
 };
 const description = descOptions[svc].find(d => d.length >= 70 && d.length <= 160)
