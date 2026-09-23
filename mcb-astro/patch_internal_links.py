@@ -61,10 +61,13 @@ MARK = '<!--mcb-rel-->'
 LINK = '<a href="{0}" style="color:#E10600;text-decoration:underline">{1}</a>'
 
 HIRE = ('/how-to-hire-contractor-massachusetts', 'How to hire a contractor in Massachusetts')
+PERMITS = ('/building-permits-central-massachusetts',
+           'Building permits in Central Massachusetts')
 
 # page -> [(href, anchor text), ...]
 PLAN = {
     'kitchen-remodeling': [
+        PERMITS,
         ('/kitchen-remodel-cost-worcester-ma', 'Kitchen remodel cost in Worcester'),
         ('/kitchen-remodel-cost-marlborough-ma', 'Kitchen remodel cost in Marlborough'),
         ('/blog/kitchen-remodeling-cost-central-massachusetts', 'What a kitchen remodel costs in Central Massachusetts'),
@@ -74,6 +77,7 @@ PLAN = {
         HIRE,
     ],
     'bathroom-remodeling': [
+        PERMITS,
         ('/bathroom-remodel-cost-massachusetts', 'Bathroom remodel cost in Massachusetts'),
         ('/blog/small-hall-bathroom-remodel-cost-central-ma', 'Small hall bathroom costs'),
         ('/blog/bathroom-addition-title-v-septic-central-ma', 'Adding a bathroom on a septic system'),
@@ -83,6 +87,7 @@ PLAN = {
         HIRE,
     ],
     'deck-building': [
+        PERMITS,
         ('/deck-building-cost-massachusetts', 'Deck building cost in Massachusetts'),
         ('/composite-deck-installers-central-ma', 'Composite deck installation in Central Massachusetts'),
         ('/deck-builders-worcester-county-ma', 'Deck builders in Worcester County'),
@@ -106,11 +111,13 @@ PLAN = {
         HIRE,
     ],
     'carpentry': [
+        PERMITS,
         ('/flooring-installation-lancaster-ma', 'Flooring installation in Lancaster'),
         ('/blog/kitchen-cabinets-1900s-farmhouse-central-ma', 'Cabinets in a 1900s farmhouse'),
         HIRE,
     ],
     'general-renovations': [
+        PERMITS,
         ('/structural-repair-worcester-county-ma', 'Structural repair in Worcester County'),
         ('/rot-repair-cost-massachusetts', 'Rot repair cost in Massachusetts'),
         ('/blog/kitchen-remodel-home-value-massachusetts', 'What a remodel adds to home value'),
@@ -131,6 +138,7 @@ PLAN = {
 # Every town hub gets the hire guide plus the two seasonal planning pieces.
 HUB_LINKS = [
     HIRE,
+    PERMITS,
     ('/blog/how-to-choose-general-contractor-massachusetts', 'Choosing a general contractor'),
     ('/blog/spring-home-maintenance-checklist-massachusetts', 'Spring home maintenance checklist'),
 ]
@@ -193,9 +201,12 @@ for slug, links in sorted(targets.items()):
         skipped += 1
         continue
     h = open(p, encoding='utf8', newline='').read()
-    if MARK in h:
-        already += 1
-        continue
+
+    # A page patched by an earlier run carries MARK. Rather than skipping it -- which would
+    # mean a link added to PLAN later never reaches the pages that need it -- top up the
+    # existing block with whatever is missing. Idempotent either way: when nothing is
+    # missing the file is unchanged and the page counts as already patched.
+    topup = MARK in h
     live = []
     for href, text in links:
         if href.strip('/') == slug:
@@ -207,12 +218,30 @@ for slug, links in sorted(targets.items()):
             continue          # already linked contextually; do not duplicate
         live.append((href, text))
     if not live:
-        notes.append('SKIP %s: every candidate link already present or missing' % slug)
-        skipped += 1
+        already += 1
         continue
     # Prefer inside <main>: links in the main content read as contextual, links between
     # </main> and <footer> read as boilerplate. Fall back to the footer anchor on the
     # pages that have no <main> element (e.g. /water-damage-restoration).
+    if topup:
+        # insert the missing <li> items at the end of the existing list
+        bi = h.find(MARK)
+        ei = h.find('</ul>', bi)
+        if ei == -1:
+            notes.append('SKIP %s: marker present but no </ul> found' % slug)
+            skipped += 1
+            continue
+        items = ''.join('<li style="margin:0 0 6px;">' + LINK.format(href, text) + '</li>'
+                        for href, text in live)
+        h = h[:ei] + items + h[ei:]
+        try:
+            open(p, 'w', encoding='utf8', newline='').write(h)
+            patched += 1
+            added += len(live)
+        except Exception as e:
+            fails.append((slug, str(e)))
+        continue
+
     i = h.rfind('</main>')
     if i == -1:
         i = h.rfind('<footer')

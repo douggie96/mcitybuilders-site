@@ -121,6 +121,11 @@
       "permanent": true
     },
     {
+      "source": "/pages/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/services/kitchen-remodeling",
       "destination": "/kitchen-remodeling",
       "permanent": true
