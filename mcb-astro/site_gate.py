@@ -42,7 +42,7 @@ fails, warns, n = [], [], 0
 for dp, dns, fns in os.walk(ROOT):
     dns[:] = [d for d in dns if d not in SKIP_DIRS]
     for fn in fns:
-        if not fn.endswith('.html'): continue
+        if not fn.endswith(('.html', '.txt')): continue  # .txt added 2026-09-26: llms.txt carried licence claims the gate never saw
         p = os.path.join(dp, fn); n += 1
         url = os.path.relpath(dp, ROOT).replace('\\', '/')
         h = open(p, encoding='utf8', errors='replace').read()
