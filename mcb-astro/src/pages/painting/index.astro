@@ -7,6 +7,12 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import EstimateForm from '../../components/EstimateForm.astro';
+import IdeasGallery from '../../components/IdeasGallery.astro';
+import { Content as Brands } from '../../content/ideas/painting/_brands.md';
+const ideas = (await getCollection('ideas', (e) => e.data.trade === 'painting')).sort((a, b) => a.data.order - b.data.order);
+const ideaItems = [
+  ...ideas.map((d) => ({ href: `/painting/${d.id.split('/').pop()}`, name: d.data.h1.replace(/ in (Central )?(MA|Massachusetts)$/i, ''), card: d.data.card, costRange: d.data.costRange, image: d.data.image, swatch: d.data.swatch, imageAlt: d.data.imageAlt, swatchAlt: d.data.swatchAlt })),
+];
 
 const docs = (await getCollection('services')).sort(
   (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
@@ -42,6 +48,11 @@ const description =
         ))}
       </ul>
 
+    </section>
+    <IdeasGallery id="painting-ideas" heading="Painting ideas" sub="Beyond walls: the detail work that makes a paint job look finished." items={ideaItems} />
+    <section class="wrap">
+      <p>Whole-room and whole-house work: <a href="/interior-painting">interior painting</a> · <a href="/exterior-painting">exterior painting</a> · <a href="/painting/cabinet-painting">cabinet painting</a>.</p>
+      <div class="brands"><Brands /></div>
       <h2 class="sec">What we paint</h2>
       <p>
         Interiors, exteriors, kitchen cabinets, and the repair work that has to happen
@@ -70,4 +81,5 @@ const description =
   .card p { margin: 0 0 .75rem; opacity: .85; }
   .more { font-weight: 600; }
   .sec { margin-top: 2.5rem; }
+  .brands { margin-top: 2rem; border-top: 1px solid rgba(128,128,128,.28); padding-top: .5rem; }
 </style>

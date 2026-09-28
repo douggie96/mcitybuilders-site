@@ -1,0 +1,72 @@
+---
+/** Flooring hub — "flooring ideas" gallery modelled on the material grid Doug liked
+ *  on masteryfloors.com, but each card links to a real, indexable page per floor type
+ *  (theirs are buttons with no pages behind them). Photos are AI design-idea
+ *  illustrations and are labelled as such on every card and page — never MCB work.
+ *  No licensing/insurance claims (Rule 4). No roofing (standing rule). */
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+import IdeasGallery from '../../components/IdeasGallery.astro';
+
+const docs = (await getCollection('flooring')).sort((a, b) => a.data.order - b.data.order);
+const hub = await getEntry('flooringHub', 'hub');
+if (!hub) throw new Error('flooring hub content missing');
+const { Content: HubBody } = await render(hub);
+const meta = hub.data;
+const faqs = hub.data.faqs;
+const faqLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+const listLd = {
+  '@context': 'https://schema.org', '@type': 'ItemList', name: 'Flooring we install',
+  itemListElement: docs.map((d, i) => ({ '@type': 'ListItem', position: i + 1, name: d.data.h1, url: `https://mcitybuilders.com/flooring/${d.id}` })),
+};
+---
+<Base title={meta.title} description={meta.description} jsonLd={[faqLd, listLd]}
+  breadcrumbs={[{ name: 'Home', url: '/' }, { name: 'Flooring', url: '/flooring' }]}>
+  <Header />
+  <main id="main">
+    <section class="hero">
+      <img src="/flooring/flooring-hero.webp" alt="Design idea: flooring samples laid out for a homeowner consultation" width="1600" height="893" fetchpriority="high" />
+      <div class="hero-in">
+        <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">/</span> Flooring</nav>
+        <h1>{meta.h1}</h1>
+        <p class="lede">{meta.intro}</p>
+        <a class="btn" href="#estimate">Book a free in-home measure</a>
+      </div>
+    </section>
+
+    <IdeasGallery id="flooring-ideas" heading="Flooring ideas" sub="Pick a floor to see what it costs in Central Massachusetts, where it works, and where it fails."
+      items={docs.map((d) => ({ href: `/flooring/${d.id}`, name: d.data.h1.replace(/ in (Central )?(MA|Massachusetts)$/i, ''), card: d.data.card, costRange: d.data.costRange, image: d.data.image, swatch: d.data.swatch, imageAlt: d.data.imageAlt, swatchAlt: d.data.swatchAlt }))} />
+
+    <section class="wrap prose"><HubBody /></section>
+
+    <section class="wrap faq">
+      <h2>Flooring questions</h2>
+      {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      <p>Serving Lancaster: <a href="/flooring-installation-lancaster-ma">flooring installation in Lancaster, MA</a>.</p>
+    </section>
+    <div id="estimate"><EstimateForm /></div>
+  </main>
+  <Footer />
+</Base>
+<style>
+  .hero { position: relative; color: #fff; background: var(--ink); }
+  .hero img { width: 100%; height: clamp(320px, 52vh, 560px); object-fit: cover; display: block; opacity: .55; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.6) 45%, rgba(0,0,0,.2) 100%); pointer-events: none; }
+  .hero-in { z-index: 1; position: absolute; inset: auto 0 0 0; padding: 2rem var(--gutter); max-width: 900px; }
+  .hero h1 { font-size: var(--step-3); margin: .25rem 0 .75rem; line-height: 1.05; }
+  .hero .crumb, .hero .crumb a { color: #fff; opacity: .85; font-size: .85rem; }
+  .hero .lede { color: #fff; opacity: .92; font-size: var(--step-0); line-height: 1.55; max-width: 60ch; }
+  .btn { display: inline-block; margin-top: .5rem; background: var(--paper); color: var(--ink); padding: .8rem 1.2rem; font-weight: 700; text-decoration: none; border-radius: var(--radius); }
+  .wrap { max-width: 74ch; margin: 0 auto; padding: 2rem 1.25rem; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; font-size: .9rem; display: block; overflow-x: auto; }
+  .prose :global(th), .prose :global(td) { border-bottom: 1px solid var(--line); padding: .5rem .4rem; text-align: left; vertical-align: top; }
+  .prose :global(h2) { margin-top: 2.25rem; }
+  .faq details { border-bottom: 1px solid var(--line); padding: .8rem 0; }
+  .faq summary { font-weight: 700; cursor: pointer; }
+</style>

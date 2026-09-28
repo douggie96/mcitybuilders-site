@@ -14,19 +14,26 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import EstimateForm from '../../components/EstimateForm.astro';
 
+import IdeaPage from '../../components/IdeaPage.astro';
+
 export async function getStaticPaths() {
   const docs = await getCollection('services');
-  return docs.map((doc) => ({
-    params: { slug: doc.id },
-    props: { doc, siblings: docs.filter((d) => d.id !== doc.id) },
-  }));
+  const ideas = (await getCollection('ideas', (e) => e.data.trade === 'painting')).sort((a, b) => a.data.order - b.data.order);
+  return [
+    ...docs.map((doc) => ({ params: { slug: doc.id }, props: { doc, siblings: docs.filter((d) => d.id !== doc.id), kind: 'guide' } })),
+    ...ideas.map((doc) => ({ params: { slug: doc.id.split('/').pop() }, props: { doc, siblings: ideas.filter((d) => d.id !== doc.id), kind: 'idea' } })),
+  ];
 }
 
-const { doc, siblings } = Astro.props;
-const { Content } = await render(doc);
+const { doc, siblings, kind } = Astro.props;
+const { Content } = kind === 'guide' ? await render(doc) : { Content: null };
 const { title, description, h1, updated } = doc.data;
 const pageTitle = title.length <= 60 ? title : title.slice(0, 57).trimEnd();
 ---
+{kind === 'idea' ? (
+  <IdeaPage doc={doc} siblings={siblings} base="/painting" hubUrl="/painting" hubName="Painting" moreHeading="More painting ideas" />
+) : (
+
 <Base
   title={pageTitle}
   description={description}
@@ -65,6 +72,7 @@ const pageTitle = title.length <= 60 ? title : title.slice(0, 57).trimEnd();
   </main>
   <Footer />
 </Base>
+)}
 <style>
   .wrap { max-width: 74ch; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
   .crumb { font-size: .85rem; opacity: .75; margin-bottom: 1.25rem; }

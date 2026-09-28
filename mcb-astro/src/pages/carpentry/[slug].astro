@@ -1,0 +1,11 @@
+---
+/** Carpentry sub-service pages. The hub (/carpentry) is the existing static page; its ideas gallery is injected at publish. */
+import { getCollection } from 'astro:content';
+import IdeaPage from '../../components/IdeaPage.astro';
+export async function getStaticPaths() {
+  const docs = (await getCollection('ideas', (e) => e.data.trade === 'carpentry')).sort((a, b) => a.data.order - b.data.order);
+  return docs.map((doc) => ({ params: { slug: doc.id.split('/').pop() }, props: { doc, siblings: docs.filter((d) => d.id !== doc.id) } }));
+}
+const { doc, siblings } = Astro.props;
+---
+<IdeaPage doc={doc} siblings={siblings} base="/carpentry" hubUrl="/carpentry" hubName="Carpentry" moreHeading="More carpentry ideas" />

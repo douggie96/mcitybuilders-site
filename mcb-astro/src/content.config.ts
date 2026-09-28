@@ -44,4 +44,25 @@ const legal = defineCollection({                 // 4 pages
   schema: z.object({ ...seo }),
 });
 
-export const collections = { services, serviceAreas, towns, costGuides, articles, legal };
+const flooring = defineCollection({             // /flooring/* — one page per floor type
+  loader: glob({ pattern: '[!_]*.md', base: './src/content/flooring' }),
+  schema: z.object({ ...seo, order: z.number(), card: z.string().max(120),
+                     image: z.string(), swatch: z.string(), imageAlt: z.string(), swatchAlt: z.string(),
+                     costRange: z.string(),
+                     faqs: z.array(z.object({ q: z.string(), a: z.string() })).length(5) }),
+});
+const flooringHub = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/flooring-hub' }),
+  schema: z.object({ ...seo, intro: z.string(),
+                     faqs: z.array(z.object({ q: z.string(), a: z.string() })).length(5) }),
+});
+
+const ideas = defineCollection({                 // /deck-building/*, /painting/*, /carpentry/* sub-service pages
+  loader: glob({ pattern: '*/[!_]*.md', base: './src/content/ideas' }),
+  schema: z.object({ ...seo, trade: z.enum(['decks', 'painting', 'carpentry']), order: z.number(),
+                     card: z.string().max(120), image: z.string(), swatch: z.string(),
+                     imageAlt: z.string(), swatchAlt: z.string(), costRange: z.string(),
+                     faqs: z.array(z.object({ q: z.string(), a: z.string() })).length(5) }),
+});
+
+export const collections = { services, serviceAreas, towns, costGuides, articles, legal, flooring, flooringHub, ideas };
