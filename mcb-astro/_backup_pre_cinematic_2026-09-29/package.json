@@ -1,0 +1,18 @@
+{
+  "name": "mcb-astro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "verify": "astro build && python3 verify_all.py && python3 seo_verify.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "astro": "^7.3.2"
+  }
+}

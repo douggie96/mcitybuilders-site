@@ -1,0 +1,227 @@
+---
+/**
+ * Homepage estimate form — dark visual variant ONLY. Lead handling is
+ * deliberately identical to the shared EstimateForm.astro used by every other
+ * Astro page (Doug's instruction): same endpoint (SITE.crm.endpoint), same
+ * payload, same validation, same bot gates. The <script> below is copied
+ * verbatim from EstimateForm.astro; the only edit is the submit-button class
+ * selector. generate_lead fires ONLY when the POST returns res.ok; on failure
+ * every field is kept and the phone number is shown.
+ * Keep this script in sync with EstimateForm.astro if that one changes.
+ */
+import { SITE, SERVICES } from '../../data/site';
+---
+<form class="hf" id="estimate-form" novalidate>
+  <div class="hf__row">
+    <label for="ef-name">Name <abbr title="required">*</abbr></label>
+    <input id="ef-name" name="name" type="text" autocomplete="name" required />
+    <p class="hf__err" data-err="ef-name" hidden>Please tell us your name.</p>
+  </div>
+  <div class="hf__grid">
+    <div class="hf__row">
+      <label for="ef-phone">Phone <abbr title="required">*</abbr></label>
+      <input id="ef-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
+      <p class="hf__err" data-err="ef-phone" hidden>We need a phone number to reach you.</p>
+    </div>
+    <div class="hf__row">
+      <label for="ef-email">Email</label>
+      <input id="ef-email" name="email" type="email" inputmode="email" autocomplete="email" />
+      <p class="hf__err" data-err="ef-email" hidden>That email address doesn't look right.</p>
+    </div>
+  </div>
+  <div class="hf__grid">
+    <div class="hf__row">
+      <label for="ef-town">Project town <abbr title="required">*</abbr></label>
+      <input id="ef-town" name="town" type="text" autocomplete="address-level2" required />
+      <p class="hf__err" data-err="ef-town" hidden>Which town is the project in?</p>
+    </div>
+    <div class="hf__row">
+      <label for="ef-type">Project type <abbr title="required">*</abbr></label>
+      <select id="ef-type" name="projectType" required>
+        <option value="">Choose one…</option>
+        {SERVICES.map(s => <option value={s.title}>{s.title}</option>)}
+        <option value="Multiple / not sure">Multiple, or not sure yet</option>
+      </select>
+      <p class="hf__err" data-err="ef-type" hidden>Please pick the closest match.</p>
+    </div>
+  </div>
+  <div class="hf__row">
+    <label for="ef-details">Project details <abbr title="required">*</abbr></label>
+    <textarea id="ef-details" name="projectDetails" rows="5" required
+      placeholder="What you want done, roughly when, and anything you already know about the space."></textarea>
+    <p class="hf__err" data-err="ef-details" hidden>A sentence or two is plenty.</p>
+  </div>
+  <div class="hf__grid">
+    <div class="hf__row">
+      <label for="ef-timing">Desired timing</label>
+      <select id="ef-timing" name="timing">
+        <option value="">No strong preference</option>
+        <option>As soon as possible</option><option>Within 1–3 months</option>
+        <option>Within 3–6 months</option><option>Later this year</option>
+        <option>Just planning / budgeting</option>
+      </select>
+    </div>
+    <div class="hf__row">
+      <label for="ef-contact">Preferred contact</label>
+      <select id="ef-contact" name="preferredContact">
+        <option>Phone call</option><option>Text message</option><option>Email</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Honeypot. Off-screen, aria-hidden, never focusable. -->
+  <div class="hf__hp" aria-hidden="true">
+    <label for="ef-company">Company</label>
+    <input id="ef-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <p class="hf__consent">
+    By sending this you agree we can contact you about your project by phone, text or email.
+    Message rates may apply. Reply STOP to opt out of texts at any time. We don't sell your details.
+  </p>
+
+  <button class="hbtn hbtn--red hf__submit" type="submit" data-ev="form_submit">Send it over</button>
+  <p class="hf__fail" id="ef-fail" role="alert" hidden></p>
+</form>
+
+<div class="hf__ok" id="ef-ok" role="status" hidden>
+  <h3>Got it.</h3>
+  <p>Your details are with us. We'll be in touch to arrange a look at the project.
+     If it's urgent, call <a href={SITE.phoneHref}>{SITE.phone}</a>.</p>
+</div>
+
+<script define:vars={{ CRM: SITE.crm, PHONE: SITE.phone, EMAIL: SITE.email }}>
+  const form = document.getElementById('estimate-form');
+  const okBox = document.getElementById('ef-ok');
+  const failBox = document.getElementById('ef-fail');
+  if (form) {
+    const started = Date.now();
+    let announcedStart = false;
+    form.addEventListener('input', () => {
+      if (!announcedStart && typeof gtag === 'function') {
+        announcedStart = true;
+        gtag('event', 'form_start', { form_id: 'mcb_estimate' });   // no field contents
+      }
+    }, { once: false });
+
+    const showErr = (el, on) => {
+      el.setAttribute('aria-invalid', String(on));
+      const p = form.querySelector('[data-err="' + el.id + '"]');
+      if (p) p.hidden = !on;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      failBox.hidden = true;
+
+      // --- validation with real messages, focus moved to the first problem
+      let firstBad = null;
+      for (const el of form.querySelectorAll('[required]')) {
+        const bad = !el.value.trim();
+        showErr(el, bad);
+        if (bad && !firstBad) firstBad = el;
+      }
+      const em = form.querySelector('#ef-email');
+      const emBad = em.value.trim() !== '' && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(em.value.trim());
+      showErr(em, emBad);
+      if (emBad && !firstBad) firstBad = em;
+      if (firstBad) { firstBad.focus(); return; }
+
+      // --- bot gates: hidden field filled, or submitted faster than a human types
+      const fd = new FormData(form);
+      if (String(fd.get('company') || '').trim() !== '' || Date.now() - started < 3000) {
+        form.hidden = true; okBox.hidden = false; return;   // silent, nothing sent
+      }
+
+      const btn = form.querySelector('.hf__submit');
+      const label = btn.textContent;
+      btn.textContent = 'Sending…'; btn.disabled = true;
+
+      let ss = null; try { ss = sessionStorage; } catch (_) {}
+      const attr = (k) => { try { return (ss && ss.getItem('mcb_' + k)) || ''; } catch (_) { return ''; } };
+
+      const payload = {
+        type: 'external_form_submission',
+        timestamp: Date.now(),
+        formId: 'Estimate Request',
+        formData: {
+          full_name: fd.get('name'),
+          phone: fd.get('phone'),
+          email: fd.get('email') || '',          // logical OR. Not a pipe.
+          'contact.project_details': fd.get('projectDetails'),
+          project_town: fd.get('town'),
+          project_type: fd.get('projectType'),
+          timing: fd.get('timing') || '',
+          preferred_contact: fd.get('preferredContact') || '',
+          utm_source: attr('utm_source'), utm_medium: attr('utm_medium'),
+          utm_campaign: attr('utm_campaign'), utm_term: attr('utm_term'),
+          utm_content: attr('utm_content'), gclid: attr('gclid'), fbclid: attr('fbclid'),
+          landing_page: attr('mcb_landing') || attr('landing'),
+          referrer: attr('referrer') || document.referrer || '',
+          Timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        },
+        url: location.href, title: document.title, path: location.pathname,
+        userAgent: navigator.userAgent,
+        trackingId: CRM.trackingId, locationId: CRM.locationId,
+        sessionId: (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Math.random()).slice(2),
+      };
+
+      let ok = false, diag = '';
+      try {
+        const res = await fetch(CRM.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', version: '2021-07-28' },
+          body: JSON.stringify(payload),
+        });
+        ok = res.ok; diag = 'HTTP ' + res.status;
+      } catch (err) { diag = 'network: ' + (err && err.message); }
+
+      if (!ok) {
+        // Nothing reached the CRM. Keep every keystroke on screen, give a real
+        // route through, and do NOT report a conversion.
+        console.error('[MCB estimate form]', diag);
+        btn.textContent = label; btn.disabled = false;
+        failBox.innerHTML = 'We couldn\'t send that from the website. Please call ' +
+          '<a href="tel:+15086567436">' + PHONE + '</a> or email ' +
+          '<a href="mailto:' + EMAIL + '">' + EMAIL + '</a>. ' +
+          'Everything you typed is still in the form above.';
+        failBox.hidden = false;
+        failBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', { form_id: 'mcb_estimate', lead_source: 'website_estimate_form' });
+      }
+      form.hidden = true; okBox.hidden = false;
+      okBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      okBox.querySelector('h3').setAttribute('tabindex', '-1');
+      okBox.querySelector('h3').focus();
+    });
+  }
+</script>
+
+<style>
+  .hf { display: grid; gap: 1.1rem; }
+  .hf__grid { display: grid; gap: 1.1rem; }
+  @media (min-width: 640px) { .hf__grid { grid-template-columns: 1fr 1fr; } }
+  .hf__row { display: grid; gap: .42rem; }
+  .hf label { font: 400 .68rem/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--silver-hi); }
+  .hf abbr { text-decoration: none; color: var(--silver-lo); }
+  .hf input, .hf select, .hf textarea { width: 100%; min-height: 52px; padding: .85rem 1rem; font: inherit;
+    font-size: 1rem; color: #fff; background: #111113; border: 1px solid rgba(192,192,192,.28); border-radius: 0; }
+  .hf select { color-scheme: dark; }
+  .hf textarea { min-height: 132px; resize: vertical; }
+  .hf input:focus, .hf select:focus, .hf textarea:focus { border-color: var(--silver-hi); outline: none; }
+  .hf [aria-invalid="true"] { border-color: #ff5a4f; }
+  .hf__err { margin: 0; font-size: .85rem; color: #ff8a82; }
+  .hf__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .hf__consent { font-size: .8rem; color: var(--silver-lo); margin: 0; max-width: 60ch; }
+  .hf__submit { justify-self: start; }
+  .hf__fail { margin: 0; padding: 1rem 1.15rem; border: 1px solid #ff5a4f; background: rgba(225,6,0,.1);
+    font-size: .93rem; color: #fff; }
+  .hf__fail :global(a) { text-decoration: underline; }
+  .hf__ok { border: 1px solid rgba(192,192,192,.35); padding: clamp(24px, 4vw, 40px); }
+  .hf__ok h3 { margin: 0 0 .6rem; color: #fff; }
+  .hf__ok a { text-decoration: underline; }
+</style>

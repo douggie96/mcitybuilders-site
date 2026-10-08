@@ -9,8 +9,13 @@ interface Props {
   jsonLd?: object[];
   breadcrumbs?: { name: string; url: string }[];
   bodyClass?: string;
+  /** Replaces the default GeneralContractor block (homepage carries production's). */
+  org?: object;
+  /** false = page self-hosts its fonts; the Google Fonts links are omitted. */
+  googleFonts?: boolean;
 }
-const { title, description, canonical, jsonLd = [], breadcrumbs, bodyClass = '' } = Astro.props;
+const { title, description, canonical, jsonLd = [], breadcrumbs, bodyClass = '',
+        org: orgOverride, googleFonts = true } = Astro.props;
 // SEO guards. These throw at build time, so an over-length title or
 // description can never reach production the way 12 of them did on the old site.
 if (title.length > 60) throw new Error(`SEO: title is ${title.length} chars (max 60): ${title}`);
@@ -19,7 +24,7 @@ if (description.length < 70 || description.length > 160)
 
 const href = canonical ?? (new URL(Astro.url.pathname, SITE.url).href.replace(/\/$/, '') || SITE.url);
 
-const org = {
+const org = orgOverride ?? {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
   '@id': SITE.url + '/#business',
@@ -64,9 +69,10 @@ const blocks = [org, ...(crumbs ? [crumbs] : []), ...jsonLd];
   <meta property="og:site_name" content={SITE.name} />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  {googleFonts && <link rel="preconnect" href="https://fonts.googleapis.com" />}
+  {googleFonts && <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />}
+  {googleFonts && <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" />}
+  <slot name="head" />
 
   {blocks.map(b => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
 

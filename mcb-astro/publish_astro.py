@@ -39,7 +39,8 @@ for dp, _, fns in os.walk(DIST):
         if rel == 'index.html' and not WITH_HOME: continue
         if '/' not in rel and rel in SKIP_ROOT_FILES: continue
         dst = os.path.join(ROOT, *rel.split('/'))
-        if os.path.exists(dst) and rel not in prev and sha(dst) != sha(src):
+        # --with-homepage is the explicit, reviewed decision to replace the live homepage (2026-09-29)
+        if os.path.exists(dst) and rel not in prev and sha(dst) != sha(src) and not (WITH_HOME and rel == 'index.html'):
             fails.append(f'COLLISION: {rel} already exists in the live site and was not published by this script')
         if rel.endswith('.html'):
             h = open(src, encoding='utf8').read()

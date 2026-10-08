@@ -1,0 +1,440 @@
+---
+/**
+ * HOMEPAGE — Phase 2 "cinematic" (PREVIEW, 2026-09-27).
+ * SEO parity with the live production homepage (ranked #1 for
+ * "general contractor lancaster ma") is a hard constraint: the H1, <title>,
+ * meta description, canonical, the GeneralContractor JSON-LD (@id #contractor)
+ * and the five FAQPage questions are carried over from production verbatim,
+ * and every internal link production carried is still here.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '../layouts/Base.astro';
+import HomeHeader from '../components/home/HomeHeader.astro';
+import Footer from '../components/Footer.astro';
+import ScrollHero from '../components/ScrollHero.astro';
+import HomeEstimateForm from '../components/home/HomeEstimateForm.astro';
+import { SITE, SERVICES, PROCESS, UNVERIFIED } from '../data/site';
+/* Scope guard: the site-wide Header and EstimateForm are imported (not rendered)
+   so Vite keeps the exact same shared CSS chunk every other page uses. Without
+   these two imports the chunk is re-split and all 169 other pages' HTML changes. */
+import './_home-css-anchor';
+import '../styles/home.css';
+
+/* ---------- HERO FRAMES — data-driven.
+   AI-generated visualisations, not photographs of MCB work; labelled as such in
+   adjacent DOM everywhere they appear. If public/hero/K0_dated.jpg exists at
+   build time it becomes frame 00; otherwise the sequence starts at K1.
+   WebPs are produced by scripts/hero-assets.mjs before the build. */
+const HERO = path.join(process.cwd(), 'public', 'hero');
+const STAGES = [
+  { file: 'K0_dated',    n: '00', label: 'Before' },
+  { file: 'K1_gutted',   n: '01', label: 'Gutted' },
+  { file: 'K2_drywall',  n: '02', label: 'Board & prime' },
+  { file: 'K3_cabinets', n: '03', label: 'Cabinets' },
+  { file: 'K4_finished', n: '04', label: 'Finished' },
+];
+const pick = (file: string, w: number) =>
+  fs.existsSync(path.join(HERO, `${file}-w${w}.webp`)) ? `/hero/${file}-w${w}.webp` : `/hero/${file}.jpg`;
+const frames = STAGES
+  .filter(s => fs.existsSync(path.join(HERO, `${s.file}.jpg`)))
+  .map(s => ({ n: s.n, label: s.label, lg: pick(s.file, 1600), sm: pick(s.file, 800) }));
+
+/* ---------- carried from production verbatim ---------- */
+const title = 'General Contractor in Lancaster, MA | Maverick City Builders';
+const description = 'General contractor for home remodeling, kitchen, bath, deck and painting in Lancaster, Clinton and Central MA. Locally owned and operated. Call (508) 656-7436.';
+const h1 = 'General Contractor & Home Remodeling in Lancaster, MA';
+
+const TOWNS = ['Lancaster', 'Sterling', 'Clinton', 'Bolton', 'Hudson', 'Berlin', 'Harvard', 'Worcester',
+  'Leominster', 'Fitchburg', 'Marlborough', 'Stow', 'Boxborough', 'Acton', 'Concord', 'Sudbury'];
+const slug = (t: string) => `/areas-we-serve/${t.toLowerCase()}-ma`;
+
+const org = {
+  '@context': 'https://schema.org', '@type': 'GeneralContractor',
+  '@id': 'https://mcitybuilders.com/#contractor',
+  name: 'Maverick City Builders',
+  description: 'Maverick City Builders is a Massachusetts general contractor based in Lancaster, MA serving Worcester County and Central Massachusetts. Specializing in kitchen remodeling, bathroom remodeling, deck building, interior painting, exterior painting, and full home renovations.',
+  image: 'https://mcitybuilders.com/assets/img/social-share-card.jpg',
+  logo: 'https://mcitybuilders.com/assets/img/logo.webp',
+  url: 'https://mcitybuilders.com/',
+  telephone: '+1-508-656-7436',
+  email: 'douglas@mcitybuilders.com',
+  priceRange: '$$-$$$',
+  address: { '@type': 'PostalAddress', streetAddress: '1171 Main St', addressLocality: 'Lancaster',
+    addressRegion: 'MA', postalCode: '01523', addressCountry: 'US' },
+  areaServed: [
+    ...TOWNS.slice(0, 10).map(t => ({ '@type': 'City', name: `${t}, MA` })),
+    { '@type': 'AdministrativeArea', name: 'Worcester County, MA' },
+    ...TOWNS.slice(10).map(t => ({ '@type': 'City', name: `${t}, MA` })),
+  ],
+  geo: { '@type': 'GeoCoordinates', latitude: 42.4564, longitude: -71.6731 },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '18:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '07:00', closes: '16:00' },
+  ],
+  hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Home Remodeling Services',
+    itemListElement: ['Kitchen Remodeling', 'Bathroom Remodeling', 'Deck Building', 'Interior Painting', 'Exterior Painting', 'General Renovations']
+      .map(name => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })) },
+  founder: { '@type': 'Person', name: 'Douglas Mourao' },
+  sameAs: [
+    'https://www.facebook.com/MaverickCityBuilders',
+    'https://www.instagram.com/mcitybuilders/',
+    'https://maps.google.com/?cid=9936051014553959193',
+    'https://www.houzz.com/pro/webuser-553630233/maverick-city-builders',
+    'https://www.yelp.com/biz/maverick-city-builders-lancaster',
+    'https://www.thumbtack.com/ma/lancaster/general-contractors/maverick-city-builders/service/510786875259314178',
+    'https://nextdoor.com/page/maverick-city-builders-lancaster-ma-bq29lx/',
+  ],
+  openingHours: ['Mo-Fr 07:00-18:00', 'Sa 07:00-16:00'],
+  foundingDate: '2020',
+};
+
+const faqs = [
+  { q: 'What areas does Maverick City Builders serve?',
+    a: 'We are based in Lancaster, MA and serve homeowners across Worcester County and Central Massachusetts, including Worcester, Leominster, Fitchburg, Clinton, Sterling, Bolton, Hudson, Berlin, Harvard, Marlborough, Stow, Boxborough, Acton, Concord, and Sudbury.' },
+  { q: 'How much do your remodeling projects cost?',
+    a: 'Every project is quoted at a fixed price before work starts. As a rough guide, kitchen remodels run about $16,000 to $140,000, bathroom remodels $8,000 to $125,000, decks $10,000 to $60,000, interior painting from $1,200 per room, and exterior repaints from about $6,500. Call (508) 656-7436 for a quote on your project.' },
+  { q: 'How long does a typical project take?',
+    a: 'A hall bathroom usually takes two to three weeks, a full kitchen four to ten weeks, a new deck one to three weeks, and most painting jobs a few days to two weeks. You get a written schedule with your quote and regular updates throughout the work.' },
+  { q: 'Does Maverick City Builders work to a written contract?',
+    a: 'Yes. We work to a written contract with a fixed price agreed before any work begins. We pull the permits for your town and schedule every inspection.' },
+  { q: 'Do you provide free estimates?',
+    a: 'Yes, we provide free estimates. Call (508) 656-7436 or send a request through our contact page, and we will walk your space and put a fixed-price quote in writing.' },
+];
+const faqLd = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+
+/* ---------- ROOMS: the nine services. Paths verified against the production sitemap. */
+const ROOM_IMG: Record<string, { src: string; w: number; h: number; real?: boolean }> = {
+  'kitchen-remodeling':       { src: '/rooms/kitchen-640.webp',  w: 640, h: 362 },
+  'bathroom-remodeling':      { src: '/rooms/bathroom-640.webp', w: 640, h: 362 },
+  'general-renovations':      { src: '/rooms/basement-640.webp', w: 640, h: 362 },
+  'carpentry':                { src: '/rooms/stairs-640.webp',   w: 640, h: 362 },
+  'deck-building':            { src: '/rooms/deck-640.webp',     w: 640, h: 362 },
+  'interior-painting':        { src: '/rooms/living-640.webp',   w: 640, h: 362 },
+  'exterior-painting':        { src: '/rooms/exterior-640.webp', w: 640, h: 362 },
+  'building-restoration':     { src: '/work/worcester-ma-rot-repair-dormer-opened-up-800.webp', w: 800, h: 1067, real: true },
+  'water-damage-restoration': { src: '/work/worcester-ma-rot-repair-new-sheathing-flashing-800.webp', w: 768, h: 1024, real: true },
+};
+/* Card heading + one line per service, verbatim from the production homepage.
+   The six production H2s ("Kitchen Remodeling" ... "Exterior Painting") stay H2
+   here, exactly as the #1-ranked page has them; the other three were card
+   headings (H3) on production and stay H3. */
+const CARD: Record<string, { t: string; h: 'h2' | 'h3'; line: string }> = {
+  'kitchen-remodeling':       { t: 'Kitchen Remodeling', h: 'h2', line: 'Custom cabinetry, quartz counters, and full layout reconfigurations.' },
+  'bathroom-remodeling':      { t: 'Bathroom Remodeling', h: 'h2', line: 'Full bath gut renovations, walk-in showers, custom tile work.' },
+  'general-renovations':      { t: 'General Renovations & Additions', h: 'h2', line: 'Whole-house renovations, additions, and full home rebuilds.' },
+  'carpentry':                { t: 'Custom Carpentry & Built-Ins', h: 'h3', line: 'Built-ins, mantels, wainscoting, and finish trim packages.' },
+  'deck-building':            { t: 'Deck Building', h: 'h2', line: 'Custom composite and natural wood outdoor living spaces.' },
+  'interior-painting':        { t: 'Interior Painting', h: 'h2', line: 'Clean cuts, full prep, durable interior paint.' },
+  'exterior-painting':        { t: 'Exterior Painting', h: 'h2', line: 'Power-wash, scrape, prime, two-coat exterior repaint.' },
+  'building-restoration':     { t: 'Building Restoration', h: 'h3', line: 'Historic home rehabilitation and structural repair.' },
+  'water-damage-restoration': { t: 'Water Damage Restoration', h: 'h3', line: 'Drywall, flooring, and structural rebuild after water damage.' },
+};
+const PROV = 'Visualisation — not a photo of our work';
+const REAL = 'Photograph — Worcester, MA';
+---
+
+<Base {title} {description} org={org} jsonLd={[faqLd]} googleFonts={false} bodyClass="home">
+  <Fragment slot="head">
+    <!-- Copied verbatim from the production homepage <head> (prod_ref/index.html): verification, icons, social cards. Homepage only. -->
+    <meta name="p:domain_verify" content="5aedca04894be2b34a2e0fd90dda9adc" />
+    <meta name="facebook-domain-verification" content="fzdpmtqpkcn7i6zv21ardr69vmxazv" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+    <meta property="og:image" content="https://mcitybuilders.com/assets/img/social-share-card.jpg" />
+    <meta property="og:image:alt" content="Maverick City Builders — Home remodeling contractor in Lancaster, MA" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:title" content="MCB | Lancaster MA General Contractor" />
+    <meta name="twitter:description" content="General contractor for home remodeling, kitchen, bath, deck and painting in Lancaster, Clinton and Central MA. Locally owned and operated. Call (508) 656-7436." />
+    <meta name="twitter:image" content="https://mcitybuilders.com/assets/img/social-share-card.jpg" />
+    <script is:inline>
+      /* Cinematic hero opt-in: only with JS, motion allowed and Save-Data off. Runs before first paint, so no layout shift. */
+      (function(){try{var d=document.documentElement,c=navigator.connection;
+        if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!(c&&c.saveData))d.classList.add('cine');
+      }catch(e){}})();
+    </script>
+    <link rel="preload" href="/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/orbitron-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/brand/mcb-mark-696.webp" as="image" type="image/webp"
+          imagesrcset="/brand/mcb-mark-480.webp 480w, /brand/mcb-mark-696.webp 696w" imagesizes="(max-width: 767px) 72vw, 560px" />
+  </Fragment>
+  <HomeHeader slot="header" />
+
+  <ScrollHero {frames} {h1} phone={SITE.phone} phoneHref={SITE.phoneHref} provenance={PROV} />
+
+  <!-- ================= PROOF — the only real MCB photographs on this page ================= -->
+  <section class="hsec proof" id="proof">
+    <div class="hwrap">
+      <div class="proof__head">
+        <div>
+          <span class="heb" data-reveal>Real work · Worcester, MA</span>
+          <h2 data-reveal>A Worcester cape, opened up and put back right.</h2>
+        </div>
+        <p class="hlede" data-reveal>Water had been getting behind the trim for years. We opened the dormer,
+          found the rot, replaced the sheathing and flashing, and closed it back up. These three are
+          photographs from that job — our work, not a render.</p>
+      </div>
+      <ul class="proof__grid">
+        <li><figure data-reveal>
+          <div class="proof__img"><img data-par src="/work/worcester-ma-rot-repair-cape-before-800.webp" width="800" height="600"
+            loading="lazy" decoding="async" alt="Cape-style home in Worcester, Massachusetts before rot repair, showing staining below the dormer" />
+            <span class="hchip hchip--real">{REAL}</span></div>
+          <figcaption><b>Before</b><span class="hmono">Staining below the dormer</span></figcaption>
+        </figure></li>
+        <li><figure data-reveal>
+          <div class="proof__img"><img data-par src="/work/worcester-ma-rot-repair-dormer-opened-up-800.webp" width="800" height="1067"
+            loading="lazy" decoding="async" alt="Dormer opened up during repair, exposing rotted framing and sheathing" />
+            <span class="hchip hchip--real">{REAL}</span></div>
+          <figcaption><b>Opened up</b><span class="hmono">The extent of the rot</span></figcaption>
+        </figure></li>
+        <li><figure data-reveal>
+          <div class="proof__img"><img data-par src="/work/worcester-ma-rot-repair-new-sheathing-flashing-800.webp" width="768" height="1024"
+            loading="lazy" decoding="async" alt="New sheathing and flashing installed on the repaired dormer" />
+            <span class="hchip hchip--real">{REAL}</span></div>
+          <figcaption><b>Closed up</b><span class="hmono">New sheathing and flashing</span></figcaption>
+        </figure></li>
+      </ul>
+      <a class="hlink" href="/portfolio">See more of our work <span aria-hidden="true">→</span></a>
+      {UNVERIFIED.reviewCount && (
+        <p class="hmono">{UNVERIFIED.rating} from {UNVERIFIED.reviewCount} Google reviews</p>
+      )}
+    </div>
+  </section>
+
+  <!-- ================= ROOMS — the nine services ================= -->
+  <section class="hsec rooms" id="services">
+    <div class="hwrap">
+      <div class="rooms__head">
+        <div>
+          <span class="heb" data-reveal>Services</span>
+          <h2 data-reveal>What We Build</h2>
+        </div>
+        <div class="rooms__nav" aria-hidden="true">
+          <button type="button" data-rooms="-1" tabindex="-1">←</button>
+          <button type="button" data-rooms="1" tabindex="-1">→</button>
+        </div>
+      </div>
+      <ul class="rooms__track" data-track>
+        {SERVICES.map((s, i) => {
+          const im = ROOM_IMG[s.slug];
+          const c = CARD[s.slug];
+          const H = c.h;
+          return (
+            <li class="room" data-reveal>
+              <a href={`/${s.slug}`} data-ev="service_click">
+                <span class="room__img">
+                  <img src={im.src} width={im.w} height={im.h} loading="lazy" decoding="async"
+                       alt={im.real ? `${c.t} — photograph of our rot repair in Worcester, MA` : `${c.t} — visualisation`} />
+                  <span class={im.real ? 'hchip hchip--real' : 'hchip'}>{im.real ? REAL : PROV}</span>
+                </span>
+                <span class="room__n">{String(i + 1).padStart(2, '0')} · {s.room}</span>
+                <span class="room__row"><H class="room__t">{c.t}</H><span class="room__go" aria-hidden="true">→</span></span>
+                <p>{c.line}</p>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <div class="rooms__notes">
+        <h2 data-reveal>Remodeling Services Across Central Massachusetts</h2>
+        <div class="rooms__cols">
+          <div data-reveal><h3>Kitchens: what old houses hide</h3>
+            <p>Old Central Mass kitchens hide surprises. In early-1900s farmhouses around here, pulling up old linoleum often reveals no subfloor at all, and knob-and-tube wiring in mill-era three-deckers regularly has to be rewired mid-project. A cosmetic refresh runs about $16,000 to $28,000, while a full gut with custom cabinets and quartz lands between $65,000 and $110,000. You get a fixed-price quote before demo day, no moving targets. If your kitchen is stuck in another decade, here is how we handle <a href="/kitchen-remodeling">kitchen remodeling across Worcester County</a>.</p></div>
+          <div data-reveal><h3>Bathrooms: supply lines and septic</h3>
+            <p>Second-floor baths in older Leominster and Fitchburg homes often sit on galvanized supply lines that clog and rust, so we swap them to PEX while the walls are open. A hall bath refresh starts near $16,000, and a primary suite with a tiled walk-in shower can reach $125,000. Adding a bathroom in a septic town like Bolton or Harvard may trigger a Title V review, and we handle that paperwork for you. See what full <a href="/bathroom-remodeling">bathroom remodeling</a> looks like when it is done right.</p></div>
+          <div data-reveal><h3>Decks: frost, salt and snow load</h3>
+            <p>A deck here has to survive frost heave, road salt, and a few feet of snow load. We set footings to the 48-inch frost depth and flash every ledger so ice dams cannot rot the band joist. Pressure-treated builds start around $10,000, and a composite deck with aluminum rail runs $18,000 to $35,000 at 16×20, or $28,000 to $60,000 larger or multi-level. We pull the permit through your town and schedule the inspections. Take a look at our approach to <a href="/deck-building">deck building in Central Massachusetts</a> before you sign with a low bidder.</p></div>
+          <div data-reveal><h3>Whole-home work and additions</h3>
+            <p>Some projects do not fit in one room. We phase whole-home renovations so your family can keep living in the house, bring old wiring and undersized panels up to code, and hold one contract across every trade. A multi-room renovation runs $20,000 to $70,000, and additions are priced by the square foot. One crew, one schedule, one number to call. Here is how we run <a href="/general-renovations">general renovations and home additions</a> across the region.</p></div>
+          <div data-reveal><h3>Interiors: plaster and lead-safe prep</h3>
+            <p>Most homes in Worcester County were built before 1978, which means lead-safe prep on any sanding or scraping. We skim-coat the settling cracks in 1900s plaster before a single coat goes on, and we prime old ice-dam water stains so they do not bleed through. A single room runs $1,200 to $3,000, and a whole-interior repaint on an average home lands around $6,000 to $14,000. See how we handle <a href="/interior-painting">interior painting from prep to final wall</a>.</p></div>
+          <div data-reveal><h3>Exteriors: where paint fails first</h3>
+            <p>South and west walls take the worst of the New England sun and winter, so that is where paint fails first. We wash, scrape, sand, spot-prime bare cedar, and cut out any rot before two finish coats go on. Pre-1978 clapboard gets lead-safe handling. Most full exterior repaints run $6,500 to $16,000 depending on size and carpentry repair, and we only paint in the right temperature window. Protect your siding the right way with our <a href="/exterior-painting">exterior painting service</a>.</p></div>
+        </div>
+        <p class="rooms__all"><a class="hlink" href="/services">All services <span aria-hidden="true">→</span></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= METHOD — four steps as a spec sheet ================= -->
+  <section class="hsec method" id="process">
+    <div class="hwrap">
+      <span class="heb" data-reveal>Process</span>
+      <h2 data-reveal>Our Simple 4-Step Process</h2>
+      <ol class="method__sheet">
+        {PROCESS.map(p => (
+          <li data-reveal>
+            <span class="method__n">{p.n}</span>
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="method__more">
+        <a class="hlink" href="/general-contractor-lancaster-ma">How we run a project in Lancaster <span aria-hidden="true">→</span></a>
+        <a class="hlink" href="/calculator">Rough out a budget with the cost calculator <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STANDARD — why MCB ================= -->
+  <section class="hsec standard" id="why-mcb">
+    <div class="hwrap">
+      <span class="heb" data-reveal>The Maverick standard</span>
+      <h2 data-reveal>Why Choose Maverick City Builders?</h2>
+      <ul class="standard__list">
+        <li data-reveal><h3>We look before we price.</h3>
+          <p>A phone quote is a guess. We come out, measure, open up what needs opening, and price the job we actually found.</p></li>
+        <li data-reveal><h3>The scope is written down.</h3>
+          <p>Line by line: what is included, what is not, and what we flag as a risk. One fixed price, agreed before any work begins.</p></li>
+        <li data-reveal><h3>You hear it from us first.</h3>
+          <p>Older houses hide things. When we find one, you hear about it the same day, with what it changes and what it costs.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= FAQ — production questions and answers, verbatim ================= -->
+  <section class="hsec faq" id="faq">
+    <div class="hwrap">
+      <span class="heb" data-reveal>Straight answers</span>
+      <h2 data-reveal>Frequently Asked Questions</h2>
+      <div class="faq__list">
+        {faqs.map(f => (
+          <details class="faq__item">
+            <summary><h3>{f.q}</h3></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GROUND — areas ================= -->
+  <section class="hsec ground" id="areas">
+    <div class="hwrap">
+      <span class="heb" data-reveal>Where we work</span>
+      <h2 data-reveal>Areas We Serve</h2>
+      <ul class="ground__list" data-reveal>
+        <li class="ground__home"><a href={slug('Lancaster')}>Lancaster</a><span class="hmono">Home base · Worcester County</span></li>
+        {TOWNS.slice(1).map(t => <li><a href={slug(t)}>{t}</a></li>)}
+      </ul>
+      <div class="ground__foot">
+        <p>Across Worcester County and Central Massachusetts, and further for larger projects.</p>
+        <a class="hlink" href="/areas-we-serve">Every town we serve <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="hsec contact" id="estimate">
+    <div class="hwrap contact__in">
+      <div>
+        <span class="heb">Contact · Start a project</span>
+        <h2>Tell us what you're thinking about.</h2>
+        <a class="contact__tel" href={SITE.phoneHref} data-ev="phone_click">{SITE.phone}</a>
+        <p class="contact__lede">Call, or send the form. We come and look at the job, and you get a written
+          scope and a fixed price. The estimate is free, and there's no obligation to use us.</p>
+        <address class="contact__nap">
+          <a href={`mailto:${SITE.email}`} data-ev="email_click">{SITE.email}</a>
+          <span>{SITE.address.street}, {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</span>
+          <span class="hmono">Office — by appointment only</span>
+          <span><a href="/contact">Contact page</a> · <a href="https://www.facebook.com/MaverickCityBuilders" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/mcitybuilders/" rel="noopener">Instagram</a></span>
+        </address>
+      </div>
+      <div><HomeEstimateForm /></div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+
+  <!-- Tracking parity with the live production homepage (homepage only; the other
+       Astro pages are untouched). GA4 + consent mode itself comes from Base.astro.
+       1) Meta pixel 1750236342810025: fbq stub + init + PageView are queued on load,
+          but fbevents.js is only fetched once the visitor has ACCEPTED cookies
+          (stored 'mcb-consent' = granted, or a click on Accept) - production's gating.
+       2) Every tel: click fires gtag 'tap_to_call' (value 75 USD) and fbq 'Contact',
+          exactly as production does. Base's data-ev 'phone_click' still fires too. -->
+  <script is:inline define:vars={{ PIXEL: SITE.analytics.metaPixel }}>
+    (function (w, d) {
+      if (!w.fbq) {
+        var n = w.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+        if (!w._fbq) w._fbq = n; n.push = n; n.loaded = true; n.version = '2.0'; n.queue = [];
+      }
+      w.fbq('init', PIXEL); w.fbq('track', 'PageView');
+      var loaded = false;
+      function loadPixel() {
+        if (loaded) return; loaded = true;
+        var s = d.createElement('script'); s.async = true; s.src = 'https://connect.facebook.net/en_US/fbevents.js';
+        d.head.appendChild(s);
+      }
+      try { if (localStorage.getItem('mcb-consent') === 'granted') loadPixel(); } catch (e) {}
+      // The consent banner is rendered after <main>, so hook Accept once parsed.
+      function hook() { var acc = d.getElementById('mcb-cookie-accept'); if (acc) acc.addEventListener('click', loadPixel); }
+      if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', hook); else hook();
+      d.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
+        if (!a) return;
+        var phone = a.getAttribute('href').replace('tel:', '').trim();
+        if (typeof w.gtag === 'function') {
+          w.gtag('event', 'tap_to_call', { phone_number: phone, location: w.location.pathname, value: 75, currency: 'USD' });
+        }
+        if (typeof w.fbq === 'function') {
+          w.fbq('track', 'Contact', { content_category: 'phone', content_name: phone });
+        }
+      }, true);
+    })(window, document);
+  </script>
+</Base>
+
+<script>
+  /* Motion below the hero: GSAP 3 + ScrollTrigger, loaded lazily after first
+     interaction or idle so it never competes with the hero. One easing family
+     (power2 / sine), 600ms reveals, nothing bounces. Reduced motion or Save-Data:
+     GSAP is never loaded and every element is simply there (reveals instant). */
+  const root = document.documentElement;
+  const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sd = !!(navigator as any).connection?.saveData;
+
+  // Rooms track arrows (desktop horizontal track; native scroll, never hijacked)
+  const track = document.querySelector<HTMLElement>('[data-track]');
+  document.querySelectorAll<HTMLButtonElement>('[data-rooms]').forEach(b => b.addEventListener('click', () => {
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>('.room');
+    const step = card ? card.offsetWidth + 24 : track.clientWidth * .8;
+    track.scrollBy({ left: Number(b.dataset.rooms) * step, behavior: rm ? 'auto' : 'smooth' });
+  }));
+
+  if (!rm && !sd) {
+    let started = false;
+    const start = async () => {
+      if (started) return; started = true;
+      const [{ gsap }, { ScrollTrigger }] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
+      gsap.registerPlugin(ScrollTrigger);
+      const vh = window.innerHeight;
+      // Only elements still below the fold get a from-state: nothing visible pops.
+      const els = gsap.utils.toArray<HTMLElement>('[data-reveal]').filter(el => el.getBoundingClientRect().top > vh);
+      gsap.set(els, { opacity: 0, y: 18 });   // opacity, not autoAlpha: never visibility:hidden (keeps headings in the a11y tree)
+      ScrollTrigger.batch(els, {
+        start: 'top 88%', once: true,
+        onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.06, overwrite: true }),
+      });
+      // Proof: slow 6% parallax, desktop only
+      ScrollTrigger.matchMedia({
+        '(min-width: 900px)': () => {
+          gsap.utils.toArray<HTMLElement>('[data-par]').forEach(img => {
+            gsap.fromTo(img, { yPercent: -3 }, { yPercent: 3, ease: 'none',
+              scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+          });
+        },
+      });
+      root.classList.add('gsap-on');
+    };
+    addEventListener('scroll', start, { once: true, passive: true });
+    const idle = (window as any).requestIdleCallback || ((f: () => void) => setTimeout(f, 1200));
+    addEventListener('load', () => idle(start, { timeout: 2500 }));
+  }
+</script>
