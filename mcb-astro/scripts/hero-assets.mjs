@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 /**
  * Homepage asset pipeline (cinematic homepage, Phase 2).
  * Generates WebP derivatives next to their sources in public/. Idempotent:
@@ -12,7 +13,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PUB = path.join(ROOT, 'public');
 
 const stale = (src, out) =>
@@ -57,6 +58,6 @@ export async function buildHomeAssets(log = console.log) {
   log(`[hero-assets] ${made} WebP file(s) written, ${jobs.length - made} up to date`);
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(import.meta.url).pathname)) {
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))) {
   await buildHomeAssets();
 }
