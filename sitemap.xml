@@ -1764,4 +1764,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- Astro town + painting pages (publish_astro.py) -->
+  <url>
+    <loc>https://mcitybuilders.com/water-damage-restoration/burst-pipe-repair</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

@@ -1,0 +1,98 @@
+---
+/**
+ * Water-damage homeowner guides under /water-damage-restoration/.
+ *
+ * Same layout as the painting guides (src/pages/painting/[slug].astro, 'guide'
+ * branch): Base + Header + prose article + related links + EstimateForm + Footer,
+ * with BreadcrumbList from Base. Adds a visible FAQ (summary/h3) and matching
+ * FAQPage JSON-LD built from the same frontmatter, so schema can never describe
+ * text the page does not show (verify_all.py checks this).
+ *
+ * The /water-damage-restoration hub itself is a static page in the site root,
+ * not an Astro page; this route only owns the sub-pages.
+ */
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+
+export async function getStaticPaths() {
+  const docs = (await getCollection('waterDamage')).sort((a, b) => a.data.order - b.data.order);
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc, siblings: docs.filter((d) => d.id !== doc.id) } }));
+}
+
+const { doc, siblings } = Astro.props;
+const { Content } = await render(doc);
+const { title, description, h1, updated, faqs } = doc.data;
+const pageTitle = title.length <= 60 ? title : title.slice(0, 57).trimEnd();
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<Base
+  title={pageTitle}
+  description={description}
+  jsonLd={jsonLd}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Water Damage Restoration', url: '/water-damage-restoration' },
+    { name: h1, url: `/water-damage-restoration/${doc.id}` },
+  ]}
+>
+  <Header />
+  <main id="main">
+    <article class="wrap prose">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href="/water-damage-restoration">Water Damage Restoration</a>
+      </nav>
+      <h1>{h1}</h1>
+      {updated && <p class="meta">Last reviewed {updated.toISOString().slice(0, 10)}</p>}
+      <Content />
+
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        {faqs.map((f) => (
+          <details>
+            <summary><h3>{f.q}</h3></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+
+      <aside class="related">
+        <h2>Related pages</h2>
+        <ul>
+          {siblings.map((d) => (
+            <li><a href={`/water-damage-restoration/${d.id}`}>{d.data.h1}</a></li>
+          ))}
+          <li><a href="/water-damage-restoration">Water damage restoration and rebuild</a></li>
+          <li><a href="/building-restoration">Building restoration</a></li>
+        </ul>
+      </aside>
+    </article>
+    <EstimateForm />
+  </main>
+  <Footer />
+</Base>
+<style>
+  .wrap { max-width: 74ch; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
+  .crumb { font-size: .85rem; opacity: .75; margin-bottom: 1.25rem; }
+  .crumb a { color: inherit; }
+  .meta { font-size: .85rem; opacity: .7; margin-top: -.5rem; }
+  .prose :global(h2) { margin-top: 2.25rem; }
+  .prose :global(h3) { margin-top: 1.5rem; }
+  .prose :global(li) { margin: .4rem 0; }
+  .faq details { border-bottom: 1px solid rgba(128,128,128,.28); }
+  .faq summary { cursor: pointer; list-style: none; padding: .9rem 2rem .9rem 0; position: relative; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; position: absolute; right: .3rem; top: 50%; translate: 0 -50%; font-size: 1.3rem; opacity: .7; }
+  .faq details[open] summary::after { content: '\2212'; }
+  .faq summary h3 { display: inline; font-size: 1rem; font-weight: 600; margin: 0; }
+  .faq p { margin: 0 0 1.1rem; }
+  .related { margin-top: 3rem; border-top: 1px solid rgba(128,128,128,.28); padding-top: 1.25rem; }
+  .related h2 { font-size: 1.05rem; margin: 0 0 .6rem; }
+  .related ul { margin: 0; padding-left: 1.1rem; }
+</style>

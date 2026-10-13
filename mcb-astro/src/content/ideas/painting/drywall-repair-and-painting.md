@@ -35,7 +35,7 @@ Drywall repair and paint is right when the damage is on the surface: holes, dent
 
 It is not enough when something behind the wall is still wrong:
 
-- **Active moisture.** A stain that grows, drywall that feels soft, or a musty smell means water is still getting in. Fix the source first. For real water damage, see [water damage restoration](/water-damage-restoration).
+- **Active moisture.** A stain that grows, drywall that feels soft, or a musty smell means water is still getting in. Fix the source first. For real water damage, see [water damage restoration](/water-damage-restoration), or, if a pipe split in a wall or ceiling, our guide to [burst and frozen pipe repair](/water-damage-restoration/burst-pipe-repair).
 - **Cracks that keep widening or run diagonally** from door and window corners across a whole wall can point to structural movement. Patching hides the symptom.
 - **Large areas of mold** are a remediation job, not a patch.
 

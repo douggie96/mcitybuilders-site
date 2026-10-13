@@ -65,4 +65,10 @@ const ideas = defineCollection({                 // /deck-building/*, /painting/
                      faqs: z.array(z.object({ q: z.string(), a: z.string() })).length(5) }),
 });
 
-export const collections = { services, serviceAreas, towns, costGuides, articles, legal, flooring, flooringHub, ideas };
+const waterDamage = defineCollection({           // /water-damage-restoration/* homeowner guides (2026-10-13)
+  loader: glob({ pattern: '[!_]*.md', base: './src/content/water-damage' }),
+  schema: z.object({ ...seo, order: z.number().default(99),
+                     faqs: z.array(z.object({ q: z.string(), a: z.string() })).min(5) }),
+});
+
+export const collections = { services, serviceAreas, towns, costGuides, articles, legal, flooring, flooringHub, ideas, waterDamage };

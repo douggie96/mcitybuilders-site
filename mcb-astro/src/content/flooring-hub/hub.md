@@ -39,7 +39,7 @@ A few rules of thumb from houses around Lancaster, Worcester and MetroWest:
 - **Entries and mudrooms take a beating.** Salt, sand and slush from November to April make tile or LVP the safe bets.
 - **Busy households with dogs** tend to be happiest with LVP or tile.
 
-If flooring is part of a bigger project, see [kitchen remodeling](/kitchen-remodeling), [bathroom remodeling](/bathroom-remodeling) or [general renovations](/general-renovations). If a floor was damaged by a leak, start with [water damage restoration](/water-damage-restoration).
+If flooring is part of a bigger project, see [kitchen remodeling](/kitchen-remodeling), [bathroom remodeling](/bathroom-remodeling) or [general renovations](/general-renovations). If a floor was damaged by a leak, start with [water damage restoration](/water-damage-restoration); after a burst pipe, see [what to do and who rebuilds after a burst or frozen pipe](/water-damage-restoration/burst-pipe-repair).
 
 ## How our flooring projects run
 
