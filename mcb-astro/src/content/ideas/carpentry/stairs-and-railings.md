@@ -33,7 +33,7 @@ Stair work is a finish carpentry job when the stair itself is sound. It becomes 
 - **The stair is being moved, widened or rebuilt.** That is a [general renovation](/general-renovations) with framing, permits and inspection, not a tread swap.
 - **Steps squeak and flex badly.** Some squeaks are loose treads; some are undersized framing. We look from below when we can.
 
-Our main [carpentry](/carpentry) page lists all our finish work. This page is about interior stairs specifically.
+Our main [carpentry](/carpentry) page lists all our finish work. This page is about interior stairs specifically. For outdoor steps and deck railings, see [deck railings and stairs](/deck-building/deck-railings-and-stairs).
 
 ## What stair work costs in Central MA
 
