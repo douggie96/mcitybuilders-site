@@ -38,7 +38,7 @@ These are typical ranges, not quotes:
 | Typical scope | Size | Typical installed range |
 |---|---|---|
 | Low platform, one step, no guard needed | 12x12 (144 sq ft) | $6,000–$9,500 |
-| Attached deck ~3 ft off grade, wood railing, one stair | 16x20 (320 sq ft) | $10,000–$18,000 |
+| Attached deck ~3 ft off grade, wood railing, one stair | 16x20 (320 sq ft) | $8,000–$22,000 |
 | Same, larger footprint | 20x20 (400 sq ft) | $13,500–$22,000 |
 | Tear off an old deck first | per deck | add $1,200–$1,800 |
 | First clean and stain coat once the wood is dry | ~400 sq ft | $700–$1,400 |

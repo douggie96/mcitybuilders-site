@@ -11,7 +11,7 @@ faqs:
   - q: "Who pulls the plumbing permit for a bathroom remodel in Massachusetts?"
     a: "The plumber. The Massachusetts Board of State Examiners of Plumbers and Gas Fitters says plumbing permits are issued only to plumbers the Board has examined and approved, and not to apprentices. A homeowner cannot pull a plumbing permit for their own bathroom. We coordinate the inspections and the rest of the paperwork."
   - q: "How long will I be without my bathroom?"
-    a: "It depends on scope. A cosmetic update or powder room runs about 1 week, a standard hall bathroom 2 to 3 weeks, a full remodel with a layout change 4 to 7 weeks, and a primary suite 6 to 10 weeks. Permits and material orders come before that, which is why we plan winter jobs in the fall."
+    a: "It depends on scope. A cosmetic update or powder room runs about 1 week, a standard hall bathroom 2 to 3 weeks, a full remodel with a layout change 4 to 7 weeks, and a primary suite 3 to 5 weeks. Permits and material orders come before that, which is why we plan winter jobs in the fall."
   - q: "Will a winter remodel make my house dusty?"
     a: "It can if nobody contains it, because the windows are shut. We seal the work zone with plastic dust barriers, run air scrubbers when we cut tile or plaster, protect the floors on the path to the door, and clean up at the end of every day. Homes built before 1978 get lead-safe RRP practices."
   - q: "When should I call to have a bathroom done before spring?"
@@ -122,7 +122,7 @@ This is the real question for most families. How long you are without that bathr
 | Cosmetic / powder room | 1 week |
 | Standard hall bathroom | 2 to 3 weeks |
 | Full remodel with layout change | 4 to 7 weeks |
-| Primary suite | 6 to 10 weeks |
+| Primary suite | 3 to 5 weeks |
 
 Those are working times once the job starts. Permits and orders come before that.
 

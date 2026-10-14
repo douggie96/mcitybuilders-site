@@ -93,7 +93,7 @@ Once the house is dry and the scope is set, here is how a rebuild runs with us.
 
 1. **Walkthrough and estimate.** We walk the damaged areas, review the adjuster's scope of loss, and turn around a written estimate within 48 hours.
 2. **Written contract.** Every job gets a written contract with the scope, price and payment schedule spelled out.
-3. **Permits and trades.** We pull the permits the work requires and coordinate the trades, including the plumber and electrician if any of their work has to be re-inspected before walls close up.
+3. **Permits and trades.** We handle the building permit the work requires and coordinate the trades; the plumber and electrician file their own permits if any of their work has to be re-inspected before walls close up.
 4. **Close it up.** New insulation, drywall, tape and finish, and ceilings matched to the rest of the room.
 5. **Floors, cabinets and finish work.** Subfloor and flooring, cabinets and counters, tile, trim, doors and paint, built to code.
 6. **Bathroom or kitchen reconstruction.** When the loss takes out a bathroom or kitchen, we rebuild the whole room, not just patch it. See our [bathroom remodeling](/bathroom-remodeling) and [kitchen remodeling](/kitchen-remodeling) pages.

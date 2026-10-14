@@ -92,7 +92,7 @@ Weather sets the exact dates. This is the order things happen in, not a promise 
 
 **December: decide what you want.** How will you use the deck: grilling, dining, a hot tub, a view? Measure the space, take photos of the back of the house, and find your plot plan or mortgage survey if you have one. Acton notes a mortgage survey plan may be acceptable depending on the setbacks, so find out early. Read our [deck cost guide](/deck-building-cost-massachusetts) so the numbers do not surprise you.
 
-**January: site visit and material choice.** We visit, take measurements and talk through materials. This is the month to compare boards side by side. Our published installed ranges run $34 to $55 per square foot for pressure-treated pine, $45 to $72 for western red cedar, $55 to $95 for capped composite and $70 to $115 for cellular PVC. Railings matter too. See [deck railings and stairs](/deck-building/deck-railings-and-stairs) for the code basics on guard heights and stairs.
+**January: site visit and material choice.** We visit, take measurements and talk through materials. This is the month to compare boards side by side. Our published installed ranges run $34 to $55 per square foot for pressure-treated pine, $35 to $65 for western red cedar, $55 to $95 for capped composite and $70 to $115 for cellular PVC. Railings matter too. See [deck railings and stairs](/deck-building/deck-railings-and-stairs) for the code basics on guard heights and stairs.
 
 **February: lock the design and the price.** Approve the layout and sign a written, fixed-price contract. We draw the structural plans and get the plot plan in order for the permit application.
 
