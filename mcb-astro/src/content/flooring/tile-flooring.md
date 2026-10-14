@@ -91,7 +91,7 @@ Timeline: plan on about 3 to 5 working days for a bathroom floor and roughly 4 t
 - **Buy extra.** Order 10 to 15 percent over the measured area and keep a box for future repairs. Tile lots vary in shade.
 - **Read the fine print.** Manufacturer warranties vary by product, so check the terms on setting materials and membranes as well as the tile.
 
-If you're redoing the whole room, our [bathroom remodeling](/bathroom-remodeling) and [kitchen remodeling](/kitchen-remodeling) pages cover the bigger picture.
+If you're redoing the whole room, our [bathroom remodeling](/bathroom-remodeling) and [kitchen remodeling](/kitchen-remodeling) pages cover the bigger picture. Planning a bathroom over the winter? See [remodeling a bathroom in winter](/bathroom-remodeling/winter-bathroom-remodel-massachusetts).
 
 ## What to ask any flooring contractor
 

@@ -1771,4 +1771,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- Astro town + painting pages (publish_astro.py) -->
+  <url>
+    <loc>https://mcitybuilders.com/bathroom-remodeling/winter-bathroom-remodel-massachusetts</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/deck-building/book-a-deck-in-winter-massachusetts</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

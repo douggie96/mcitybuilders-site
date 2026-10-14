@@ -71,4 +71,12 @@ const waterDamage = defineCollection({           // /water-damage-restoration/* 
                      faqs: z.array(z.object({ q: z.string(), a: z.string() })).min(5) }),
 });
 
-export const collections = { services, serviceAreas, towns, costGuides, articles, legal, flooring, flooringHub, ideas, waterDamage };
+const guide = (dir: string) => defineCollection({
+  loader: glob({ pattern: '[!_]*.md', base: `./src/content/${dir}` }),
+  schema: z.object({ ...seo, order: z.number().default(99),
+                     faqs: z.array(z.object({ q: z.string(), a: z.string() })).min(5) }),
+});
+const bathroomGuides = guide('bathroom-guides');  // /bathroom-remodeling/* homeowner guides (2026-10-13)
+const deckGuides = guide('deck-guides');          // /deck-building/* long-form guides, beside the ideas pages (2026-10-13)
+
+export const collections = { services, serviceAreas, towns, costGuides, articles, legal, flooring, flooringHub, ideas, waterDamage, bathroomGuides, deckGuides };

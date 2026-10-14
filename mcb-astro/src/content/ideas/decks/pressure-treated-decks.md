@@ -71,7 +71,7 @@ For the boards themselves, face screws (two per joist, ends pre-drilled) are sta
 5. **Decking, railing, stairs.** Boards are laid with the bark side up, screws in straight lines, and gaps set for how wet the lumber is.
 6. **Final inspection and cleanup.** Scraps and old deck debris leave with us.
 
-On-site work for a typical 300 to 400 square foot deck is about 5 to 10 working days once the permit is in hand. Stain comes later, after the wood dries.
+On-site work for a typical 300 to 400 square foot deck is about 5 to 10 working days once the permit is in hand. Stain comes later, after the wood dries. Planning a spring build? See [booking a deck in winter for spring](/deck-building/book-a-deck-in-winter-massachusetts).
 
 ## New England issues for wood decks
 

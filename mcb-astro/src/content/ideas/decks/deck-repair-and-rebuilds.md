@@ -35,7 +35,7 @@ Most decks don't fail all at once. They give warnings for years, and the warning
 6. **Stairs.** Stringers pulling away at the top, cracked treads, or a bottom step sitting on dirt.
 7. **Missing lateral hardware.** Newer code details tie the deck back to the house framing to resist sideways movement. Older decks rarely have this.
 
-If you find item one or two, don't wait for spring cleanup.
+If you find item one or two, don't wait for spring cleanup. If the rest can wait for warm weather, see [planning a deck over the winter](/deck-building/book-a-deck-in-winter-massachusetts).
 
 ## Resurface or rebuild?
 

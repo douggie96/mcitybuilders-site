@@ -74,7 +74,7 @@ We work as a general contractor rather than only a painting outfit, which means 
 If you are thinking about exterior painting in Central Massachusetts:
 
 - **Book in winter or early spring** for work in May through September. The good weather months fill up.
-- **Use autumn and winter for interior work** and for exterior carpentry repairs, which are far less weather-dependent than finish coatings.
+- **Use autumn and winter for interior work** and for exterior carpentry repairs, which are far less weather-dependent than finish coatings. For a bathroom, see [can you remodel a bathroom in winter in Massachusetts](/bathroom-remodeling/winter-bathroom-remodel-massachusetts).
 - **Let us look at it before the season**, so that if there is rot or a flashing problem behind the failing paint, it is fixed before the paint window opens rather than during it.
 
 ## Where we work

@@ -1,0 +1,14 @@
+---
+/** Long-form deck guides under /deck-building/. Kept apart from [slug].astro (the ideas pages) so each route bundles only its own CSS. */
+import { getCollection } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+export async function getStaticPaths() {
+  const docs = (await getCollection('deckGuides')).sort((a, b) => a.data.order - b.data.order);
+  return docs.map((doc) => ({ params: { guide: doc.id }, props: { doc } }));
+}
+const { doc } = Astro.props;
+---
+<GuidePage doc={doc} base="/deck-building" hubName="Decks" related={[
+  { href: '/deck-building', label: 'Deck building' },
+  { href: '/deck-building-cost-massachusetts', label: 'Deck building cost in Massachusetts' },
+]} />

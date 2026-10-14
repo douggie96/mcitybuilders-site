@@ -1,0 +1,88 @@
+---
+/**
+ * Long-form homeowner guide under a static service hub (/bathroom-remodeling/*,
+ * /deck-building/*). Same layout as the water-damage guides
+ * (src/pages/water-damage-restoration/[slug].astro): Base + Header + prose
+ * article + visible FAQ + matching FAQPage JSON-LD built from the same
+ * frontmatter, so schema can never describe text the page does not show.
+ */
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import EstimateForm from './EstimateForm.astro';
+
+interface Props { doc: any; base: string; hubName: string; related: { href: string; label: string }[] }
+const { doc, base, hubName, related } = Astro.props;
+const { Content } = await render(doc);
+const { title, description, h1, updated, faqs } = doc.data;
+const pageTitle = title.length <= 60 ? title : title.slice(0, 57).trimEnd();
+const slug = doc.id.split('/').pop();
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+];
+---
+<Base
+  title={pageTitle}
+  description={description}
+  jsonLd={jsonLd}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: hubName, url: base },
+    { name: h1, url: `${base}/${slug}` },
+  ]}
+>
+  <Header />
+  <main id="main">
+    <article class="wrap prose">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span aria-hidden="true">/</span>
+        <a href={base}>{hubName}</a>
+      </nav>
+      <h1>{h1}</h1>
+      {updated && <p class="meta">Last reviewed {updated.toISOString().slice(0, 10)}</p>}
+      <Content />
+
+      <section class="faq">
+        <h2>Frequently asked questions</h2>
+        {faqs.map((f) => (
+          <details>
+            <summary><h3>{f.q}</h3></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+
+      <aside class="related">
+        <h2>Related pages</h2>
+        <ul>
+          {related.map((r) => <li><a href={r.href}>{r.label}</a></li>)}
+        </ul>
+      </aside>
+    </article>
+    <EstimateForm />
+  </main>
+  <Footer />
+</Base>
+<style>
+  .wrap { max-width: 74ch; margin: 0 auto; padding: 2.5rem 1.25rem 3rem; }
+  .crumb { font-size: .85rem; opacity: .75; margin-bottom: 1.25rem; }
+  .crumb a { color: inherit; }
+  .meta { font-size: .85rem; opacity: .7; margin-top: -.5rem; }
+  .prose :global(h2) { margin-top: 2.25rem; }
+  .prose :global(h3) { margin-top: 1.5rem; }
+  .prose :global(li) { margin: .4rem 0; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: .95rem; display: block; overflow-x: auto; }
+  .prose :global(th), .prose :global(td) { text-align: left; vertical-align: top; padding: .55rem .7rem; border-bottom: 1px solid rgba(128,128,128,.28); }
+  .faq details { border-bottom: 1px solid rgba(128,128,128,.28); }
+  .faq summary { cursor: pointer; list-style: none; padding: .9rem 2rem .9rem 0; position: relative; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; position: absolute; right: .3rem; top: 50%; translate: 0 -50%; font-size: 1.3rem; opacity: .7; }
+  .faq details[open] summary::after { content: '\2212'; }
+  .faq summary h3 { display: inline; font-size: 1rem; font-weight: 600; margin: 0; }
+  .faq p { margin: 0 0 1.1rem; }
+  .related { margin-top: 3rem; border-top: 1px solid rgba(128,128,128,.28); padding-top: 1.25rem; }
+  .related h2 { font-size: 1.05rem; margin: 0 0 .6rem; }
+  .related ul { margin: 0; padding-left: 1.1rem; }
+</style>

@@ -1,0 +1,14 @@
+---
+/** Bathroom guides under /bathroom-remodeling/. The hub itself is a static page in the site root; this route only owns the sub-pages. */
+import { getCollection } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+export async function getStaticPaths() {
+  const docs = (await getCollection('bathroomGuides')).sort((a, b) => a.data.order - b.data.order);
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+const { doc } = Astro.props;
+---
+<GuidePage doc={doc} base="/bathroom-remodeling" hubName="Bathroom Remodeling" related={[
+  { href: '/bathroom-remodeling', label: 'Bathroom remodeling' },
+  { href: '/bathroom-remodel-cost-massachusetts', label: 'Bathroom remodel cost in Massachusetts' },
+]} />
