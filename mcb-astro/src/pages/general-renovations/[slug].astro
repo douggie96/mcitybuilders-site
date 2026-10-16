@@ -1,0 +1,15 @@
+---
+/** General-renovation homeowner guides (2026-10-16). The hub /general-renovations is a static page in the site root; this route only owns sub-pages. */
+import { getCollection } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+export async function getStaticPaths() {
+  const docs = (await getCollection('renovationGuides')).sort((a, b) => a.data.order - b.data.order);
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+const { doc } = Astro.props;
+---
+<GuidePage doc={doc} base="/general-renovations" hubName="General Renovations" related={[
+  { href: '/general-renovations', label: 'General renovations' },
+  { href: '/building-permits-central-massachusetts', label: 'Building permits in Central Massachusetts' },
+  { href: '/structural-repair-worcester-county-ma', label: 'Structural repair in Worcester County' },
+]} />

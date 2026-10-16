@@ -14,7 +14,7 @@ const ideaItems = [
   ...ideas.map((d) => ({ href: `/painting/${d.id.split('/').pop()}`, name: d.data.h1.replace(/ in (Central )?(MA|Massachusetts)$/i, ''), card: d.data.card, costRange: d.data.costRange, image: d.data.image, swatch: d.data.swatch, imageAlt: d.data.imageAlt, swatchAlt: d.data.swatchAlt })),
 ];
 
-const docs = (await getCollection('services')).sort(
+const docs = [...(await getCollection('services')), ...(await getCollection('paintingGuides'))].sort(
   (a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)
 );
 

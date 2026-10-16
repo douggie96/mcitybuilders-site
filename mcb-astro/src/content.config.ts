@@ -62,7 +62,7 @@ const ideas = defineCollection({                 // /deck-building/*, /painting/
   schema: z.object({ ...seo, trade: z.enum(['decks', 'painting', 'carpentry']), order: z.number(),
                      card: z.string().max(120), image: z.string(), swatch: z.string(),
                      imageAlt: z.string(), swatchAlt: z.string(), costRange: z.string(),
-                     faqs: z.array(z.object({ q: z.string(), a: z.string() })).length(5) }),
+                     faqs: z.array(z.object({ q: z.string(), a: z.string() })).min(5) }),
 });
 
 const waterDamage = defineCollection({           // /water-damage-restoration/* homeowner guides (2026-10-13)
@@ -78,5 +78,8 @@ const guide = (dir: string) => defineCollection({
 });
 const bathroomGuides = guide('bathroom-guides');  // /bathroom-remodeling/* homeowner guides (2026-10-13)
 const deckGuides = guide('deck-guides');          // /deck-building/* long-form guides, beside the ideas pages (2026-10-13)
+const paintingGuides = guide('painting-guides');   // /painting/* homeowner guides with FAQs (2026-10-16)
+const flooringGuides = guide('flooring-guides');   // /flooring/* homeowner guides (2026-10-16)
+const renovationGuides = guide('renovation-guides'); // /general-renovations/* homeowner guides (2026-10-16)
 
-export const collections = { services, serviceAreas, towns, costGuides, articles, legal, flooring, flooringHub, ideas, waterDamage, bathroomGuides, deckGuides };
+export const collections = { services, serviceAreas, towns, costGuides, articles, legal, flooring, flooringHub, ideas, waterDamage, bathroomGuides, deckGuides, paintingGuides, flooringGuides, renovationGuides };

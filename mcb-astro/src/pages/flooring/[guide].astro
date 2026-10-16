@@ -1,0 +1,15 @@
+---
+/** Flooring homeowner guides (2026-10-16). Separate from [slug].astro (floor-type pages). */
+import { getCollection } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+export async function getStaticPaths() {
+  const docs = (await getCollection('flooringGuides')).sort((a, b) => a.data.order - b.data.order);
+  return docs.map((doc) => ({ params: { guide: doc.id }, props: { doc } }));
+}
+const { doc } = Astro.props;
+---
+<GuidePage doc={doc} base="/flooring" hubName="Flooring" related={[
+  { href: '/flooring/hardwood-floor-refinishing', label: 'Hardwood floor refinishing' },
+  { href: '/flooring/hardwood-floor-installation', label: 'Hardwood floor installation' },
+  { href: '/flooring', label: 'All flooring' },
+]} />

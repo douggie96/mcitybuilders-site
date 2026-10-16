@@ -1,0 +1,15 @@
+---
+/** Painting homeowner guides with FAQs (2026-10-16). Separate from [slug].astro (services + ideas) so existing pages are untouched. */
+import { getCollection } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+export async function getStaticPaths() {
+  const docs = (await getCollection('paintingGuides')).sort((a, b) => a.data.order - b.data.order);
+  return docs.map((doc) => ({ params: { guide: doc.id }, props: { doc } }));
+}
+const { doc } = Astro.props;
+---
+<GuidePage doc={doc} base="/painting" hubName="Painting" related={[
+  { href: '/interior-painting', label: 'Interior painting' },
+  { href: '/interior-painting-cost-massachusetts', label: 'Interior painting cost in Massachusetts' },
+  { href: '/painting', label: 'All painting guides' },
+]} />

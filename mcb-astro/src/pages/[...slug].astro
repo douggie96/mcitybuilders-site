@@ -88,21 +88,21 @@ const title = titleOptions[svc].find((t) => t.length <= 60) ?? `${S.label} in ${
 // pages are being SHOWN and not clicked. The CTA option is listed FIRST so the
 // "first that fits" ladder actually selects it; putting it later made it dead
 // code (caught by simulating the ladder rather than reasoning about it).
-// "Free estimate in 48 hours" is existing site copy, not a new claim. The
+// 2026-10-16: "Free estimate in 48 hours" removed (Doug: no speed promises on the site). The
 // Google rating is deliberately NOT templated here: one 4-star review would
 // make ~147 pages false at once.
 const descOptions: Record<Svc, string[]> = {
   'general-contractor': [
-    `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free estimate in 48 hours.`,
+    `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free written estimate.`,
     `General contractor and home remodeling in ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair on older and mid-century homes.`,
     `General contractor serving ${T}, MA. Kitchens, bathrooms, additions, decks and structural repair. Free written estimates.`,
   ],
   'kitchen-remodeling': [
-    `Kitchen remodeling in ${T}, MA. What opening one up involves, and how we scope and price it before any demo. Free estimate in 48 hours.`,
+    `Kitchen remodeling in ${T}, MA. What opening one up involves, and how we scope and price it before any demo. Free written estimate.`,
     `Kitchen remodeling in ${T}, MA. What ${T} kitchens are actually like, what opening one up involves, and how we scope and price it first.`,
   ],
   'bathroom-remodeling': [
-    `Bathroom remodeling in ${T}, MA. A realistic scope, and the plumbing realities behind any layout change. Free estimate in 48 hours.`,
+    `Bathroom remodeling in ${T}, MA. A realistic scope, and the plumbing realities behind any layout change. Free written estimate.`,
     `Bathroom remodeling in ${T}, MA. Working with ${T}'s housing stock, a realistic scope, and the plumbing behind any layout change.`,
   ],
 };
@@ -134,6 +134,7 @@ const faqs = body ? [WORK_HERE, ...body.faqs, PAPERWORK, PERMITS] : [
   PAPERWORK,
   { q: `What moves the price on a ${T} project?`,
     a: X.priceContext },
+  ...(svc === 'general-contractor' ? (X.moreFaqs ?? []) : []),
   PERMITS,
 ];
 
@@ -201,6 +202,7 @@ const heroSrcset = `${webp(S.img, 800)} 800w, ${webp(S.img, 1400)} 1400w`;
             houses have a character worth understanding before anyone quotes a price.
           </p>
         )}
+        {!body && svc === 'general-contractor' && X.answer && <p class="lede">{X.answer}</p>}
         <div class="tp__cta">
           <a class="btn" href="#estimate" data-ev="estimate_cta">Request an estimate</a>
           <a class="btn btn--ghost" href={SITE.phoneHref} data-ev="phone_click">{SITE.phone}</a>
@@ -295,6 +297,20 @@ const heroSrcset = `${webp(S.img, 800)} 800w, ${webp(S.img, 1400)} 1400w`;
         <section>
           <h2>What moves the price on a {T} project</h2>
           <p>{X.priceContext}</p>
+          {svc === 'general-contractor' && X.costRows && (
+            <>
+              <h3>What {T} projects typically cost (2026)</h3>
+              <table class="tp__cost">
+                <thead><tr><th>Project</th><th>Typical range</th><th>On-site time</th></tr></thead>
+                <tbody>
+                  {X.costRows.map(r => (
+                    <tr><td>{r.href ? <a href={r.href}>{r.item}</a> : r.item}</td><td>{r.range}</td><td>{r.time}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+              {X.costNote && <p>{X.costNote}</p>}
+            </>
+          )}
           <p>
             A phone quote is a guess. We come out, measure, look behind the surfaces where we can, and
             send a written scope with a line-by-line price, a schedule, and a clear statement of what
@@ -366,6 +382,9 @@ const heroSrcset = `${webp(S.img, 800)} 800w, ${webp(S.img, 1400)} 1400w`;
   .tp__crumb a:hover{text-decoration:underline}
   .tp h1{max-width:18ch;margin:0 0 1.1rem}
   .tp__hero .lede{max-width:56ch;margin:0 0 2rem}
+  .tp__cost{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.95rem}
+  .tp__cost th,.tp__cost td{text-align:left;padding:.5rem .6rem;border-bottom:1px solid rgba(128,128,128,.28)}
+  @media (max-width:560px){.tp__cost{font-size:.85rem}.tp__cost th,.tp__cost td{padding:.4rem .3rem}}
   .tp__cta{display:flex;flex-wrap:wrap;gap:14px}
   .tp__img{margin:0;position:relative}
   .tp__img img{width:100%;max-height:52vh;object-fit:cover;display:block}

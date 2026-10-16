@@ -18,6 +18,13 @@ export interface TownExtra {
   priceContext: string;
   /** The first thing we check on a house here. */
   firstCheck: string;
+  /** Optional (2026-10-16, GC pages only): a direct-answer paragraph under the H1. */
+  answer?: string;
+  /** Optional: typical-cost rows from MCB's published ladders. Never invent a figure here. */
+  costRows?: { item: string; range: string; time: string; href?: string }[];
+  costNote?: string;
+  /** Optional: extra town-specific FAQs, inserted before the permits question. */
+  moreFaqs?: { q: string; a: string }[];
 }
 
 export const EXTRA: Record<string, TownExtra> = {
@@ -74,6 +81,27 @@ export const EXTRA: Record<string, TownExtra> = {
     systems: 'Mixed. Municipal water in parts, septic common, particularly on the older and lake-side properties. Converted cottages carry the same seasonal-system issue as Lunenburg.',
     priceContext: 'On the post-1980 colonials the scope is usually predictable and the pricing is stable. On a converted cottage it is not, and we will say so up front rather than giving you a comfortable number we would have to revise.',
     firstCheck: 'in the colonials, whether the wall between kitchen and dining is bearing; in the cottages, the foundation and the insulation',
+    // 2026-10-16: page ranked ~8.9 for "littleton general contractor" with no prices on the page. Figures below are MCB's published ladders only.
+    answer: 'Maverick City Builders is a general contractor working in Littleton from our Lancaster office, 11 miles away. Most Littleton projects we price are kitchen and dining-room openings in 1980s and 90s colonials, primary-bath tub-to-shower conversions, and year-round upgrades to former Long Lake cottages. Every job starts with a written, itemised estimate, and the building permit is pulled before work begins.',
+    costRows: [
+      { item: 'Kitchen cosmetic refresh', range: '$16,000–$28,000', time: '1–2 weeks' },
+      { item: 'Mid-range kitchen (pull and replace)', range: '$35,000–$65,000', time: '4–6 weeks' },
+      { item: 'Kitchen with a layout change', range: '$85,000–$140,000', time: '8–14 weeks' },
+      { item: 'Load-bearing wall removal with beam', range: '$10,000–$25,000', time: 'plus engineering and permit', href: '/general-renovations/remove-load-bearing-wall-massachusetts' },
+      { item: 'Tub-to-shower conversion', range: '$8,000–$18,000', time: '2–3 weeks' },
+      { item: 'Hall bath remodel', range: '$16,000–$28,000', time: '2–3 weeks' },
+      { item: 'Deck, pressure-treated to composite', range: '$8,000–$35,000', time: '1–2 weeks once permitted' },
+      { item: 'Interior painting, per room', range: '$1,200–$3,000', time: '1–2 days' },
+    ],
+    costNote: 'On a converted lake cottage, the foundation, insulation and septic capacity usually decide the budget before the finishes do. Those houses are priced only after a site visit.',
+    moreFaqs: [
+      { q: 'How much does a general contractor cost in Littleton, MA?',
+        a: 'It depends on the project, not an hourly rate. In Littleton a kitchen cosmetic refresh typically runs $16,000–$28,000 and a mid-range kitchen $35,000–$65,000. Removing the bearing wall between a colonial kitchen and dining room usually adds $10,000–$25,000 with the beam, and a tub-to-shower conversion runs $8,000–$18,000. You get a written, itemised estimate before anything is signed.' },
+      { q: 'Can you open up the wall between the kitchen and dining room in a Littleton colonial?',
+        a: 'Usually, yes. In many 1980s and 90s Littleton colonials that wall carries the floor above, so it needs an engineered beam, temporary shoring and a building permit. Expect $10,000–$25,000 for the wall and beam alone, plus floor patching where the wall stood and any electrical or heating runs inside it.' },
+      { q: 'Do you work on Long Lake cottages that were converted to year-round homes?',
+        a: 'Yes. Converted cottages need more checking up front than a colonial: the foundation, insulation, heating, and whether the septic system was sized for a seasonal or a year-round house. We look at those first and price after a site visit, because they decide the budget more than the finishes do.' },
+    ],
   },
   'groton-ma': {
     access: 'Rural and generally generous, with the notable exception of the Main Street houses, where the buildings sit close to a busy road and staging has to account for both traffic and appearance.',

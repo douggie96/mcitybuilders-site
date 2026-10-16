@@ -1784,4 +1784,35 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <!-- Astro town + painting pages (publish_astro.py) -->
+  <url>
+    <loc>https://mcitybuilders.com/bathroom-remodeling/bathroom-remodel-permit-massachusetts</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/flooring/best-time-refinish-hardwood-floors-massachusetts</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/general-renovations/knob-and-tube-wiring-remodel-massachusetts</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/general-renovations/remove-load-bearing-wall-massachusetts</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://mcitybuilders.com/painting/interior-painting-in-winter-massachusetts</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
