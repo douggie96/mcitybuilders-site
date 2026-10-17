@@ -53,7 +53,7 @@ If the house was built before 1978, assume lead paint until proven otherwise. We
 
 ## Permits: what Massachusetts requires
 
-Structural work like this needs a building permit under the Massachusetts State Building Code (780 CMR), which includes the residential code. Your town's building department will want the engineered beam specification with the application, and an inspector checks the framing before it is closed up. The contractor pulls the permit, not the homeowner. Your town sets the fee. Our page on [building permits in Central Massachusetts](/building-permits-central-massachusetts) explains how the process runs locally.
+Structural work like this needs a building permit under the Massachusetts State Building Code (780 CMR), which includes the residential code. Your town's building department will want the engineered beam specification with the application, and an inspector checks the framing before it is closed up. The contractor pulls the permit, not the homeowner. Your town sets the fee. Our page on [building permits in Central Massachusetts](/building-permits-central-massachusetts) explains how the process runs locally. If the wall you are opening is full of old wiring, read [knob-and-tube wiring in an older Massachusetts home](/general-renovations/knob-and-tube-wiring-remodel-massachusetts) before you budget.
 
 ## What it costs
 

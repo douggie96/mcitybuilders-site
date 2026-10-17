@@ -47,7 +47,7 @@ Our typical ranges for work coordinated inside a remodel. Your number depends on
 |---|---|
 | Knob-and-tube rewire (scope inside a remodel) | $3,000–$9,000 |
 | 200-amp service upgrade | $2,500–$7,000 |
-| Load-bearing wall removal with beam (if the plan opens up rooms) | $10,000–$25,000 |
+| [Load-bearing wall removal](/general-renovations/remove-load-bearing-wall-massachusetts) with beam (if the plan opens up rooms) | $10,000–$25,000 |
 | Galvanized supply line replacement (pre-1960 homes) | $800–$2,500 |
 
 Older houses rarely hide just one thing. Knob-and-tube and galvanized water lines often travel together, which is why our [bathroom remodel cost guide for Massachusetts](/bathroom-remodel-cost-massachusetts) builds in room for hidden conditions.

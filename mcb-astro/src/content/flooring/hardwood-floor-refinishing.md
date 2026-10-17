@@ -43,6 +43,8 @@ These are typical ranges for 2026 in our service area, not quotes. Your written 
 
 What moves the number: stain versus natural, water-based versus oil-based finish, number of coats, how much patching and board replacement is needed, stairs and railings, and how many closets and small rooms there are. Hard species like maple can take more sanding time than oak.
 
+Wondering when to schedule it? See [the best time of year to refinish hardwood floors in Massachusetts](/flooring/best-time-refinish-hardwood-floors-massachusetts).
+
 ## What the job involves, step by step
 
 **1. Inspection.** We look at wear, check the wood thickness above the tongue at a floor register or threshold, and note loose boards, stains and old repairs. We also ask when the house was built, because that changes how we handle trim and anything under the carpet.

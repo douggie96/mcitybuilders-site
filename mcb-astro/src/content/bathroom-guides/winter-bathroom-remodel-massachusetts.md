@@ -88,7 +88,7 @@ Two winter-only things to plan with us:
 
 ## Permits and inspections in winter
 
-Winter does not stop the permit office, and bathroom inspections happen inside the house. Here is the part most homeowners do not know. In Massachusetts, **the plumbing permit is pulled by the plumber, not by you and not by the general contractor.** The state's consumer fact sheet from the Board of State Examiners of Plumbers and Gas Fitters says the local plumbing inspector must issue a permit before any plumbing can be installed, and that plumbing permits are issued only to plumbers the Board has examined and approved. The Board's regulation, 248 CMR 3.05, says the same thing, and says permits cannot be issued to apprentices.
+Winter does not stop the permit office, and bathroom inspections happen inside the house. Here is the part most homeowners do not know. In Massachusetts, **the plumbing permit is pulled by the plumber, not by you and not by the general contractor.** The state's consumer fact sheet from the Board of State Examiners of Plumbers and Gas Fitters says the local plumbing inspector must issue a permit before any plumbing can be installed, and that plumbing permits are issued only to plumbers the Board has examined and approved. The Board's regulation, 248 CMR 3.05, says the same thing, and says permits cannot be issued to apprentices. For which bathroom jobs need which permits, see [bathroom remodel permits in Massachusetts](/bathroom-remodeling/bathroom-remodel-permit-massachusetts).
 
 A minor repair like fixing a leaky faucet does not need a permit. Replacing or relocating a faucet, valve or other working part of a fixture is not minor, so a real bathroom remodel almost always means a plumbing permit.
 
