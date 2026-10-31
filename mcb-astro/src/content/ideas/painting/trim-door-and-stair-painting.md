@@ -1,15 +1,14 @@
 ---
 title: "Trim, Door and Stair Painting in Central MA | MCB"
-description: "Trim, door and stair painting in Central Massachusetts: enamels that cure hard, prep that lasts, typical 2026 costs and what to ask a painter."
+description: "Trim, door and stair painting in Central Massachusetts: enamels that cure hard, prep that lasts, and what to ask a painter before work starts."
 h1: "Trim, door and stair painting"
 order: 10
 trade: painting
-card: "Baseboards, casings, doors and stairs in a hard enamel finish: the prep, the products and typical costs."
+card: "Baseboards, casings, doors and stairs in a hard enamel finish: the prep, the products and what to ask."
 image: /ideas/trim-door-and-stair-painting-main.webp
 swatch: /ideas/trim-door-and-stair-painting-detail.webp
 imageAlt: "Design idea: front hall of a colonial with crisp white trim, a deep green paneled door and a painted staircase with a stained handrail"
 swatchAlt: "Design idea: close-up of a brushed semi-gloss enamel finish on a six-panel door"
-costRange: "$2–$6 per linear ft of trim; $150–$350 per interior door (typical Central MA range)"
 faqs:
   - q: "Can you paint over oil-based trim with water-based enamel?"
     a: "Yes, but not straight on. Glossy oil paint has to be cleaned, scuff-sanded dull and primed with a bonding primer first, or the new coat can peel off in strips. A quick test: rub a spot with denatured alcohol. If the paint softens, it is latex; if it does not, treat it as oil."
@@ -39,18 +38,16 @@ It is the wrong answer when:
 - **There is rot.** Soft window sills and door jambs need [carpentry](/carpentry) first. Paint over rot is money wasted.
 - **Doors bind or will not latch.** Paint adds thickness. A door that rubs now will stick after two coats unless it is planed and adjusted first.
 
-## What it costs in Central MA
+## What drives the price of trim and door painting
 
-These are typical ranges for 2026, not quotes. Your written estimate itemises the scope, the named products and anything excluded.
+Your written estimate itemises the scope, the named products and anything excluded. Typical jobs include:
 
-| Typical scope | Typical Central MA range |
-|---|---|
-| Baseboard, casings and one door in one room | $350–$800 |
-| Interior door, both sides plus casing | $150–$350 per door |
-| Front entry door, both sides, premium enamel | $300–$700 |
-| Stained trim converted to painted, per room | $600–$1,400 |
-| One staircase: risers, stringers, balusters and newel | $900–$2,500 |
-| Whole-house trim and doors, typical three-bedroom colonial | $4,000–$9,000 |
+- Baseboard, casings and one door in one room
+- Interior door, both sides plus casing
+- Front entry door, both sides, premium enamel
+- Stained trim converted to painted, per room
+- One staircase: risers, stringers, balusters and newel
+- Whole-house trim and doors, typical three-bedroom colonial
 
 What moves the number: how many coats the color change needs, whether the old paint is oil, how much caulking and filling there is, and how many panels and profiles each door has. A six-panel door takes far longer than a flat slab.
 

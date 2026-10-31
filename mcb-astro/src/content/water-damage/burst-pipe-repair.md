@@ -54,7 +54,7 @@ Additions and older layouts often run plumbing through spaces that were never me
 
 ## What gets damaged and what has to be rebuilt
 
-The plumber's repair is usually the small part of the bill. Angi puts the national average cost to repair a burst pipe at about $500, with most repairs between $200 and $3,000 for the plumbing work alone. The bigger cost is everything the water touched on its way down.
+The plumber's repair is usually the small part of the bill. The bigger cost is everything the water touched on its way down.
 
 Here is what a typical burst-pipe loss leaves behind:
 
@@ -65,7 +65,7 @@ Here is what a typical burst-pipe loss leaves behind:
 - **Trim, doors and paint.** Baseboard, casing and door jambs take on water first because they sit at floor level.
 - **Bathrooms and kitchens.** When the leak is inside a bathroom wall or under a kitchen, the rebuild can mean tile, a vanity, a tub surround, or a section of cabinets and counters.
 
-For the dry-out itself, HomeAdvisor reports that water damage restoration typically runs $1,383 to $6,369, with an average of $3,868, or roughly $3.50 to $7.50 per square foot depending on the category of water. Those are national ranges from HomeAdvisor, not our pricing. Reconstruction is priced separately against your actual scope.
+The cost of the dry-out itself depends on how much got wet and the category of water. Reconstruction is priced separately against your actual scope.
 
 ## Dry-out first, then rebuild: how it works with your insurer and mitigation company
 
@@ -91,7 +91,7 @@ Nothing here is legal or insurance advice. Your policy and your adjuster have th
 
 Once the house is dry and the scope is set, here is how a rebuild runs with us.
 
-1. **Walkthrough and estimate.** We walk the damaged areas, review the adjuster's scope of loss, and turn around a written estimate within 48 hours.
+1. **Walkthrough and estimate.** We walk the damaged areas, review the adjuster's scope of loss, and prepare a written estimate.
 2. **Written contract.** Every job gets a written contract with the scope, price and payment schedule spelled out.
 3. **Permits and trades.** We handle the building permit the work requires and coordinate the trades; the plumber and electrician file their own permits if any of their work has to be re-inspected before walls close up.
 4. **Close it up.** New insulation, drywall, tape and finish, and ceilings matched to the rest of the room.
@@ -117,6 +117,6 @@ For more winter prep, read our guides on [how to properly winterize your home in
 
 ## Get the rebuild scheduled
 
-If your pipe has already been fixed and the dry-out is done or underway, call us at **(508) 656-7436** or [send us the details](/contact). We will set up a walkthrough and get you a written estimate within 48 hours.
+If your pipe has already been fixed and the dry-out is done or underway, call us at **(508) 656-7436** or [send us the details](/contact). We will set up a walkthrough and get you a written estimate.
 
 If water is still running right now, your first calls are a plumber, your insurance company and a mitigation crew. Call us once it is dry.

@@ -1,6 +1,6 @@
 ---
 title: "Interior Doors & Closet Build-Outs, Central MA | MCB"
-description: "Interior doors and closets in Central MA: typical costs per door, pre-hung vs slab, solid vs hollow core, pocket doors and closet systems for old homes."
+description: "Interior doors and closets in Central MA: pre-hung vs slab, solid vs hollow core, pocket doors, and closet systems that fit old homes."
 h1: "Interior Doors and Closets"
 trade: carpentry
 order: 3
@@ -9,7 +9,6 @@ image: /ideas/interior-doors-and-closets-main.webp
 swatch: /ideas/interior-doors-and-closets-detail.webp
 imageAlt: "Design idea: upstairs hallway in a New England colonial with painted two-panel solid-core doors and matching casing"
 swatchAlt: "Design idea: close-up of a painted door edge, hinge and latch set in a wood jamb"
-costRange: "$300–$1,100 per interior door installed (typical Central MA range)"
 faqs:
   - q: "Should I buy pre-hung doors or just new slabs?"
     a: "Pre-hung is usually faster and more reliable when the old jambs are worn, out of square or you are changing casing anyway. A slab makes sense when the existing jambs and trim are worth keeping, which is common in older homes with original casing you don't want to disturb."
@@ -50,22 +49,20 @@ Our [carpentry](/carpentry) page covers the full list of finish work. This page 
 
 **Solid wood** doors are stile-and-rail construction. They look the part in older homes but move more with the seasons.
 
-## What doors and closets cost in Central MA
+## What drives the price of doors and closets
 
-Typical Central Massachusetts ranges, not quotes. Your written estimate itemises each opening, the door and hardware, casing, painting and exclusions.
+Your written estimate itemises each opening, the door and hardware, casing, painting and exclusions. Typical jobs include:
 
-| Typical scope | Typical range |
-|---|---|
-| Hollow-core pre-hung door, new casing one side | $300–$550 per door |
-| Solid-core pre-hung door, new casing both sides | $550–$1,100 per door |
-| Slab door fitted to an existing jamb | $250–$600 per door |
-| Bifold or bypass closet doors | $300–$900 per opening |
-| Pocket door in an existing wall, including wall patch | $1,500–$3,500 |
-| Reach-in closet shelving and rods, custom | $800–$3,500 |
-| Walk-in closet system | $2,500–$9,000 |
-| New closet framed into a room, with door | $2,500–$6,000 |
+- Hollow-core pre-hung door, new casing one side
+- Solid-core pre-hung door, new casing both sides
+- Slab door fitted to an existing jamb
+- Bifold or bypass closet doors
+- Pocket door in an existing wall, including wall patch
+- Reach-in closet shelving and rods, custom
+- Walk-in closet system
+- New closet framed into a room, with door
 
-Paint, hardware grade and whether casing is replaced move these numbers more than the door itself.
+Paint, hardware grade and whether casing is replaced move the price more than the door itself.
 
 ## What the job involves, step by step
 

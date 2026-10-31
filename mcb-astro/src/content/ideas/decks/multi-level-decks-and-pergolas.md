@@ -1,6 +1,6 @@
 ---
 title: "Multi-Level Decks & Pergolas in Central MA | MCB"
-description: "Multi-level decks, open-top pergolas, built-in benches and planters in Central Massachusetts: sloped-lot design, code points and typical installed costs."
+description: "Multi-level decks, open-top pergolas, built-in benches and planters in Central Massachusetts: sloped-lot design, code points and what drives the price."
 h1: "Multi-Level Decks and Pergolas"
 order: 5
 trade: decks
@@ -9,7 +9,6 @@ image: /ideas/multi-level-decks-and-pergolas-main.webp
 swatch: /ideas/multi-level-decks-and-pergolas-detail.webp
 imageAlt: "Design idea: two-level composite deck stepping down a sloped backyard with an open-top wood pergola over the upper level"
 swatchAlt: "Design idea: close-up of open-top pergola rafter tails and a built-in deck bench with a planter box"
-costRange: "$28,000–$60,000 per multi-level deck; pergola extra"
 faqs:
   - q: "Why build two levels instead of one big deck?"
     a: "On a sloped lot, a single deck at door height ends up high off the ground at the far end, with tall posts, a long stair and a guard all the way around. Stepping down to a second level closer to grade often means shorter posts, less railing and a space that feels connected to the yard."
@@ -58,15 +57,11 @@ An open-top pergola gives filtered shade, a frame for lights or a climbing vine,
 
 **Planters** soften a big deck. Wet soil is heavy, so large planters sit over beams or get their own support. They're lined, drained and held off the decking, and never built so soil touches the frame. Cedar or PVC boxes hold up better than pine.
 
-## What it costs in Central MA
+## What drives the price of a multi-level deck
 
-These are typical ranges, not quotes:
+A typical job is a two-level deck, 400–600 sq ft total, in composite with aluminum rail and connecting steps.
 
-| Typical scope | Typical installed range |
-|---|---|
-| Two-level deck, 400–600 sq ft total, composite, aluminum rail, connecting steps | $28,000–$60,000 |
-
-Height, the number of levels, stair runs and railing choice move a multi-level deck around inside that range. Pergolas, benches and planters are priced separately at the consultation. Low-voltage lighting and electrical work are quoted separately. Our written estimate itemises each level, the pergola, the built-ins, the exact materials and what's excluded.
+Height, the number of levels, stair runs and railing choice move the price of a multi-level deck. Pergolas, benches and planters are priced separately at the consultation. Low-voltage lighting and electrical work are quoted separately. Our written estimate itemises each level, the pergola, the built-ins, the exact materials and what's excluded.
 
 ## What the job involves
 

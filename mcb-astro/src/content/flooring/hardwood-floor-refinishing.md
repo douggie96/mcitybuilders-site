@@ -1,6 +1,6 @@
 ---
 title: "Hardwood Floor Refinishing in Central Massachusetts | MCB"
-description: "Sanding, staining and recoating hardwood in Central MA. Typical 2026 costs, when to recoat vs sand, older-home issues, and what to ask first."
+description: "Sanding, staining and recoating hardwood in Central MA: when to recoat vs sand, older-home issues, stairs and repairs, and what to ask first."
 h1: "Hardwood Floor Refinishing in Central Massachusetts"
 order: 2
 card: "Sand, stain and refinish worn oak and maple, or screen and recoat a floor that just looks tired."
@@ -8,7 +8,6 @@ image: /flooring/hardwood-floor-refinishing-room.webp
 swatch: /flooring/hardwood-floor-refinishing-swatch.webp
 imageAlt: "Design idea: dining room with refinished red oak strip floor in a warm brown stain"
 swatchAlt: "Design idea: oak floor shown half sanded and half stained"
-costRange: "$3–$7 per sq ft refinished"
 faqs:
   - q: "How do I know if my floor needs a full sanding or just a recoat?"
     a: "If the scratches are only in the finish and the wood itself is not gray, stained or worn through, a screen and recoat is usually enough. If you see bare wood in traffic lanes, deep scratches, dark water marks or pet stains, the floor needs to be sanded down to fresh wood and refinished."
@@ -28,18 +27,16 @@ Refinishing is for solid or thick-veneer hardwood that is worn, scratched, dull 
 
 It is the wrong move when the boards are loose, cupped from a water problem, soft from rot, or worn so thin that the nails or tongues are showing. Engineered floors with a thin top layer, and floors that have already been sanded many times, may not have enough wood left. In those cases we will tell you plainly and point you toward [new hardwood installation](/flooring/hardwood-floor-installation) or, for a room that keeps getting wet, something like [luxury vinyl plank](/flooring/luxury-vinyl-plank). If the damage came from a leak, the leak and any wet framing need to be dealt with first; that is [water damage restoration](/water-damage-restoration) work before it is flooring work.
 
-## Refinishing costs in Central MA
+## Typical refinishing jobs in Central MA
 
-These are typical ranges for 2026 in our service area, not quotes. Your written estimate itemises the scope, materials and exclusions, so you know exactly what is covered.
+Your written estimate itemises the scope, materials and exclusions, so you know exactly what is covered. Typical jobs include:
 
-| Typical scope | Typical range |
-|---|---|
-| Screen and recoat (finish-only refresh), any room size | $1.50–$3 per sq ft |
-| Sand and clear finish, one room (about 300 sq ft) | $900–$1,800 |
-| Sand, stain and finish, first floor (about 500 sq ft) | $2,000–$3,500 |
-| Stair treads, sanded and refinished | $40–$100 per step |
-| Board replacement or pet-stain repair | $300–$900 for most repairs |
-| Carpet removal and staple pulling to expose old oak | $1–$2 per sq ft |
+- Screen and recoat (finish-only refresh), any room size
+- Sand and clear finish, one room (about 300 sq ft)
+- Sand, stain and finish, first floor (about 500 sq ft)
+- Stair treads, sanded and refinished
+- Board replacement or pet-stain repair
+- Carpet removal and staple pulling to expose old oak
 
 What moves the number: stain versus natural, water-based versus oil-based finish, number of coats, how much patching and board replacement is needed, stairs and railings, and how many closets and small rooms there are. Hard species like maple can take more sanding time than oak.
 

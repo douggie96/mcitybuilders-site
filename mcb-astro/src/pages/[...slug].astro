@@ -10,6 +10,7 @@ import { TOWN_SVC, SVC_KEYS, type Svc } from '../data/town-services';
 import { EXTRA } from '../data/town-extra';
 import { EXTRA2 } from '../data/town-extra-r2';
 import { BODIES } from '../data/town-service-bodies';
+import { REMODEL_IMG, TOWN_IMG, AI_CAPTION } from '../data/remodel-images';
 
 const ALL_TOWNS = [...RING1, ...RING2];
 const ALL_EXTRA = { ...EXTRA, ...EXTRA2 };
@@ -44,6 +45,9 @@ interface Props { town: TownProfile; svc: Svc }
 const { town, svc } = Astro.props;
 const S = SERVICES[svc];
 const T = town.name;
+// Indefinite article that agrees with the town name, for every town: "an Ashland",
+// "an Auburn", "an Ayer", "a Lancaster". (2026-10-23: Ashland, Auburn and Ayer were printed with "a".)
+const aT = `${/^[AEIOU]/i.test(T) ? 'an' : 'a'} ${T}`;
 const X = ALL_EXTRA[town.slug];
 
 // Title ladder: longest option that fits 60 characters.
@@ -114,6 +118,18 @@ const description = descOptions[svc].find(d => d.length >= 70 && d.length <= 160
 // it is the town profile again and must canonicalise to the GC page.
 const body = svc !== 'general-contractor' ? BODIES[town.slug]?.[svc] : undefined;
 
+// 2026-10-23 (WP2 image manifest): kitchen and bathroom pages carry two AI design illustrations,
+// one in the hero slot and one in the body, each with the AI caption beside it. The GC pages keep
+// their single visualisation. src/srcset/width/height come from remodel-images.ts because the
+// webp() helper below only knows how to rewrite .jpg names.
+const pick = svc !== 'general-contractor' ? TOWN_IMG[`${svc}-${town.slug}`] : undefined;
+if (svc !== 'general-contractor' && !pick) throw new Error(`No WP2 image assignment for ${svc}-${town.slug}`);
+const imgA = pick ? REMODEL_IMG[pick.primary] : undefined;
+const imgB = pick ? REMODEL_IMG[pick.secondary] : undefined;
+if (pick && !(imgA && imgB)) throw new Error(`Unknown WP2 image id for ${svc}-${town.slug}`);
+// The body image follows the second body section (mid-body).
+const secAt = body ? Math.min(1, body.sections.length - 1) : -1;
+
 const PAPERWORK = { q: 'What paperwork do we get before work starts?',
   a: 'A written estimate that itemises scope, materials and exclusions, then a written contract before any work begins. Ask us for our registration and insurance details in writing and we will provide them directly — we do not publish those numbers online.' };
 const PERMITS = { q: 'Do you pull permits?',
@@ -132,7 +148,7 @@ const faqs = body ? [WORK_HERE, ...body.faqs, PAPERWORK, PERMITS] : [
   { q: `Is the house on town water and sewer, or well and septic?`,
     a: X.systems },
   PAPERWORK,
-  { q: `What moves the price on a ${T} project?`,
+  { q: `What moves the price on ${aT} project?`,
     a: X.priceContext },
   ...(svc === 'general-contractor' ? (X.moreFaqs ?? []) : []),
   PERMITS,
@@ -210,13 +226,20 @@ const heroSrcset = `${webp(S.img, 800)} 800w, ${webp(S.img, 1400)} 1400w`;
       </div>
     </header>
 
-    <figure class="tp__img">
-      <picture>
-        <source type="image/webp" srcset={heroSrcset} sizes="100vw" />
-        <img src={S.img} alt={`Design visualisation for ${S.label.toLowerCase()} in ${T}, MA. Not a photograph of our work.`} width="1400" height="792" loading="eager" fetchpriority="high" decoding="async" />
-      </picture>
-      <figcaption>Visualisation &mdash; not a photograph of our work</figcaption>
-    </figure>
+    {imgA ? (
+      <figure class="tp__img">
+        <img src={imgA.src} srcset={`${imgA.src} ${imgA.w}w`} sizes="100vw" alt={imgA.alt} width={imgA.w} height={imgA.h} loading="eager" fetchpriority="high" decoding="async" />
+        <figcaption>{AI_CAPTION}</figcaption>
+      </figure>
+    ) : (
+      <figure class="tp__img">
+        <picture>
+          <source type="image/webp" srcset={heroSrcset} sizes="100vw" />
+          <img src={S.img} alt={`Design visualisation for ${S.label.toLowerCase()} in ${T}, MA. Not a photograph of our work.`} width="1400" height="792" loading="eager" fetchpriority="high" decoding="async" />
+        </picture>
+        <figcaption>Visualisation &mdash; not a photograph of our work</figcaption>
+      </figure>
+    )}
 
     <div class="wrap tp__body">
       {body ? (
@@ -232,12 +255,25 @@ const heroSrcset = `${webp(S.img, 800)} 800w, ${webp(S.img, 1400)} 1400w`;
         </section>
       )}
 
-      {body && body.sections.map(s => (
-        <section>
-          <h2>{s.h2}</h2>
-          {s.paras.map(p => <p>{p}</p>)}
-        </section>
-      ))}
+      {body ? body.sections.map((s, i) => (
+        <Fragment>
+          <section>
+            <h2>{s.h2}</h2>
+            {s.paras.map(p => <p>{p}</p>)}
+          </section>
+          {imgB && i === secAt && (
+            <figure class="tp__img" style="margin:0 0 clamp(34px,4vw,58px);max-width:74ch">
+              <img src={imgB.src} srcset={`${imgB.src} ${imgB.w}w`} sizes="(max-width: 900px) 100vw, 900px" alt={imgB.alt} width={imgB.w} height={imgB.h} loading="lazy" decoding="async" />
+              <figcaption>{AI_CAPTION}</figcaption>
+            </figure>
+          )}
+        </Fragment>
+      )) : imgB && (
+        <figure class="tp__img" style="margin:0 0 clamp(34px,4vw,58px);max-width:74ch">
+          <img src={imgB.src} srcset={`${imgB.src} ${imgB.w}w`} sizes="(max-width: 900px) 100vw, 900px" alt={imgB.alt} width={imgB.w} height={imgB.h} loading="lazy" decoding="async" />
+          <figcaption>{AI_CAPTION}</figcaption>
+        </figure>
+      )}
 
       {!body && svc === 'kitchen-remodeling' && (
         <section>
@@ -295,16 +331,16 @@ const heroSrcset = `${webp(S.img, 800)} 800w, ${webp(S.img, 1400)} 1400w`;
 
       {!body && (
         <section>
-          <h2>What moves the price on a {T} project</h2>
+          <h2>What moves the price on {aT} project</h2>
           <p>{X.priceContext}</p>
           {svc === 'general-contractor' && X.costRows && (
             <>
-              <h3>What {T} projects typically cost (2026)</h3>
+              <h3>Typical {T} projects and on-site time</h3>
               <table class="tp__cost">
-                <thead><tr><th>Project</th><th>Typical range</th><th>On-site time</th></tr></thead>
+                <thead><tr><th>Project</th><th>On-site time</th></tr></thead>
                 <tbody>
                   {X.costRows.map(r => (
-                    <tr><td>{r.href ? <a href={r.href}>{r.item}</a> : r.item}</td><td>{r.range}</td><td>{r.time}</td></tr>
+                    <tr><td>{r.href ? <a href={r.href}>{r.item}</a> : r.item}</td><td>{r.time}</td></tr>
                   ))}
                 </tbody>
               </table>

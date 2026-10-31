@@ -41,6 +41,7 @@ window.__mcbConsent={{
  }}
 }};
 </script>
+<style id="mcb-cookie-banner-fix">#mcb-cookie-banner[hidden]{{display:none!important}}</style>
 '''
 
 BANNER = f'''<!-- {MARK}: banner -->

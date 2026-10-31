@@ -1,6 +1,6 @@
 ---
-title: "Deck Railings & Stairs in Central MA: Costs, Code | MCB"
-description: "Deck railings and stairs in Central Massachusetts: what they add to deck cost, wood to cable options, permits, guard and stair code, and post strength."
+title: "Deck Railings & Stairs in Central MA: Types, Code | MCB"
+description: "Deck railings and stairs in Central Massachusetts: wood to cable options, what drives the price, permits, guard and stair code, and post strength."
 h1: "Deck Railings and Stairs"
 order: 3
 trade: decks
@@ -9,7 +9,6 @@ image: /ideas/deck-railings-and-stairs-main.webp
 swatch: /ideas/deck-railings-and-stairs-detail.webp
 imageAlt: "Design idea: wide deck stair with black aluminum railing and white posts leading down to a lawn behind a New England colonial"
 swatchAlt: "Design idea: close-up of a black aluminum baluster railing meeting a white composite post with a solid rail cap"
-costRange: "Priced per linear foot in your written estimate"
 faqs:
   - q: "How tall does a deck railing have to be in Massachusetts?"
     a: "Guards are required where the deck surface is more than 30 inches above the grade below. On a house, the Massachusetts code calls for at least 36 inches, with openings small enough that a 4-inch sphere can't pass. Your town's building inspector has the final word, so we confirm the details at permit time."
@@ -29,7 +28,7 @@ faqs:
     a: "Yes. Framing, posts and railings can go in during cold weather. Composite and PVC need wider end gaps in the cold, and TimberTech requires pre-drilling below 45\u00b0F. A new stair-landing footing needs its concrete protected from freezing while it cures. Winter is also when booking is easiest, so the railing is done before spring."
 ---
 
-**Railings and stairs usually make up a quarter to a third of a deck's total price, and most Central Massachusetts decks run $8,000–$55,000 all in, so they are worth their own decision.** In Massachusetts a guard is required where the deck is more than 30 inches above grade, and a stair with four or more risers needs a handrail. A railing swap typically takes two to four days on site, and a new stair adds one to three.
+**Railings and stairs usually make up a quarter to a third of a deck's total price, so they are worth their own decision.** In Massachusetts a guard is required where the deck is more than 30 inches above grade, and a stair with four or more risers needs a handrail. A railing swap typically takes two to four days on site, and a new stair adds one to three.
 
 ## Why railings and stairs deserve their own decision
 
@@ -47,11 +46,11 @@ This page covers railing systems, stairs and the code points behind them. For de
 
 A mix is common: aluminum or composite on the deck, and a sturdy wood or composite handrail on the stairs, where people actually grab.
 
-## What railings and stairs cost
+## What drives the price of railings and stairs
 
 Railing is priced per linear foot, and the spread between systems is wide: pressure-treated wood sits at the low end, composite and PVC rail kits and powder-coated aluminum in the middle, and cable and glass at the top. Stair runs are priced per run, and a tall stair with a mid-landing costs several times a short four-step run.
 
-For context, whole decks installed run about $34–$55 per square foot in pressure-treated pine, $35–$65 in cedar, $55–$95 in capped composite and $70–$115 in cellular PVC, or $8,000–$55,000 for most projects. Railings and stairs are a quarter to a third of that. Stairs and posts are structural, so they usually need a permit; see [building permits in Central Massachusetts](/building-permits-central-massachusetts).
+Stairs and posts are structural, so they usually need a permit; see [building permits in Central Massachusetts](/building-permits-central-massachusetts).
 
 | System | What drives the price |
 |---|---|

@@ -1,6 +1,6 @@
 ---
 title: "Carpet Installation for Bedrooms & Basements | MCB"
-description: "Carpet installation in Central Massachusetts: typical costs for bedrooms, basements and stairs, how to choose pad and fiber, and moisture issues below grade."
+description: "Carpet installation in Central Massachusetts for bedrooms, basements and stairs: how to choose pad and fiber, and moisture issues below grade."
 h1: "Carpet Installation"
 order: 6
 card: "Soft, warm and quiet. Bedrooms, finished basements and stairs, with the right pad for each room."
@@ -8,7 +8,6 @@ image: /flooring/carpet-installation-room.webp
 swatch: /flooring/carpet-installation-swatch.webp
 imageAlt: "Design idea: finished basement family room with oatmeal-colored plush carpet"
 swatchAlt: "Design idea: close-up of oatmeal plush carpet pile"
-costRange: "$3.50–$9 per sq ft installed"
 faqs:
   - q: "Is carpet a good idea in a basement?"
     a: "It can be, in a basement that stays dry. We test the slab for moisture, use a synthetic carpet and a pad with a moisture barrier, and recommend running a dehumidifier. If the basement has ever taken on water, a hard floor like vinyl plank is the safer choice."
@@ -54,21 +53,17 @@ Many carpet makers specify the pad their product needs. Following that is part o
 - **Face weight and twist.** Heavier face weight and a tighter twist generally mean the carpet stays looking new longer.
 - **Color.** Mid-tone neutrals hide the most. Very light carpet in a basement next to the back door is a fight you won't win.
 
-## What carpet costs in Central MA
+## Typical carpet jobs in Central MA
 
-National guides put carpet around $2 to $8 per square foot installed with pad, and Angi lists Boston-area carpet around $3.50 to $11 per square foot. For Central MA, a typical range is about **$3.50 to $9 per square foot installed, pad included**.
+Typical jobs include:
 
-Typical ranges, not quotes:
+- One bedroom, old carpet removed (about 144 sq ft)
+- Basement family room over a dry slab (about 400 sq ft)
+- Straight staircase (about 13 steps)
+- Old carpet and pad removal
+- Transitions to hard floors
 
-| Typical scope | Size | Typical installed range |
-|---|---|---|
-| One bedroom, old carpet removed | ~144 sq ft | $550–$1,400 |
-| Basement family room over a dry slab | ~400 sq ft | $1,500–$3,800 |
-| Straight staircase | ~13 steps | $250–$950 |
-| Old carpet and pad removal | per sq ft | add $0.70–$1.60 |
-| Transitions to hard floors | each | add $25–$100 |
-
-Stairs are priced per step. Cap-and-band, winders and open-sided stairs sit at the high end. Our written estimate itemises scope, materials and exclusions, including pad type by name.
+Stairs are priced per step, and cap-and-band, winders and open-sided stairs take the most time. Our written estimate itemises scope, materials and exclusions, including pad type by name.
 
 ## What the job involves, step by step
 

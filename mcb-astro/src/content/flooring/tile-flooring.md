@@ -1,6 +1,6 @@
 ---
 title: "Tile Flooring Installation in Central MA | MCB"
-description: "Porcelain and ceramic tile floors for bathrooms, kitchens and mudrooms in Central MA: typical installed costs, subfloor prep, heated floors and what to ask."
+description: "Porcelain and ceramic tile floors for bathrooms, kitchens and mudrooms in Central MA: subfloor prep, heated floors, old-house issues and what to ask."
 h1: "Tile Flooring Installation in Central Massachusetts"
 order: 4
 card: "Porcelain and ceramic tile for baths, kitchens and mudrooms: the floor that shrugs off water, salt and mud."
@@ -8,10 +8,9 @@ image: /flooring/tile-flooring-room.webp
 swatch: /flooring/tile-flooring-swatch.webp
 imageAlt: "Design idea: bathroom with large-format matte grey porcelain floor tile"
 swatchAlt: "Design idea: close-up of grey stone-look porcelain tile"
-costRange: "$14–$30 per sq ft installed"
 faqs:
   - q: "How much does a tile floor cost in Central Massachusetts?"
-    a: "Typical installed ranges run about $14 to $30 per square foot for porcelain or ceramic, including setting materials and grout. Removing old tile, repairing the subfloor, adding an uncoupling membrane or a heated mat all add to that. Small bathrooms often cost more per square foot because setup and prep are the same no matter how small the room is."
+    a: "It depends on the room and what is under it. Removing old tile, repairing the subfloor, adding an uncoupling membrane or a heated mat all add work, and small bathrooms often cost more per square foot because setup and prep are the same no matter how small the room is. We price every project in a written estimate that itemizes scope, materials and exclusions, then a written contract before any work begins."
   - q: "Is porcelain better than ceramic for a floor?"
     a: "For most floors in a New England house, yes. Porcelain is denser and absorbs less water, so it handles wet boots, road salt and freeze-thaw in an unheated entry better. Ceramic is fine for a low-traffic bathroom and usually costs a little less. Check the tile's floor rating before you fall for a wall tile."
   - q: "Can you put tile over my old floor?"
@@ -19,7 +18,7 @@ faqs:
   - q: "How long does a tile floor take to install?"
     a: "A typical bathroom floor takes about 3 to 5 working days from demo to grout and fixture reset, allowing for thinset and grout to set. A kitchen or open mudroom runs roughly 4 to 7 days depending on size, subfloor work and whether a heated floor goes in. The written estimate lays out the schedule."
   - q: "Is a heated tile floor worth it in Massachusetts?"
-    a: "In a bathroom or mudroom over a cold crawlspace or garage, a lot of people think so. Electric mats or cables go under the tile and typically add about $8 to $20 per square foot installed, plus a dedicated circuit and thermostat. They need to be decided before the tile goes down, since adding one later means tearing the floor up."
+    a: "In a bathroom or mudroom over a cold crawlspace or garage, a lot of people think so. Electric mats or cables go under the tile and need a dedicated circuit and thermostat. They need to be decided before the tile goes down, since adding one later means tearing the floor up."
 ---
 
 ## Who tile is right for, and where it fails
@@ -39,21 +38,19 @@ Where tile is the wrong pick:
 - **Where you stand for hours and want softness.** Tile is hard on feet and knees. Some people love it in a kitchen; some hate it after a month.
 - **On a tight budget for a big open area.** Per square foot, tile costs more than [luxury vinyl plank](/flooring/luxury-vinyl-plank) and takes longer to install. For a large family room, LVP or [hardwood](/flooring/hardwood-floor-installation) is often the better use of money.
 
-## What tile costs in Central MA
+## Typical tile jobs in Central MA
 
-These are **typical ranges, not quotes.** Every house is different, and your written estimate itemises the scope, the materials and what's excluded, so you can see exactly what you're paying for.
+Every house is different, and your written estimate itemises the scope, the materials and what's excluded, so you can see exactly what you're paying for. Typical jobs include:
 
-| Typical scope | Typical installed range |
-|---|---|
-| Porcelain or ceramic floor tile, per sq ft | $14–$30 |
-| Small bathroom floor (40–60 sq ft), including demo and toilet pull/reset | $1,800–$4,000 |
-| Kitchen floor (150–250 sq ft), porcelain | $3,500–$7,500 |
-| Mudroom or entry (60–100 sq ft) | $1,500–$3,500 |
-| Remove existing tile, per sq ft | $2–$7 |
-| Subfloor repair or replacement, per sq ft | $2–$5 |
-| Electric heated floor under tile, per sq ft | $8–$20 |
+- Porcelain or ceramic floor tile
+- Small bathroom floor (40–60 sq ft), including demo and toilet pull/reset
+- Kitchen floor (150–250 sq ft), porcelain
+- Mudroom or entry (60–100 sq ft)
+- Removing existing tile
+- Subfloor repair or replacement
+- Electric heated floor under tile
 
-What pushes a job toward the high end: large-format tile (24 inches and up) that needs a flatter floor, patterns like herringbone, natural stone, lots of cuts around cabinets and door casings, and old floors that have to come out in layers.
+What pushes the price up: large-format tile (24 inches and up) that needs a flatter floor, patterns like herringbone, natural stone, lots of cuts around cabinets and door casings, and old floors that have to come out in layers.
 
 ## What the job involves, step by step
 

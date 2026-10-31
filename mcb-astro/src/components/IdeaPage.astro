@@ -28,7 +28,6 @@ const jsonLd = [
       <div>
         <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">/</span> <a href={hubUrl}>{hubName}</a></nav>
         <h1>{d.h1}</h1>
-        <p class="cost">{d.costRange.includes('$') ? 'Typical Central MA range: ' : ''}<strong>{d.costRange}</strong></p>
         <p class="lead">{d.card}</p>
         <a class="btn" href="#estimate">Book a free in-home consultation</a>
       </div>
@@ -48,7 +47,7 @@ const jsonLd = [
       <h2>{moreHeading}</h2>
       <ul>
         {siblings.map((s) => (
-          <li><a href={`${base}/${s.id.split('/').pop()}`}><img src={s.data.swatch} alt={s.data.swatchAlt} width="800" height="800" loading="lazy" /><span>{short(s.data.h1)}</span></a></li>
+          <li><a href={`${base}/${s.id.split('/').pop()}`}><img src={s.data.swatch} alt={s.data.swatchAlt} width="800" height="800" loading="lazy" /><span>{short(s.data.h1)}</span><small style="font-weight:400;font-size:.72rem;line-height:1.35;color:var(--stone)">Design idea · AI-generated illustration, not an MCB project</small></a></li>
         ))}
       </ul>
       <p><a href={hubUrl}>Back to {hubName.toLowerCase()}</a></p>

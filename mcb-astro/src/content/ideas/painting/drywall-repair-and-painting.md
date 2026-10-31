@@ -1,6 +1,6 @@
 ---
 title: "Drywall Repair and Painting in Central Massachusetts | MCB"
-description: "Drywall repair and painting in Central Massachusetts: holes, nail pops, cracks and ceiling stains patched so they disappear, with typical 2026 costs."
+description: "Drywall repair and painting in Central Massachusetts: holes, nail pops, cracks and ceiling stains patched and painted so they disappear for good."
 h1: "Drywall repair and painting"
 order: 11
 trade: painting
@@ -9,7 +9,6 @@ image: /ideas/drywall-repair-and-painting-main.webp
 swatch: /ideas/drywall-repair-and-painting-detail.webp
 imageAlt: "Design idea: freshly painted living room wall and ceiling in a ranch house with smooth, even matte finish"
 swatchAlt: "Design idea: close-up of a feathered joint compound patch on drywall ready for primer"
-costRange: "$350–$900 per typical patch-and-paint visit (typical Central MA range)"
 faqs:
   - q: "Why can I still see the patch after it was painted?"
     a: "Usually flashing. Joint compound absorbs paint differently from the painted wall around it, so the patch dries with a different sheen. Priming the patch and repainting the wall corner to corner fixes it. Touching up only the patch almost never blends."
@@ -39,18 +38,16 @@ It is not enough when something behind the wall is still wrong:
 - **Cracks that keep widening or run diagonally** from door and window corners across a whole wall can point to structural movement. Patching hides the symptom.
 - **Large areas of mold** are a remediation job, not a patch.
 
-## What it costs in Central MA
+## What drives the price of drywall repair
 
-Typical 2026 ranges, not quotes. The written estimate itemises the repairs, the paint and primer, how far the repaint extends, and anything excluded. Most contractors have a minimum visit, which is why a single small hole costs more per inch than a list of ten.
+The written estimate itemises the repairs, the paint and primer, how far the repaint extends, and anything excluded. Most contractors have a minimum visit, which is why a single small hole costs more per inch than a list of ten. Typical jobs include:
 
-| Typical scope | Typical Central MA range |
-|---|---|
-| A few small holes and nail pops in one room, primed and wall repainted | $350–$700 |
-| Doorknob-size to 12-inch hole, patched and wall repainted | $400–$900 |
-| Ceiling stain after a fixed leak, stain-blocked and ceiling repainted | $450–$1,000 |
-| Water-damaged ceiling section cut out, replaced, finished and painted | $800–$2,000 |
-| Full sheet replaced after plumbing or wiring work, finished and painted | $900–$2,200 |
-| Skim coat and repaint of one room of rough or damaged walls | $1,500–$4,000 |
+- A few small holes and nail pops in one room, primed and wall repainted
+- Doorknob-size to 12-inch hole, patched and wall repainted
+- Ceiling stain after a fixed leak, stain-blocked and ceiling repainted
+- Water-damaged ceiling section cut out, replaced, finished and painted
+- Full sheet replaced after plumbing or wiring work, finished and painted
+- Skim coat and repaint of one room of rough or damaged walls
 
 ## How the job runs, step by step
 

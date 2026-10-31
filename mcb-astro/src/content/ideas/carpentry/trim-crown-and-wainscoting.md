@@ -1,6 +1,6 @@
 ---
 title: "Crown Molding, Trim & Wainscoting, Central MA | MCB"
-description: "Crown molding, baseboard, casing and wainscoting in Central MA: typical installed costs, coping vs mitering, MDF vs poplar, and trim in older plaster homes."
+description: "Crown molding, baseboard, casing and wainscoting in Central MA: coping vs mitering, MDF vs poplar, and fitting trim in older plaster homes."
 h1: "Crown Molding, Trim and Wainscoting"
 trade: carpentry
 order: 2
@@ -9,7 +9,6 @@ image: /ideas/trim-crown-and-wainscoting-main.webp
 swatch: /ideas/trim-crown-and-wainscoting-detail.webp
 imageAlt: "Design idea: colonial dining room with white raised-panel wainscoting, a chair rail and painted crown molding"
 swatchAlt: "Design idea: close-up of a coped inside corner of painted crown molding"
-costRange: "$9–$20 per linear foot for crown molding installed (typical Central MA range)"
 faqs:
   - q: "Should crown molding be coped or mitered at inside corners?"
     a: "Coped. Very few room corners are exactly 90 degrees, and a mitered inside corner opens up as the house moves through the seasons. A coped joint, where one piece is cut to the profile of the other, stays tight much longer. Outside corners are mitered."
@@ -35,21 +34,19 @@ Where it is money poorly spent:
 
 Our main [carpentry](/carpentry) page lists all the finish work we take on. This page focuses on the choices that make trim look right and stay tight.
 
-## What trim and wainscoting cost in Central MA
+## What drives the price of trim and wainscoting
 
-These are typical Central Massachusetts ranges, not quotes. Your written estimate itemises scope, materials, painting and exclusions.
+Your written estimate itemises scope, materials, painting and exclusions. Typical jobs include:
 
-| Typical scope | Typical range |
-|---|---|
-| Crown molding, paint-grade, installed | $9–$20 per linear ft |
-| Crown in one 12×14 ft room (about 52 ft) | $600–$1,300 |
-| Baseboard, remove old and install new, paint-grade | $6–$14 per linear ft |
-| Door or window casing, one opening, both sides for doors | $150–$350 per opening |
-| Flat-panel or board-and-batten wainscoting | $12–$25 per sq ft of wall |
-| Raised-panel or applied-molding wainscoting | $18–$40 per sq ft of wall |
-| Beadboard wainscoting with cap and base | $12–$22 per sq ft of wall |
+- Crown molding, paint-grade, installed
+- Crown in one 12×14 ft room (about 52 ft)
+- Baseboard, remove old and install new, paint-grade
+- Door or window casing, one opening, both sides for doors
+- Flat-panel or board-and-batten wainscoting
+- Raised-panel or applied-molding wainscoting
+- Beadboard wainscoting with cap and base
 
-Stain-grade oak or cherry, multi-piece built-up crown, tall ceilings that need staging, and plaster walls that need extra fastening all push toward the top of those ranges. Painting may or may not be included; ask.
+Stain-grade oak or cherry, multi-piece built-up crown, tall ceilings that need staging, and plaster walls that need extra fastening all push the price up. Painting may or may not be included; ask.
 
 ## Coping, mitering and why corners open
 

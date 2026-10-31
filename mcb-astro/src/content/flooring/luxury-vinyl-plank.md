@@ -1,6 +1,6 @@
 ---
 title: "Luxury Vinyl Plank (LVP) Flooring, Central MA | MCB"
-description: "LVP flooring in Central Massachusetts: typical installed costs, basement and kitchen suitability, subfloor prep, moisture testing and how to pick a plank."
+description: "LVP flooring in Central Massachusetts: basement and kitchen suitability, subfloor prep, moisture testing and how to pick a plank that lasts."
 h1: "Luxury Vinyl Plank Flooring Installation"
 order: 3
 card: "Water-resistant, tough and warm underfoot. The go-to for kitchens, mudrooms and basements over dry slabs."
@@ -8,7 +8,6 @@ image: /flooring/luxury-vinyl-plank-room.webp
 swatch: /flooring/luxury-vinyl-plank-swatch.webp
 imageAlt: "Design idea: open kitchen and family room in a ranch home with light greige oak-look luxury vinyl plank flooring"
 swatchAlt: "Design idea: luxury vinyl plank samples fanned out showing several oak-look colors"
-costRange: "$6–$13 per sq ft installed"
 faqs:
   - q: "Can luxury vinyl plank go in a basement?"
     a: "Usually, yes. A rigid-core plank is one of the few floors that tolerates a below-grade slab. We test the slab for moisture first, and if the readings are high or the basement takes water, we deal with that before any flooring goes down."
@@ -37,19 +36,15 @@ It is not the answer everywhere. Here is where it struggles:
 
 Both are floating click floors that look like wood. The difference that matters most is the core. LVP's plastic core shrugs off standing water; laminate's wood-fiber core does not, even in the newer water-resistant lines. So in a kitchen, a half bath, a mudroom by the back door or a basement, we lean LVP. If the room is a dry bedroom upstairs and you want a harder surface that resists scratches and feels more like wood, compare [laminate flooring](/flooring/laminate-flooring). For bathrooms with a tub or shower, look at [tile flooring](/flooring/tile-flooring).
 
-## What LVP costs in Central MA
+## Typical LVP jobs in Central MA
 
-Nationally, cost guides put installed LVP around $4 to $16 per square foot, with most jobs between $5 and $12. Labor in Massachusetts runs above the national average, so in Central MA a typical range is about **$6 to $13 per square foot installed**, depending on the plank, the prep, and the room.
+Typical jobs include:
 
-These are typical ranges, not quotes:
-
-| Typical scope | Size | Typical installed range |
-|---|---|---|
-| Half bath, pull and reset toilet | 30–50 sq ft | $500–$1,200 |
-| Kitchen and family room, remove carpet first | ~400 sq ft | $2,800–$5,800 |
-| Finished basement over a dry slab | ~600 sq ft | $4,000–$8,500 |
-| Remove old tile or glued-down floor | per sq ft | add $2–$6 |
-| Subfloor repair or replacement | per sq ft | add $2.20–$4.75 |
+- Half bath, pull and reset toilet (30–50 sq ft)
+- Kitchen and family room, remove carpet first (about 400 sq ft)
+- Finished basement over a dry slab (about 600 sq ft)
+- Remove old tile or glued-down floor
+- Subfloor repair or replacement
 
 Smaller rooms cost more per foot because setup, cuts and transitions don't shrink with the room. Our written estimate itemises the scope, the materials by product name, and what's excluded, so you can compare it line by line against anyone else's.
 

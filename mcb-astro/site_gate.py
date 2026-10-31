@@ -38,6 +38,12 @@ APPROVED = [
 # Tightened 2026-09-19: the old pattern caught "licensed" but NOT the noun "license",
 # so "we hold a license" sailed through the gate that exists to stop exactly that.
 CLAIM = re.compile(r"\b(licen[cs]ed|licen[cs]es?|insured|bonded|carries insurance)\b|\b(HIC|CSL)\b|Construction Supervisor|Home Improvement Contractor|workers.{0,8}comp", re.I)
+# Added 2026-10-30 (Doug's decision): NO dollar figures on sales pages - service hubs, sub-service
+# pages, town pages, homepage, about, areas-we-serve, schema, llms.txt. Only these homeowner-education
+# pages may show prices (cost guides, blog, permit/timing guides, calculator). To allow a new guide,
+# add its URL path here - never loosen the regex.
+PRICE_OK = set(["bathroom-remodel-cost-massachusetts", "bathroom-remodeling/bathroom-remodel-permit-massachusetts", "bathroom-remodeling/winter-bathroom-remodel-massachusetts", "blog", "blog/bathroom-addition-title-v-septic-central-ma", "blog/bathroom-ventilation-moisture-older-homes-ma", "blog/fall-prep-protect-home-before-winter-massachusetts", "blog/how-to-choose-general-contractor-massachusetts", "blog/kitchen-cabinets-1900s-farmhouse-central-ma", "blog/kitchen-remodel-home-value-massachusetts", "blog/kitchen-remodel-permits-timeline-central-ma", "blog/kitchen-remodeling-cost-central-massachusetts", "blog/last-chance-exterior-projects-before-winter", "blog/mid-summer-home-improvements-add-value", "blog/older-home-kitchen-remodel-surprises-central-ma", "blog/opening-up-closed-kitchen-older-home-ma", "blog/properly-winterize-home-massachusetts", "blog/small-galley-kitchen-remodel-older-homes-ma", "blog/small-hall-bathroom-remodel-cost-central-ma", "blog/spring-home-maintenance-checklist-massachusetts", "blog/tile-vs-prefab-shower-surround-ma", "blog/walk-in-shower-aging-in-place-bathroom-ma", "building-permits-central-massachusetts", "calculator", "deck-building-cost-massachusetts", "deck-building/book-a-deck-in-winter-massachusetts", "exterior-painting-cost-massachusetts", "flooring/best-time-refinish-hardwood-floors-massachusetts", "general-renovations/knob-and-tube-wiring-remodel-massachusetts", "general-renovations/remove-load-bearing-wall-massachusetts", "how-to-hire-contractor-massachusetts", "interior-painting-cost-massachusetts", "kitchen-remodel-cost-marlborough-ma", "kitchen-remodel-cost-worcester-ma", "painting/interior-painting-in-winter-massachusetts", "rot-repair-cost-massachusetts"])
+PRICE = re.compile(r'\$\s?\d|"priceRange"')
 fails, warns, n = [], [], 0
 for dp, dns, fns in os.walk(ROOT):
     dns[:] = [d for d in dns if d not in SKIP_DIRS]
@@ -51,6 +57,9 @@ for dp, dns, fns in os.walk(ROOT):
             scan = scan.replace(ok, ' ')
         hits = [scan[max(0, m.start()-40):m.end()+40].replace('\n', ' ') for m in CLAIM.finditer(scan)]
         if hits: (warns if url in ADVISORY else fails).append((url, len(hits), hits[0]))
+        if not url.startswith('_backups') and url not in PRICE_OK and not url.startswith('blog/'):
+            pm = PRICE.search(h)
+            if pm: fails.append((url, len(PRICE.findall(h)), 'price on a sales page: ' + h[max(0, pm.start()-40):pm.end()+40].replace('\n', ' ')))
         if 'NM846W2P' in h: fails.append((url, 1, 'tag id NM846W2P still present (GA4 must be G-7HXJQJL5Q2 only)'))
         if 'insertBefore(t,s)}(window' in h.replace(' ', ''): fails.append((url, 1, 'Meta pixel loads itself before consent'))
         if "'mcb_consent'" in h: fails.append((url, 1, 'wrong consent key mcb_consent (static site uses mcb-consent)'))

@@ -1,6 +1,6 @@
 ---
 title: "Epoxy Garage & Basement Floors in Central MA | MCB"
-description: "Epoxy and polyaspartic floor coatings for garages and basements in Central MA: typical costs, grind prep, moisture testing, cure temps and road salt."
+description: "Epoxy and polyaspartic floor coatings for garages and basements in Central MA: grind prep, moisture testing, cure temps and road salt."
 h1: "Epoxy Garage and Basement Floors in Central Massachusetts"
 order: 7
 card: "Flake or solid-color coatings for garages and basements, built to handle road salt, water and hot tires."
@@ -8,10 +8,9 @@ image: /flooring/epoxy-garage-floors-room.webp
 swatch: /flooring/epoxy-garage-floors-swatch.webp
 imageAlt: "Design idea: two-car garage with a grey and black flake epoxy floor"
 swatchAlt: "Design idea: close-up of grey and black flake epoxy floor coating"
-costRange: "$6–$12 per sq ft installed"
 faqs:
   - q: "How much does an epoxy garage floor cost in Central Massachusetts?"
-    a: "Typical installed ranges run about $6 to $12 per square foot for a ground, flake-broadcast system with a clear topcoat. A two-car garage usually lands somewhere around $3,000 to $6,000. Heavy crack repair, spalled concrete or a slab that needs moisture mitigation adds to that, and the written estimate itemises each of those separately."
+    a: "It depends on the size of the slab, its condition and the system you pick. Heavy crack repair, spalled concrete or a slab that needs moisture mitigation all add work, and each one is listed separately. We price every project in a written estimate that itemizes scope, materials and exclusions, then a written contract before any work begins."
   - q: "Should I get epoxy or polyaspartic?"
     a: "Many good systems use both: an epoxy base coat for adhesion and build, with a polyaspartic topcoat for UV stability and scratch resistance. Straight epoxy can yellow in sunlight and takes longer to cure. Polyaspartic cures fast and tolerates cooler temperatures, but it costs more and leaves less working time. The right mix depends on your slab, the season and how you use the space."
   - q: "Why do DIY epoxy kits peel?"
@@ -38,18 +37,16 @@ Where it's the wrong pick:
 - **A finished living space where you want warmth underfoot.** For a basement family room, [carpet](/flooring/carpet-installation) or [luxury vinyl plank](/flooring/luxury-vinyl-plank) is usually a better fit.
 - **A badly heaved or broken slab.** A coating will just highlight big displaced sections. That slab needs repair first.
 
-## What it costs in Central MA
+## Typical coating jobs in Central MA
 
-These are **typical ranges, not quotes.** Your written estimate itemises the scope, materials and exclusions so you can compare apples to apples.
+Your written estimate itemises the scope, materials and exclusions so you can compare apples to apples. Typical jobs include:
 
-| Typical scope | Typical installed range |
-|---|---|
-| Flake system with clear topcoat, per sq ft | $6–$12 |
-| One-car garage (about 250 sq ft) | $1,800–$3,500 |
-| Two-car garage (about 450–500 sq ft) | $3,000–$6,000 |
-| Basement floor, solid color (about 600 sq ft) | $3,600–$7,200 |
-| Crack and spall repair, per sq ft of affected area | $0.50–$2 |
-| Moisture-mitigating primer, per sq ft | $2–$5 |
+- Flake system with clear topcoat
+- One-car garage (about 250 sq ft)
+- Two-car garage (about 450–500 sq ft)
+- Basement floor, solid color (about 600 sq ft)
+- Crack and spall repair
+- Moisture-mitigating primer
 
 What moves a price: the condition of the concrete, old paint or sealers that have to be ground off, how much crack and spall repair is needed, the system thickness, full flake versus a light broadcast, and whether the slab needs a moisture primer.
 

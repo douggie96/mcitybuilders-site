@@ -59,7 +59,6 @@ const org = {
   url: 'https://mcitybuilders.com/',
   telephone: '+1-508-656-7436',
   email: 'douglas@mcitybuilders.com',
-  priceRange: '$$-$$$',
   address: { '@type': 'PostalAddress', streetAddress: '1171 Main St', addressLocality: 'Lancaster',
     addressRegion: 'MA', postalCode: '01523', addressCountry: 'US' },
   areaServed: [
@@ -77,7 +76,7 @@ const org = {
       .map(name => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })) },
   founder: { '@type': 'Person', name: 'Douglas Mourao' },
   sameAs: [
-    'https://www.facebook.com/MaverickCityBuilders',
+    'https://www.facebook.com/mcitybuilders',
     'https://www.instagram.com/mcitybuilders/',
     'https://maps.google.com/?cid=9936051014553959193',
     'https://www.houzz.com/pro/webuser-553630233/maverick-city-builders',
@@ -93,7 +92,7 @@ const faqs = [
   { q: 'What areas does Maverick City Builders serve?',
     a: 'We are based in Lancaster, MA and serve homeowners across Worcester County and Central Massachusetts, including Worcester, Leominster, Fitchburg, Clinton, Sterling, Bolton, Hudson, Berlin, Harvard, Marlborough, Stow, Boxborough, Acton, Concord, and Sudbury.' },
   { q: 'How much do your remodeling projects cost?',
-    a: 'Every project is quoted at a fixed price before work starts. As a rough guide, kitchen remodels run about $16,000 to $140,000, bathroom remodels $8,000 to $125,000, decks $10,000 to $60,000, interior painting from $1,200 per room, and exterior repaints from about $6,500. Call (508) 656-7436 for a quote on your project.' },
+    a: 'It depends on the size of the job, the materials, any layout changes and what we find in an older house. Every project is quoted at a fixed price before work starts. We price every project in a written estimate that itemizes scope, materials and exclusions, then a written contract before any work begins. Call (508) 656-7436 for a quote on your project.' },
   { q: 'How long does a typical project take?',
     a: 'A hall bathroom usually takes two to three weeks, a full kitchen four to ten weeks, a new deck one to three weeks, and most painting jobs a few days to two weeks. You get a written schedule with your quote and regular updates throughout the work.' },
   { q: 'Does Maverick City Builders work to a written contract?',
@@ -243,17 +242,17 @@ const REAL = 'Photograph — Worcester, MA';
         <h2 data-reveal>Remodeling Services Across Central Massachusetts</h2>
         <div class="rooms__cols">
           <div data-reveal><h3>Kitchens: what old houses hide</h3>
-            <p>Old Central Mass kitchens hide surprises. In early-1900s farmhouses around here, pulling up old linoleum often reveals no subfloor at all, and knob-and-tube wiring in mill-era three-deckers regularly has to be rewired mid-project. A cosmetic refresh runs about $16,000 to $28,000, while a full gut with custom cabinets and quartz lands between $65,000 and $110,000. You get a fixed-price quote before demo day, no moving targets. If your kitchen is stuck in another decade, here is how we handle <a href="/kitchen-remodeling">kitchen remodeling across Worcester County</a>.</p></div>
+            <p>Old Central Mass kitchens hide surprises. In early-1900s farmhouses around here, pulling up old linoleum often reveals no subfloor at all, and knob-and-tube wiring in mill-era three-deckers regularly has to be rewired mid-project. You get a fixed-price quote before demo day, no moving targets. If your kitchen is stuck in another decade, here is how we handle <a href="/kitchen-remodeling">kitchen remodeling across Worcester County</a>.</p></div>
           <div data-reveal><h3>Bathrooms: supply lines and septic</h3>
-            <p>Second-floor baths in older Leominster and Fitchburg homes often sit on galvanized supply lines that clog and rust, so we swap them to PEX while the walls are open. A hall bath refresh starts near $16,000, and a primary suite with a tiled walk-in shower can reach $125,000. Adding a bathroom in a septic town like Bolton or Harvard may trigger a Title V review, and we handle that paperwork for you. See what full <a href="/bathroom-remodeling">bathroom remodeling</a> looks like when it is done right.</p></div>
+            <p>Second-floor baths in older Leominster and Fitchburg homes often sit on galvanized supply lines that clog and rust, so we swap them to PEX while the walls are open. Adding a bathroom in a septic town like Bolton or Harvard may trigger a Title V review, and we handle that paperwork for you. See what full <a href="/bathroom-remodeling">bathroom remodeling</a> looks like when it is done right.</p></div>
           <div data-reveal><h3>Decks: frost, salt and snow load</h3>
-            <p>A deck here has to survive frost heave, road salt, and a few feet of snow load. We set footings to the 48-inch frost depth and flash every ledger so ice dams cannot rot the band joist. Pressure-treated builds start around $8,000, and a composite deck with aluminum rail runs $18,000 to $38,000 at 16×20, or $28,000 to $60,000 larger or multi-level. We handle the building permit through your town, coordinate the trade permits the plumber and electrician file, and schedule the inspections. Take a look at our approach to <a href="/deck-building">deck building in Central Massachusetts</a> before you sign with a low bidder.</p></div>
+            <p>A deck here has to survive frost heave, road salt, and a few feet of snow load. We set footings to the 48-inch frost depth and flash every ledger so ice dams cannot rot the band joist. We handle the building permit through your town, coordinate the trade permits the plumber and electrician file, and schedule the inspections. Take a look at our approach to <a href="/deck-building">deck building in Central Massachusetts</a> before you sign with a low bidder.</p></div>
           <div data-reveal><h3>Whole-home work and additions</h3>
-            <p>Some projects do not fit in one room. We phase whole-home renovations so your family can keep living in the house, bring old wiring and undersized panels up to code, and hold one contract across every trade. A multi-room renovation runs $20,000 to $70,000, and additions are priced by the square foot. One crew, one schedule, one number to call. Here is how we run <a href="/general-renovations">general renovations and home additions</a> across the region.</p></div>
+            <p>Some projects do not fit in one room. We phase whole-home renovations so your family can keep living in the house, bring old wiring and undersized panels up to code, and hold one contract across every trade. Additions are priced by the square foot. One crew, one schedule, one number to call. Here is how we run <a href="/general-renovations">general renovations and home additions</a> across the region.</p></div>
           <div data-reveal><h3>Interiors: plaster and lead-safe prep</h3>
-            <p>Most homes in Worcester County were built before 1978, which means lead-safe prep on any sanding or scraping. We skim-coat the settling cracks in 1900s plaster before a single coat goes on, and we prime old ice-dam water stains so they do not bleed through. A single room runs $1,200 to $3,000, and a whole-interior repaint runs $6,000 to $50,000 depending on the size of the house. See how we handle <a href="/interior-painting">interior painting from prep to final wall</a>.</p></div>
+            <p>Most homes in Worcester County were built before 1978, which means lead-safe prep on any sanding or scraping. We skim-coat the settling cracks in 1900s plaster before a single coat goes on, and we prime old ice-dam water stains so they do not bleed through. See how we handle <a href="/interior-painting">interior painting from prep to final wall</a>.</p></div>
           <div data-reveal><h3>Exteriors: where paint fails first</h3>
-            <p>South and west walls take the worst of the New England sun and winter, so that is where paint fails first. We wash, scrape, sand, spot-prime bare cedar, and cut out any rot before two finish coats go on. Pre-1978 clapboard gets lead-safe handling. Most full exterior repaints run $6,500 to $16,000 depending on size and carpentry repair, and we only paint in the right temperature window. Protect your siding the right way with our <a href="/exterior-painting">exterior painting service</a>.</p></div>
+            <p>South and west walls take the worst of the New England sun and winter, so that is where paint fails first. We wash, scrape, sand, spot-prime bare cedar, and cut out any rot before two finish coats go on. Pre-1978 clapboard gets lead-safe handling. We only paint in the right temperature window. Protect your siding the right way with our <a href="/exterior-painting">exterior painting service</a>.</p></div>
         </div>
         <p class="rooms__all"><a class="hlink" href="/services">All services <span aria-hidden="true">→</span></a></p>
       </div>
@@ -342,7 +341,7 @@ const REAL = 'Photograph — Worcester, MA';
           <a href={`mailto:${SITE.email}`} data-ev="email_click">{SITE.email}</a>
           <span>{SITE.address.street}, {SITE.address.locality}, {SITE.address.region} {SITE.address.postalCode}</span>
           <span class="hmono">Office — by appointment only</span>
-          <span><a href="/contact">Contact page</a> · <a href="https://www.facebook.com/MaverickCityBuilders" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/mcitybuilders/" rel="noopener">Instagram</a></span>
+          <span><a href="/contact">Contact page</a> · <a href="https://www.facebook.com/mcitybuilders" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/mcitybuilders/" rel="noopener">Instagram</a></span>
         </address>
       </div>
       <div><HomeEstimateForm /></div>

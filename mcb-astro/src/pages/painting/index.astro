@@ -11,7 +11,7 @@ import IdeasGallery from '../../components/IdeasGallery.astro';
 import { Content as Brands } from '../../content/ideas/painting/_brands.md';
 const ideas = (await getCollection('ideas', (e) => e.data.trade === 'painting')).sort((a, b) => a.data.order - b.data.order);
 const ideaItems = [
-  ...ideas.map((d) => ({ href: `/painting/${d.id.split('/').pop()}`, name: d.data.h1.replace(/ in (Central )?(MA|Massachusetts)$/i, ''), card: d.data.card, costRange: d.data.costRange, image: d.data.image, swatch: d.data.swatch, imageAlt: d.data.imageAlt, swatchAlt: d.data.swatchAlt })),
+  ...ideas.map((d) => ({ href: `/painting/${d.id.split('/').pop()}`, name: d.data.h1.replace(/ in (Central )?(MA|Massachusetts)$/i, ''), card: d.data.card, image: d.data.image, swatch: d.data.swatch, imageAlt: d.data.imageAlt, swatchAlt: d.data.swatchAlt })),
 ];
 
 const docs = [...(await getCollection('services')), ...(await getCollection('paintingGuides'))].sort(

@@ -1,6 +1,6 @@
 ---
 title: "Hardwood Floor Installation in Central Massachusetts | MCB"
-description: "Solid and engineered hardwood installed across Central MA. Typical 2026 costs, prep, acclimation, New England moisture issues, and what to ask."
+description: "Solid and engineered hardwood installed across Central MA: subfloor prep, acclimation, New England moisture issues, and what to ask first."
 h1: "Hardwood Floor Installation in Central Massachusetts"
 order: 1
 card: "Solid or engineered oak, maple and hickory, installed over a flat, dry, properly prepped subfloor."
@@ -8,7 +8,6 @@ image: /flooring/hardwood-floor-installation-room.webp
 swatch: /flooring/hardwood-floor-installation-swatch.webp
 imageAlt: "Design idea: colonial living room with wide-plank white oak hardwood floors"
 swatchAlt: "Design idea: close-up of white oak hardwood planks"
-costRange: "$8–$20 per sq ft installed"
 faqs:
   - q: "Should I choose solid or engineered hardwood?"
     a: "Solid is the classic choice on wood subfloors above grade and can be sanded many times over its life. Engineered handles seasonal humidity swings better, comes in wider planks without as much cupping risk, and is the one to use over concrete or radiant heat. On a slab or in a basement, solid hardwood is not the right product."
@@ -30,19 +29,17 @@ It is the wrong call in a few places. Full bathrooms and laundry rooms see stand
 
 If you already have oak under your carpet, you may not need new flooring at all. Pull up a corner in a closet. In a lot of 1950s through 1970s ranches in Shrewsbury, Westborough and Northborough, there is original strip oak under the wall-to-wall that just needs [refinishing](/flooring/hardwood-floor-refinishing).
 
-## What hardwood installation costs in Central MA
+## Typical hardwood installation jobs in Central MA
 
-These are typical ranges for 2026 in our service area, not quotes. Your written estimate itemises the scope, the materials and the exclusions, so you can see exactly what is and is not included.
+Your written estimate itemises the scope, the materials and the exclusions, so you can see exactly what is and is not included. Typical jobs include:
 
-| Typical scope | Typical installed range |
-|---|---|
-| Prefinished engineered oak, one bedroom (about 180 sq ft) over a sound subfloor | $1,600–$3,200 |
-| Site-finished solid oak strip, living and dining room (about 400 sq ft) | $4,400–$7,200 |
-| Wide-plank white oak, open first floor (about 600 sq ft) | $7,800–$15,000 |
-| Carpet and pad removal | $1–$2 per sq ft |
-| Removal of old tile, vinyl or glued-down flooring | $2–$4 per sq ft |
-| Subfloor repair or leveling | $900–$3,000 for most rooms |
-| Stair treads and risers | $90–$220 per step |
+- Prefinished engineered oak, one bedroom (about 180 sq ft) over a sound subfloor
+- Site-finished solid oak strip, living and dining room (about 400 sq ft)
+- Wide-plank white oak, open first floor (about 600 sq ft)
+- Carpet and pad removal
+- Removal of old tile, vinyl or glued-down flooring
+- Subfloor repair or leveling
+- Stair treads and risers
 
 What moves the number: the species and grade you pick, plank width, whether the wood is prefinished or sanded and finished on site, how much prep the subfloor needs, and how many doorways, closets and transitions there are. Patterns like herringbone add a lot of cutting time and cost more.
 

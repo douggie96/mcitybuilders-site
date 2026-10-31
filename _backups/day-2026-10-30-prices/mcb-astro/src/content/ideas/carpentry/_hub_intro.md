@@ -1,0 +1,1 @@
+Four areas of finish carpentry homeowners ask us about most, each with typical Central Massachusetts costs, what the job involves and how it works in older homes with wavy plaster and sloping floors. Pick the one closest to your project for materials, options and the questions to ask before you hire anyone. The photos are AI-generated design ideas, not pictures of our projects.

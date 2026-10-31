@@ -1,13 +1,13 @@
 ---
 title: "Flooring Installation in Central Massachusetts | MCB"
-description: "Hardwood, LVP, tile, laminate, carpet and epoxy floors across Central MA. Compare typical costs, water tolerance and lifespan, then book a free measure."
+description: "Hardwood, LVP, tile, laminate, carpet and epoxy floors across Central MA. Compare best rooms, water tolerance and lifespan, then book a free measure."
 h1: "Flooring in Central Massachusetts"
-intro: "Picking a floor comes down to the room, the people and pets using it, and your budget. Below is a straight comparison of the seven floor types we install, with typical Central Massachusetts price ranges, so you can narrow it down before we ever show up with samples."
+intro: "Picking a floor comes down to the room, the people and pets using it, and your budget. Below is a straight comparison of the seven floor types we install, so you can narrow it down before we ever show up with samples."
 faqs:
   - q: "Which flooring is best for a Massachusetts basement?"
     a: "It depends on the slab. Luxury vinyl plank, tile, carpet with the right pad and coated concrete all work below grade if the slab passes a moisture test. Solid hardwood doesn't belong on a basement slab. We test the slab before recommending anything."
-  - q: "Are the prices on these pages quotes?"
-    a: "No. They're typical installed ranges for Central Massachusetts. Your actual price depends on the room, the subfloor, what has to come out first and the product you pick. The written estimate itemises scope, materials and exclusions."
+  - q: "How is a flooring job priced?"
+    a: "Your price depends on the room, the subfloor, what has to come out first and the product you pick. We price every project in a written estimate that itemizes scope, materials and exclusions, then a written contract before any work begins."
   - q: "Do you move furniture and remove the old floor?"
     a: "Removal and disposal of old flooring is usually part of the job, and the estimate spells out whether it's included. We'll talk through furniture and appliance moving at the consultation so there are no surprises on install day."
   - q: "What about old floors that might contain asbestos?"
@@ -20,17 +20,17 @@ faqs:
 
 Start with the room, not the product. A mudroom that sees wet boots and road salt all winter needs something different from a bedroom upstairs. Then think about who lives there: big dogs, small kids and a busy back door all push you toward tougher surfaces.
 
-The table below compares the seven floor types we install. Prices are **typical installed ranges per square foot in Central Massachusetts, not quotes**. Your written estimate is what counts.
+The table below compares the seven floor types we install.
 
-| Floor | Best rooms | Water tolerance | Pets / kids | Typical installed $/sq ft | Typical lifespan |
-|---|---|---|---|---|---|
-| [Solid hardwood](/flooring/hardwood-floor-installation) | Living rooms, dining rooms, bedrooms, hallways | Low; wipe spills fast, not for basements or full baths | Scratches show; can be sanded and refinished | $8–$20 | 50+ years with refinishing |
-| [Hardwood refinishing](/flooring/hardwood-floor-refinishing) | Any room with existing wood floors, including oak under old carpet | Same as the wood underneath | Fresh finish helps; harder finishes resist wear better | $3–$7 (refinished) | Finish typically lasts 7–10+ years |
-| [Luxury vinyl plank (LVP)](/flooring/luxury-vinyl-plank) | Kitchens, family rooms, basements, rentals | High; handles spills and damp slabs | Very good; resists scratches and accidents | $6–$13 | 15–25 years |
-| [Tile](/flooring/tile-flooring) | Bathrooms, mudrooms, kitchens, laundry rooms | Very high | Excellent for pets; hard underfoot | $14–$30 | 50+ years |
-| [Laminate](/flooring/laminate-flooring) | Bedrooms, living rooms, home offices | Moderate; standing water can swell it | Good scratch resistance; can be noisy | $5–$12 | 15–25 years |
-| [Carpet](/flooring/carpet-installation) | Bedrooms, finished basements, stairs | Low; pad and fibers hold moisture | Soft for kids; shows pet wear and stains | $3.50–$9 | 8–15 years |
-| [Epoxy / coated concrete](/flooring/epoxy-garage-floors) | Garages, unfinished basements, utility rooms | Very high on a dry slab | Tough and easy to hose off | $6–$12 | 10–20 years |
+| Floor | Best rooms | Water tolerance | Pets / kids | Typical lifespan |
+|---|---|---|---|---|
+| [Solid hardwood](/flooring/hardwood-floor-installation) | Living rooms, dining rooms, bedrooms, hallways | Low; wipe spills fast, not for basements or full baths | Scratches show; can be sanded and refinished | 50+ years with refinishing |
+| [Hardwood refinishing](/flooring/hardwood-floor-refinishing) | Any room with existing wood floors, including oak under old carpet | Same as the wood underneath | Fresh finish helps; harder finishes resist wear better | Finish typically lasts 7–10+ years |
+| [Luxury vinyl plank (LVP)](/flooring/luxury-vinyl-plank) | Kitchens, family rooms, basements, rentals | High; handles spills and damp slabs | Very good; resists scratches and accidents | 15–25 years |
+| [Tile](/flooring/tile-flooring) | Bathrooms, mudrooms, kitchens, laundry rooms | Very high | Excellent for pets; hard underfoot | 50+ years |
+| [Laminate](/flooring/laminate-flooring) | Bedrooms, living rooms, home offices | Moderate; standing water can swell it | Good scratch resistance; can be noisy | 15–25 years |
+| [Carpet](/flooring/carpet-installation) | Bedrooms, finished basements, stairs | Low; pad and fibers hold moisture | Soft for kids; shows pet wear and stains | 8–15 years |
+| [Epoxy / coated concrete](/flooring/epoxy-garage-floors) | Garages, unfinished basements, utility rooms | Very high on a dry slab | Tough and easy to hose off | 10–20 years |
 
 A few rules of thumb from houses around Lancaster, Worcester and MetroWest:
 

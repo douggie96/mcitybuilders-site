@@ -1,6 +1,6 @@
 ---
 title: "Laminate Flooring Installation in Central MA | MCB"
-description: "Laminate flooring in Central Massachusetts: typical installed costs, where it works and where it doesn't, winter dryness, underlayment and AC ratings."
+description: "Laminate flooring in Central Massachusetts: where it works and where it doesn't, winter dryness, underlayment, AC ratings and what to ask."
 h1: "Laminate Flooring Installation"
 order: 5
 card: "A hard, scratch-resistant wood look for bedrooms and living areas, usually for less than hardwood."
@@ -8,7 +8,6 @@ image: /flooring/laminate-flooring-room.webp
 swatch: /flooring/laminate-flooring-swatch.webp
 imageAlt: "Design idea: cape-style bedroom with sloped ceiling and hickory-look laminate flooring"
 swatchAlt: "Design idea: close-up of hickory-look laminate planks"
-costRange: "$5–$12 per sq ft installed"
 faqs:
   - q: "Can laminate go in a kitchen or bathroom?"
     a: "Water-resistant laminate can work in a kitchen if spills get wiped up. We don't recommend it in a full bathroom, a laundry room or a mudroom where water can sit. Those rooms are better served by vinyl plank or tile."
@@ -45,19 +44,15 @@ This is the question we get most. The short version from our side:
 
 If the room is dry and you care about scratches, laminate is a smart buy. If the room sees water, go vinyl or [tile](/flooring/tile-flooring).
 
-## What laminate costs in Central MA
+## Typical laminate jobs in Central MA
 
-National cost guides put installed laminate somewhere between $3 and $14 per square foot, with labor alone running about $2 to $8. Massachusetts labor runs above the national average. For Central MA a typical range is about **$5 to $12 per square foot installed**.
+Typical jobs include:
 
-Typical ranges, not quotes:
-
-| Typical scope | Size | Typical installed range |
-|---|---|---|
-| One bedroom, carpet removed | ~144 sq ft | $900–$2,000 |
-| Living and dining room, open layout | ~350 sq ft | $2,000–$4,600 |
-| Upstairs of a cape, bedrooms and hall | ~500 sq ft | $2,700–$6,300 |
-| New baseboard or shoe molding | per linear ft | add $4–$10 |
-| Subfloor repair | per sq ft | add $2.20–$4.75 |
+- One bedroom, carpet removed (about 144 sq ft)
+- Living and dining room, open layout (about 350 sq ft)
+- Upstairs of a cape, bedrooms and hall (about 500 sq ft)
+- New baseboard or shoe molding
+- Subfloor repair
 
 What moves the number: how much old flooring comes out, how flat the subfloor is, how many doorways and closets there are, and whether stairs are part of it. Our written estimate itemises scope, materials and exclusions so there's no guessing what's included.
 

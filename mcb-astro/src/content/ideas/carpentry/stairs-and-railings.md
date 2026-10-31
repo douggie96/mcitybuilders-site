@@ -1,6 +1,6 @@
 ---
 title: "Stair Treads, Balusters & Railings, Central MA | MCB"
-description: "Interior stair work in Central MA: carpet-to-hardwood stair conversions, new treads and risers, balusters and newel posts, typical costs and code points."
+description: "Interior stair work in Central MA: carpet-to-hardwood stair conversions, new treads and risers, balusters, newel posts and code points."
 h1: "Interior Stairs and Railings"
 trade: carpentry
 order: 4
@@ -9,7 +9,6 @@ image: /ideas/stairs-and-railings-main.webp
 swatch: /ideas/stairs-and-railings-detail.webp
 imageAlt: "Design idea: front-hall staircase in a New England colonial with stained oak treads, white risers, white balusters and a dark wood handrail"
 swatchAlt: "Design idea: close-up of a stained oak stair tread with a rounded nosing over a white painted riser"
-costRange: "$150–$350 per step for new hardwood treads installed (typical Central MA range)"
 faqs:
   - q: "Is there hardwood under my stair carpet?"
     a: "Sometimes, but usually not the kind you want to show. Many stairs built from the 1960s on have pine or particleboard treads meant to be carpeted. We pull back a corner of carpet on a top step and a bottom step before pricing, so you know whether it is a refinish or a re-tread."
@@ -35,21 +34,19 @@ Stair work is a finish carpentry job when the stair itself is sound. It becomes 
 
 Our main [carpentry](/carpentry) page lists all our finish work. This page is about interior stairs specifically. For outdoor steps and deck railings, see [deck railings and stairs](/deck-building/deck-railings-and-stairs).
 
-## What stair work costs in Central MA
+## What drives the price of stair work
 
-These are typical Central Massachusetts ranges, not quotes. Your written estimate itemises every tread, riser, baluster and post, the stain and finish, and exclusions.
+Your written estimate itemises every tread, riser, baluster and post, the stain and finish, and exclusions. Typical jobs include:
 
-| Typical scope | Typical range |
-|---|---|
-| New hardwood tread, per step, installed | $150–$350 |
-| Carpet-to-hardwood conversion, straight 13–14 step stair, oak treads and painted risers | $3,000–$7,000 |
-| Replace wood or iron balusters on a straight run (about 25–35) | $1,500–$4,500 |
-| Single baluster replacement or repair | $40–$120 each |
-| New newel post, set and secured | $400–$1,200 |
-| New wood handrail | $40–$120 per linear ft |
-| Full railing: newels, handrail and balusters on a straight stair | $3,500–$9,000 |
+- New hardwood treads, installed
+- Carpet-to-hardwood conversion, straight 13–14 step stair, oak treads and painted risers
+- Replace wood or iron balusters on a straight run (about 25–35)
+- Single baluster replacement or repair
+- New newel post, set and secured
+- New wood handrail
+- Full railing: newels, handrail and balusters on a straight stair
 
-Winders, landings, open-sided stairs, stain-grade finishes on everything, and custom-milled parts push toward the top of the range. Painted risers and balusters with stained treads is the most common mix and keeps cost in check.
+Winders, landings, open-sided stairs, stain-grade finishes on everything, and custom-milled parts push the price up. Painted risers and balusters with stained treads is the most common mix and keeps cost in check.
 
 ## Carpet to hardwood, step by step
 

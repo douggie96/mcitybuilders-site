@@ -1,6 +1,6 @@
 ---
 title: "Custom Built-Ins & Mudroom Storage, Central MA | MCB"
-description: "Built-in bookcases, window seats and mudroom lockers in Central MA: typical costs per linear foot, materials, scribing to old walls and what the job involves."
+description: "Built-in bookcases, window seats and mudroom lockers in Central MA: materials, scribing to old walls, what the job involves and what to ask."
 h1: "Built-Ins and Mudroom Storage"
 trade: carpentry
 order: 1
@@ -9,7 +9,6 @@ image: /ideas/built-ins-and-mudrooms-main.webp
 swatch: /ideas/built-ins-and-mudrooms-detail.webp
 imageAlt: "Design idea: painted mudroom wall with four open lockers, a bench seat, hooks and cubbies above in a New England colonial"
 swatchAlt: "Design idea: close-up of a painted built-in cabinet scribed tight to an uneven plaster wall"
-costRange: "$400–$1,100 per linear foot for custom built-ins (typical Central MA range)"
 faqs:
   - q: "Is a custom built-in worth it over store-bought cabinets?"
     a: "It depends on the wall. On a flat, square wall with standard dimensions, good stock or semi-custom boxes trimmed out on site can look close to custom for less money. In older homes with wavy plaster, sloped ceilings or odd alcoves, a piece built and scribed to the room is usually the only way to get it tight without big filler strips."
@@ -47,18 +46,16 @@ A Central Massachusetts mudroom takes wet boots, road salt, sand, hockey bags an
 
 In a lot of 1950s–70s ranches in Leominster and Shrewsbury, the side door into the kitchen or garage is where everyone comes in, and there is no mudroom at all. A shallow locker wall, 12 to 16 inches deep, along a hallway or garage entry often does the job without taking square footage from the kitchen.
 
-## What built-ins cost in Central MA
+## What drives the price of built-ins
 
-These are typical ranges for Central Massachusetts, not quotes. Size, material, doors and drawers, and finish drive the number. Your written estimate itemises scope, materials, finish and exclusions.
+Size, material, doors and drawers, and finish drive the number. Your written estimate itemises scope, materials, finish and exclusions. Typical jobs include:
 
-| Typical scope | Typical range |
-|---|---|
-| Mudroom bench with hooks and upper cubbies, 4–5 ft wide | $2,500–$6,000 |
-| Mudroom locker wall with bench, 3–4 lockers, 8–10 ft | $6,000–$15,000 |
-| Pair of bookcases flanking a fireplace | $5,000–$14,000 |
-| Window seat with drawers or lift-top storage | $1,800–$5,000 |
-| Home office wall: desk, file drawers, upper shelves, 8–10 ft | $6,000–$16,000 |
-| Custom built-ins, general, per linear foot | $400–$1,100 |
+- Mudroom bench with hooks and upper cubbies, 4–5 ft wide
+- Mudroom locker wall with bench, 3–4 lockers, 8–10 ft
+- Pair of bookcases flanking a fireplace
+- Window seat with drawers or lift-top storage
+- Home office wall: desk, file drawers, upper shelves, 8–10 ft
+- Custom built-ins, priced by the linear foot
 
 Things that push a price up: stain-grade hardwood, inset doors, lots of drawers, integrated lighting (which needs an electrician), and walls that need heavy scribing. Things that keep it down: painted plywood and MDF, open shelving, and standard depths.
 

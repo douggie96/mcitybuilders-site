@@ -1,6 +1,6 @@
 ---
 title: "Pressure-Treated Deck Building in Central MA | MCB"
-description: "Pressure-treated wood decks in Central Massachusetts: typical installed costs, lumber grades, ground-contact framing, fasteners, drying and first stain."
+description: "Pressure-treated wood decks in Central Massachusetts: lumber grades, ground-contact framing, fasteners, drying time and the first stain coat."
 h1: "Pressure-Treated Wood Decks"
 order: 1
 trade: decks
@@ -9,7 +9,6 @@ image: /ideas/pressure-treated-decks-main.webp
 swatch: /ideas/pressure-treated-decks-detail.webp
 imageAlt: "Design idea: pressure-treated wood deck with a honey-brown semi-transparent stain off the back of a New England colonial"
 swatchAlt: "Design idea: close-up of pressure-treated deck boards with face screws in a straight line over a joist"
-costRange: "$34–$55 per sq ft of deck installed"
 faqs:
   - q: "How long should new pressure-treated lumber dry before we stain it?"
     a: "Until it drinks water instead of beading it. Sprinkle some water on a few boards: if it soaks in within a few minutes, the wood is ready. Wet-treated lumber can take a few weeks to a few months depending on sun and season. Kiln-dried-after-treatment lumber can usually be finished much sooner."
@@ -29,19 +28,17 @@ Pressure-treated (PT) southern yellow pine is the real-wood deck most Central Ma
 
 It is not the right call if you know you will never get out there with a brush. PT needs a wash and a coat of stain every two to three years, and a deck that misses that cycle turns grey, checks, and starts to splinter. If low upkeep matters more than first cost, read our [composite deck page](/composite-deck-installers-central-ma) or look at [PVC decking](/deck-building/pvc-decks). For a side-by-side of all materials, see the [2026 deck cost guide](/deck-building-cost-massachusetts). This page goes deeper on one thing: building a PT deck that holds up.
 
-## What a pressure-treated deck costs in Central MA
+## What drives the price of a pressure-treated deck
 
-National cost guides put wood decks well below Massachusetts numbers, because labor, permits and 48-inch frost footings cost more here. In Central MA a typical PT deck runs about **$34 to $55 per square foot installed**, including the frame, footings, a standard wood railing, one stair run and the permit.
+National cost guides put wood decks well below Massachusetts numbers, because labor, permits and 48-inch frost footings cost more here. A typical PT deck job covers the frame, footings, a standard wood railing, one stair run and the permit.
 
-These are typical ranges, not quotes:
+Typical jobs include:
 
-| Typical scope | Size | Typical installed range |
-|---|---|---|
-| Low platform, one step, no guard needed | 12x12 (144 sq ft) | $6,000–$9,500 |
-| Attached deck ~3 ft off grade, wood railing, one stair | 16x20 (320 sq ft) | $8,000–$22,000 |
-| Same, larger footprint | 20x20 (400 sq ft) | $13,500–$22,000 |
-| Tear off an old deck first | per deck | add $1,200–$1,800 |
-| First clean and stain coat once the wood is dry | ~400 sq ft | $700–$1,400 |
+- Low platform, one step, no guard needed (12x12, 144 sq ft)
+- Attached deck about 3 ft off grade, wood railing, one stair (16x20, 320 sq ft)
+- Same, larger footprint (20x20, 400 sq ft)
+- Tear off an old deck first
+- First clean and stain coat once the wood is dry (about 400 sq ft)
 
 Small decks cost more per square foot because the permit, footings and stairs don't shrink with the deck. Our written estimate itemises the scope, the lumber grade and rating, the fasteners and hardware, and what's excluded, so you can compare it line by line.
 

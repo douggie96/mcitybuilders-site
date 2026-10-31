@@ -1,0 +1,1 @@
+Decks here have to handle deep frost, heavy snow and humid summers, so the choices that matter go beyond board color. Browse the deck ideas below for typical Central Massachusetts costs, materials and code points by deck type, then bring the one you like to your free consultation. The photos are AI-generated design ideas, not pictures of our projects.

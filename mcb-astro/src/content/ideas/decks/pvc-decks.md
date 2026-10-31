@@ -1,6 +1,6 @@
 ---
 title: "PVC Decks: AZEK & TimberTech in Central MA | MCB"
-description: "PVC decking in Central Massachusetts: AZEK and TimberTech PVC vs composite, typical installed costs, heat, weight, expansion gaps and shaded-lot performance."
+description: "PVC decking in Central Massachusetts: AZEK and TimberTech PVC vs composite, heat, weight, expansion gaps and how it performs on shaded lots."
 h1: "PVC Decks: AZEK and TimberTech Advanced PVC"
 order: 2
 trade: decks
@@ -9,7 +9,6 @@ image: /ideas/pvc-decks-main.webp
 swatch: /ideas/pvc-decks-detail.webp
 imageAlt: "Design idea: light grey PVC deck with a contrasting darker border off a shingle-style New England home backed by woods"
 swatchAlt: "Design idea: close-up of grooved PVC deck boards with hidden fasteners and a picture-frame border"
-costRange: "$70–$115 per sq ft of deck installed"
 faqs:
   - q: "What is the difference between PVC and composite decking?"
     a: "Composite boards have a core of wood fiber and plastic under a protective cap. PVC boards, like TimberTech Advanced PVC by AZEK, are made entirely of polymers with no wood fiber. That makes PVC lighter and better at shrugging off moisture and mildew, but it costs more and moves more with temperature."
@@ -42,7 +41,7 @@ It's less compelling when budget is tight or the deck is a sunny, dry platform w
 | | Capped composite | PVC (e.g. AZEK) |
 |---|---|---|
 | Core | Wood fiber and plastic | Polymers, no wood fiber |
-| Installed cost | Lower | Higher, often $2,500–$6,000 more on a 16x20 |
+| Installed cost | Lower | Higher |
 | Weight | Heavier | Lighter, easier to handle on stairs and upper decks |
 | Moisture and mildew | Good, cap protects the surface | Better, nothing organic to feed mold |
 | Heat in sun | Dark colors get hot | Also gets hot; color matters more than material |
@@ -51,18 +50,16 @@ It's less compelling when budget is tight or the deck is a sunny, dry platform w
 
 Test samples before you pick. Drag a key across them, set them in the sun on your own deck at midday, and see which surface and color you like.
 
-## What a PVC deck costs in Central MA
+## What drives the price of a PVC deck
 
-National guides put AZEK and other PVC decking at roughly $58 to $95 per square foot installed. With Massachusetts labor, frost footings and permits, a typical Central MA range is about **$70 to $115 per square foot installed**, including the pressure-treated frame, hidden fasteners, railing, one stair run and the permit.
+Massachusetts labor, frost footings and permits put PVC decks here above what national guides suggest. A typical job covers the pressure-treated frame, hidden fasteners, railing, one stair run and the permit.
 
-These are typical ranges, not quotes:
+Typical jobs include:
 
-| Typical scope | Size | Typical installed range |
-|---|---|---|
-| New attached PVC deck, aluminum or composite rail, one stair | 16x20 (320 sq ft) | $22,000–$37,000 |
-| Same, larger footprint | 20x20 (400 sq ft) | $28,000–$46,000 |
-| New PVC boards and railing on a sound existing frame | 16x20 | $13,500–$19,500 |
-| Picture-frame border in a contrasting color | per deck | add $800–$2,500 |
+- New attached PVC deck, aluminum or composite rail, one stair (16x20, 320 sq ft)
+- Same, larger footprint (20x20, 400 sq ft)
+- New PVC boards and railing on a sound existing frame (16x20)
+- Picture-frame border in a contrasting color
 
 Collection matters. Within TimberTech's PVC range, Harvest is the value tier, and Landmark and Vintage cost more for deeper color variation and board-width options. Our written estimate names the exact collection, color, fasteners and railing, and lists what's excluded.
 

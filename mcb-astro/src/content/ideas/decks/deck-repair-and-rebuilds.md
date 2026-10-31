@@ -1,6 +1,6 @@
 ---
 title: "Deck Repair and Rebuilds in Central MA | MCB"
-description: "Deck repair in Central Massachusetts: warning signs, ledger and rot checks, typical repair costs, and how to decide between resurfacing and a full rebuild."
+description: "Deck repair in Central Massachusetts: warning signs, ledger and rot checks, what drives the price, and how to choose between resurfacing and a rebuild."
 h1: "Deck Repair and Rebuilds"
 order: 4
 trade: decks
@@ -9,7 +9,6 @@ image: /ideas/deck-repair-and-rebuilds-main.webp
 swatch: /ideas/deck-repair-and-rebuilds-detail.webp
 imageAlt: "Design idea: weathered grey wood deck with some new boards and a new flashed ledger on the back of an older New England home"
 swatchAlt: "Design idea: close-up of a deck ledger bolted to a house rim with metal flashing tucked behind the siding"
-costRange: "$500–$22,000 per project, by repair scope"
 faqs:
   - q: "How do I know if my deck is safe?"
     a: "Look for a ledger that's nailed rather than bolted or has no flashing, soft or spongy wood when you push a screwdriver in, rail posts that move when you lean on them, rusted hangers, posts sitting on blocks or buried in soil, and stairs pulling away. Any of those is worth a professional look before the next party."
@@ -47,18 +46,16 @@ This is the real decision on most older decks, and it hinges on the frame, not t
 
 **A middle path** we often recommend: keep the sound footings and beams, replace the ledger and joists, then deck and rail new. A typical scope looks like that on a 20-year-old deck whose footings pass but whose joist tops are gone.
 
-## What deck repairs cost in Central MA
+## What drives the price of deck repairs
 
-National guides put ledger replacement and joist repairs at a few hundred to a few thousand dollars, but they rarely include opening the wall, shoring the deck, or Massachusetts labor. These are typical ranges, not quotes:
+National guides rarely account for opening the wall, shoring the deck, or Massachusetts labor. Typical repair jobs include:
 
-| Typical scope | Typical installed range |
-|---|---|
-| Replace a small area of boards or stair treads | $500–$2,000 |
-| Rebuild a rail section with reinforced posts | $1,000–$3,000 |
-| Sister or replace a run of soft joists | $1,500–$5,000 |
-| Resurface 16x20 on a sound frame, pressure-treated | $4,500–$6,500 |
-| Resurface 16x20 on a sound frame, composite | $12,000–$17,000 |
-| Tear-off and full rebuild with new ledger, flashing and footings | $9,000–$22,000 |
+- Replace a small area of boards or stair treads
+- Rebuild a rail section with reinforced posts
+- Sister or replace a run of soft joists
+- Resurface 16x20 on a sound frame, pressure-treated
+- Resurface 16x20 on a sound frame, composite
+- Tear-off and full rebuild with new ledger, flashing and footings
 
 Repairs are the hardest deck work to price sight unseen, because rot rarely stops where it looks like it stops. Our written estimate itemises what we'll replace, what we'll check once it's open, how any hidden damage would be priced, and what's excluded.
 

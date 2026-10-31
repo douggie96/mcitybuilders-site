@@ -2,7 +2,7 @@
 /** Swatch + room "ideas" cards, one per sub-service page. Used on /flooring, /painting,
  *  and (as static HTML injected by publish tooling) on /deck-building and /carpentry.
  *  Every image is an AI design-idea illustration; the note below says so. */
-interface Item { href: string; name: string; card: string; costRange: string;
+interface Item { href: string; name: string; card: string;
   image: string; swatch: string; imageAlt: string; swatchAlt: string }
 interface Props { heading: string; sub?: string; items: Item[]; id?: string }
 const { heading, sub, items, id = 'ideas' } = Astro.props;
@@ -21,7 +21,6 @@ const { heading, sub, items, id = 'ideas' } = Astro.props;
           <span class="txt">
             <strong>{d.name}</strong>
             <span>{d.card}</span>
-            <span class="cost">{d.costRange.includes('$') ? `Typical: ${d.costRange}` : d.costRange}</span>
           </span>
         </a>
       </li>

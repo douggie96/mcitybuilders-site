@@ -48,7 +48,6 @@ const flooring = defineCollection({             // /flooring/* — one page per 
   loader: glob({ pattern: '[!_]*.md', base: './src/content/flooring' }),
   schema: z.object({ ...seo, order: z.number(), card: z.string().max(120),
                      image: z.string(), swatch: z.string(), imageAlt: z.string(), swatchAlt: z.string(),
-                     costRange: z.string(),
                      faqs: z.array(z.object({ q: z.string(), a: z.string() })).length(5) }),
 });
 const flooringHub = defineCollection({
@@ -61,7 +60,7 @@ const ideas = defineCollection({                 // /deck-building/*, /painting/
   loader: glob({ pattern: '*/[!_]*.md', base: './src/content/ideas' }),
   schema: z.object({ ...seo, trade: z.enum(['decks', 'painting', 'carpentry']), order: z.number(),
                      card: z.string().max(120), image: z.string(), swatch: z.string(),
-                     imageAlt: z.string(), swatchAlt: z.string(), costRange: z.string(),
+                     imageAlt: z.string(), swatchAlt: z.string(),
                      faqs: z.array(z.object({ q: z.string(), a: z.string() })).min(5) }),
 });
 

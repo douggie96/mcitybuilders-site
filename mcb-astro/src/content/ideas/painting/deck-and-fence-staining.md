@@ -1,6 +1,6 @@
 ---
 title: "Deck and Fence Staining in Central Massachusetts | MCB"
-description: "Deck and fence staining in Central Massachusetts: when new pressure-treated wood is ready, cleaning and stripping, choosing opacity, and typical 2026 costs."
+description: "Deck and fence staining in Central Massachusetts: when new pressure-treated wood is ready, cleaning and stripping, and choosing the right opacity."
 h1: "Deck and fence staining"
 order: 12
 trade: painting
@@ -9,7 +9,6 @@ image: /ideas/deck-and-fence-staining-main.webp
 swatch: /ideas/deck-and-fence-staining-detail.webp
 imageAlt: "Design idea: pressure-treated wood deck with a fresh cedar-tone semi-transparent stain behind a New England colonial, with a matching stained board fence"
 swatchAlt: "Design idea: close-up of water beading on freshly stained deck boards showing wood grain"
-costRange: "$3–$6 per sq ft of deck; $5–$12 per linear ft of fence (typical Central MA range)"
 faqs:
   - q: "How long should I wait to stain a new pressure-treated deck?"
     a: "Until the wood is dry enough to absorb water, not a fixed number of months. Sprinkle water on the boards: if it beads, wait and test again in a few days; if it soaks in, the wood is ready. YellaWood's current guidance is to stain within about six weeks of construction once the wood passes that test."
@@ -41,18 +40,16 @@ It will not help when:
 - **Railings are loose.** Loose posts and balusters are a safety problem to fix before any finish goes on.
 - **The deck is composite or PVC.** Those boards are not stained. Brands like Trex, TimberTech, AZEK and Fiberon are cleaned according to the manufacturer's instructions instead.
 
-## What it costs in Central MA
+## What drives the price of staining
 
-Typical 2026 ranges, not quotes. The written estimate itemises cleaning, stripping, board replacement, the named stain and coat count, and anything excluded.
+The written estimate itemises cleaning, stripping, board replacement, the named stain and coat count, and anything excluded. Typical jobs include:
 
-| Typical scope | Typical Central MA range |
-|---|---|
-| New pressure-treated deck about 12 x 16 ft, cleaned and one coat semi-transparent | $700–$1,300 |
-| Existing deck, washed, brightened and re-coated | $3–$5 per sq ft |
-| Failed film stain stripped, sanded and re-stained | $5–$9 per sq ft |
-| Railings and balusters | $6–$14 per linear ft of railing |
-| Wood fence, one side | $5–$12 per linear ft |
-| Deck boards replaced before staining | Priced per board after inspection |
+- New pressure-treated deck about 12 x 16 ft, cleaned and one coat semi-transparent
+- Existing deck, washed, brightened and re-coated
+- Failed film stain stripped, sanded and re-stained
+- Railings and balusters
+- Wood fence, one side
+- Deck boards replaced before staining, priced per board after inspection
 
 Stripping is what drives the price up. A deck that was coated with solid stain or deck paint and is now peeling takes far more labor than one that was kept up with a penetrating stain.
 
